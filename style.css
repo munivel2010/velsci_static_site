@@ -1,0 +1,407 @@
+/* Custom Properties for consistency */
+:root {
+    --font-primary: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
+    --color-text-dark: #2c3e50;
+    --color-text-light: #ecf0f1;
+    --color-background-light: #f4f7f6;
+    --color-background-medium: #e0e6e3;
+    --primary-color: #2b6cb0; /* Velsci Globals Blue */
+    --primary-color-dark: #215387;
+    --accent-color: #f5a524; /* A contrasting accent, e.g., for buttons */
+
+    /* Section colors for coding */
+    --color-section-bg-1: #eaf4f7; /* Light blue/grey */
+    --color-section-bg-2: #f7f1ea; /* Light orange/cream */
+    --color-section-bg-3: #eaf7f1; /* Light green/mint */
+
+    --spacing-unit: 1.5rem; /* Base unit for padding, margin */
+    --max-width-content: 1100px;
+    --border-radius: 8px;
+    --shadow-light: 0 4px 8px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Basic Reset & Base Styles */
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-primary);
+    line-height: 1.6;
+    color: var(--color-text-dark);
+    background-color: var(--color-background-light);
+    display: flex;
+    flex-direction: column; /* For sticky footer */
+    min-height: 100vh; /* Ensure body takes full viewport height */
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: var(--spacing-unit);
+    color: var(--color-text-dark);
+}
+
+h1 { font-size: 2.5rem; }
+h2 { font-size: 2rem; }
+h3 { font-size: 1.5rem; }
+p { margin-bottom: 1em; } /* Consistent paragraph spacing */
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+    color: var(--primary-color-dark);
+}
+
+/* Buttons */
+.button {
+    display: inline-block;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--border-radius);
+    font-weight: 600;
+    text-align: center;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    cursor: pointer;
+    border: none;
+}
+
+.primary-button {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+.primary-button:hover {
+    background-color: var(--primary-color-dark);
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+.whatsapp-button {
+    background-color: #25D366; /* WhatsApp Green */
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+}
+.whatsapp-button:hover {
+    background-color: #1DA851;
+    transform: translateY(-2px);
+    text-decoration: none;
+}
+
+/* Main Layout */
+#app-container {
+    display: grid;
+    grid-template-columns: 250px 1fr; /* Sidebar width and main content */
+    flex-grow: 1; /* Allow container to grow and push footer down */
+}
+
+/* Sidebar */
+#sidebar {
+    background-color: #fff;
+    color: var(--color-text-dark);
+    padding: var(--spacing-unit);
+    border-right: 1px solid var(--color-background-medium);
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--shadow-light);
+    position: sticky; /* Sticky sidebar */
+    top: 0;
+    height: 100vh; /* Occupy full height */
+    overflow-y: auto; /* Scrollable if content is too long */
+}
+
+.sidebar-header {
+    text-align: center;
+    padding-bottom: var(--spacing-unit);
+    border-bottom: 1px solid var(--color-background-medium);
+    margin-bottom: var(--spacing-unit);
+}
+
+.logo-link {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: inherit; /* Inherit color from sidebar */
+    text-decoration: none;
+}
+
+.site-logo {
+    max-width: 120px;
+    height: auto;
+    border-radius: var(--border-radius);
+    margin-bottom: 0.5rem;
+}
+
+.site-title {
+    font-size: 1.8rem;
+    margin: 0;
+    color: var(--primary-color-dark);
+}
+
+.site-tagline {
+    font-size: 0.9rem;
+    color: var(--color-text-dark);
+    margin-top: 0.2rem;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+}
+
+.sidebar-nav li {
+    margin-bottom: 0.5rem;
+}
+
+.sidebar-nav a {
+    display: block;
+    padding: 0.8rem 1rem;
+    color: var(--color-text-dark);
+    font-weight: 400;
+    border-radius: var(--border-radius);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav a:hover,
+.sidebar-nav a.current-menu-item { /* Assuming 'current-menu-item' class for active link */
+    background-color: var(--primary-color);
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Mobile Menu Toggle (hidden by default on desktop) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    position: absolute;
+    top: var(--spacing-unit);
+    right: var(--spacing-unit);
+    z-index: 1001; /* Above sidebar-nav */
+}
+.menu-toggle .bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--color-text-dark);
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+}
+
+/* Main Content Styling */
+#main-content {
+    flex-grow: 1;
+    overflow-x: hidden; /* Prevent horizontal scroll from large elements */
+}
+
+.content-section {
+    padding: calc(var(--spacing-unit) * 2) var(--spacing-unit);
+    max-width: var(--max-width-content);
+    margin: 0 auto; /* Center content within its column */
+    border-radius: var(--border-radius);
+    margin-bottom: var(--spacing-unit); /* Space between sections */
+    box-shadow: var(--shadow-light);
+}
+
+.section-title {
+    color: var(--primary-color-dark);
+    border-bottom: 2px solid var(--accent-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: var(--spacing-unit) * 1.5;
+    display: inline-block; /* To make border-bottom only as wide as text */
+}
+
+/* Color-coded Sections */
+.color-section-1 { background-color: var(--color-section-bg-1); }
+.color-section-2 { background-color: var(--color-section-bg-2); }
+.color-section-3 { background-color: var(--color-section-bg-3); }
+
+/* Hero Section Specific */
+.hero-section {
+    background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://via.placeholder.com/1600x600/2b6cb0/ffffff?text=Textile+Manufacturing+Excellence') no-repeat center center/cover;
+    color: #fff;
+    text-align: center;
+    padding: calc(var(--spacing-unit) * 4) var(--spacing-unit);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 400px;
+    margin-bottom: 0; /* No margin below hero */
+    box-shadow: none; /* No shadow for hero */
+    border-radius: 0; /* No border-radius for hero */
+}
+.hero-content h2 {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-unit);
+    color: #fff;
+}
+.hero-content p {
+    font-size: 1.25rem;
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    opacity: 0.9;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Products Grid */
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--spacing-unit);
+}
+
+.product-card {
+    background-color: #fff;
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Push button to bottom */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+.product-card h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 0.8rem;
+}
+.product-card p {
+    flex-grow: 1; /* Allow paragraph to take up available space */
+    margin-bottom: var(--spacing-unit);
+    font-size: 0.95rem;
+}
+
+/* Contact Info */
+.contact-info p {
+    margin-bottom: 0.5em;
+}
+
+/* Footer */
+#footer {
+    background-color: var(--color-text-dark);
+    color: var(--color-text-light);
+    text-align: center;
+    padding: var(--spacing-unit);
+    font-size: 0.85rem;
+    margin-top: auto; /* Pushes footer to the bottom */
+}
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    #app-container {
+        grid-template-columns: 1fr; /* Stack sidebar and main content */
+    }
+
+    #sidebar {
+        position: relative; /* No longer sticky */
+        height: auto;
+        border-right: none;
+        box-shadow: var(--shadow-medium);
+        padding: var(--spacing-unit);
+        z-index: 1000;
+    }
+
+    .sidebar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding-bottom: 0;
+        border-bottom: none;
+        margin-bottom: 0;
+    }
+
+    .site-title {
+        font-size: 1.5rem;
+    }
+    .site-tagline {
+        display: none; /* Hide tagline on smaller screens */
+    }
+    .logo-link {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    .site-logo {
+        max-width: 80px;
+        margin-bottom: 0;
+    }
+
+    .menu-toggle {
+        display: block; /* Show menu toggle button */
+        position: static; /* Position within header */
+        margin-left: auto; /* Push to right */
+    }
+
+    .sidebar-nav {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease-out;
+        border-top: 1px solid var(--color-background-medium);
+        margin-top: var(--spacing-unit);
+        padding-top: var(--spacing-unit);
+    }
+    .sidebar-nav.active {
+        max-height: 500px; /* Adjust as needed for menu height */
+    }
+    .sidebar-nav ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .sidebar-nav a {
+        padding: 0.6rem 1rem;
+        background-color: var(--color-background-light);
+    }
+    .sidebar-nav a:hover,
+    .sidebar-nav a.current-menu-item {
+        background-color: var(--primary-color);
+        color: #fff;
+    }
+
+    .hero-section {
+        min-height: 300px;
+        padding: calc(var(--spacing-unit) * 2) var(--spacing-unit);
+    }
+    .hero-content h2 {
+        font-size: 2.2rem;
+    }
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .content-section {
+        padding: calc(var(--spacing-unit) * 1.5) var(--spacing-unit);
+    }
+
+    .products-grid {
+        grid-template-columns: 1fr; /* Stack product cards */
+    }
+}
+
+@media (max-width: 768px) {
+    h1 { font-size: 2rem; }
+    h2 { font-size: 1.75rem; }
+    h3 { font-size: 1.3rem; }
+
+    .hero-content h2 {
+        font-size: 1.8rem;
+    }
+    .hero-content p {
+        font-size: 0.95rem;
+    }
+    .button {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+}
