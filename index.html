@@ -13,6 +13,9 @@
 
     <!-- Your Custom Stylesheet -->
     <link rel="stylesheet" href="style.css">
+
+    <!-- Razorpay Checkout JS (loaded from CDN) -->
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </head>
 <body>
     <div id="app-container">
@@ -20,6 +23,7 @@
         <aside id="sidebar">
             <header class="sidebar-header">
                 <a href="#" class="logo-link">
+                    <!-- Assuming logo.jpg is in the same directory for static hosting -->
                     <img src="logo.jpg" alt="Velsci Globals Logo" class="site-logo">
                     <h1 class="site-title">VELSCI Globals</h1>
                 </a>
@@ -34,12 +38,13 @@
                 <ul>
                     <li><a href="#about" class="nav-link">About Us</a></li>
                     <li><a href="#products" class="nav-link">Our Products</a></li>
+                    <li><a href="#buy-now" class="nav-link">Buy Sample</a></li> <!-- New nav link -->
                     <li><a href="#contact" class="nav-link">Contact</a></li>
                     <!-- Add other relevant links if needed, e.g., Shop, Cart -->
-                    <li><a href="https://velsci.com/?page_id=5" class="nav-link external-link">Shop</a></li>
-                    <li><a href="https://velsci.com/?page_id=6" class="nav-link external-link">Cart</a></li>
-                    <li><a href="https://velsci.com/?page_id=7" class="nav-link external-link">Checkout</a></li>
-                    <li><a href="https://velsci.com/?page_id=8" class="nav-link external-link">My Account</a></li>
+                    <li><a href="https://velsci.com/?page_id=5" class="nav-link external-link">Shop (WP)</a></li>
+                    <li><a href="https://velsci.com/?page_id=6" class="nav-link external-link">Cart (WP)</a></li>
+                    <li><a href="https://velsci.com/?page_id=7" class="nav-link external-link">Checkout (WP)</a></li>
+                    <li><a href="https://velsci.com/?page_id=8" class="nav-link external-link">My Account (WP)</a></li>
                 </ul>
             </nav>
         </aside>
@@ -86,7 +91,20 @@
                 </div>
             </section>
 
-            <section id="contact" class="content-section color-section-3">
+            <!-- NEW Razorpay Payment Section -->
+            <section id="buy-now" class="content-section color-section-3">
+                <h2 class="section-title">Order a Sample</h2>
+                <div class="product-card" style="max-width: 500px; margin: 0 auto; text-align: center;">
+                    <h3>Premium Fabric Sample Pack</h3>
+                    <p>Experience the quality of Velsci Globals textiles with our specially curated sample pack, including various fabric types and colors. Perfect for evaluation before bulk orders.</p>
+                    <p style="font-size: 1.5rem; font-weight: 700; color: var(--primary-color);">₹499.00</p>
+                    <button id="rzp-button1" class="button primary-button">Pay with Razorpay</button>
+                    <p style="font-size: 0.85rem; margin-top: 1rem;">*Note: This is a sample payment integration. Full functionality requires a server-side backend.</p>
+                </div>
+            </section>
+            <!-- End NEW Razorpay Payment Section -->
+
+            <section id="contact" class="content-section color-section-1"> <!-- Re-used color-section-1 -->
                 <h2 class="section-title">Contact Us</h2>
                 <div class="contact-info">
                     <p><strong>📞 Phone / WhatsApp:</strong> <a href="tel:+919994825725">+91 99948 25725</a></p>
@@ -115,7 +133,7 @@
                 menuToggle.classList.toggle('active');
             });
         }
-        
+
         // Close mobile menu when a link is clicked
         navLinks.forEach(link => {
             link.addEventListener('click', () => {
@@ -125,6 +143,90 @@
                 }
             });
         });
+
+
+        // --- Razorpay Integration (Client-Side Only - Requires Server for Full Functionality) ---
+        // REPLACE WITH YOUR ACTUAL RAZORPAY KEY_ID
+        const RAZORPAY_KEY_ID = 'rzp_test_YOUR_KEY_ID'; // Use your actual test or live Key ID
+
+        document.getElementById('rzp-button1').onclick = async function(e) {
+            e.preventDefault();
+
+            // --- IMPORTANT: This is the part that typically requires a SERVER-SIDE call ---
+            // In a real application, you would make an AJAX call to your backend
+            // (e.g., a Netlify Function, a Node.js endpoint, PHP script)
+            // Your backend would then securely create an order with Razorpay and return
+            // the order_id to this client-side code.
+            // For this static demo, we'll simulate an order ID.
+            // DO NOT put your Razorpay Key Secret here. It MUST be server-side.
+
+            // Simulate fetching an order ID from a backend (replace with actual AJAX call)
+            const orderDetails = {
+                amount: 49900, // amount in paisa (499 INR)
+                currency: "INR",
+                receipt: "receipt_velsci_sample_01",
+                notes: {
+                    item: "Fabric Sample Pack",
+                    buyer: "Demo Customer"
+                }
+            };
+
+            // In a real scenario, this would be an API call like:
+            // const response = await fetch('/api/create-razorpay-order', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(orderDetails)
+            // });
+            // const data = await response.json();
+            // const order_id = data.order_id;
+
+            // For this client-side-only example, we'll use a placeholder order_id
+            // This will NOT work for actual successful payments without server validation
+            const order_id_placeholder = "order_simulated_id_XYZ"; // Replace with actual order_id from your backend
+
+            const options = {
+                key: RAZORPAY_KEY_ID, // Your Key ID
+                amount: orderDetails.amount, // Amount is in currency subunits. Default currency is INR. Hence, 49900 is 499 INR.
+                currency: orderDetails.currency,
+                name: "Velsci Globals",
+                description: "Fabric Sample Pack Purchase",
+                image: "logo.jpg", // Path to your logo for the checkout popup
+                order_id: order_id_placeholder, // This order_id MUST be generated from your server
+                handler: function (response) {
+                    // This function is called after the payment is successful
+                    // --- IMPORTANT: Payment verification MUST happen on your SERVER ---
+                    // Here, you would send `response.razorpay_payment_id`, `response.razorpay_order_id`,
+                    // and `response.razorpay_signature` to your backend for verification.
+                    // The backend would then securely verify the payment with Razorpay's API.
+
+                    alert("Payment Successful!\nPayment ID: " + response.razorpay_payment_id +
+                          "\nOrder ID: " + response.razorpay_order_id +
+                          "\nSignature: " + response.razorpay_signature +
+                          "\n\n(Verification needs to happen on server-side)");
+
+                    // After server-side verification, you would update your order status, send emails, etc.
+                },
+                prefill: {
+                    name: "John Doe", // Customer name (prefill if available)
+                    email: "john.doe@example.com", // Customer email (prefill if available)
+                    contact: "9999999999" // Customer phone (prefill if available)
+                },
+                notes: {
+                    address: "Velsci Globals Office"
+                },
+                theme: {
+                    color: "#2b6cb0" // Your primary color
+                }
+            };
+
+            const rzp1 = new Razorpay(options);
+            rzp1.on('payment.failed', function (response) {
+                alert("Payment Failed: " + response.error.code + " - " + response.error.description);
+                // Log response.error.source, response.error.step, response.error.reason
+            });
+            rzp1.open();
+        };
+        // --- End Razorpay Integration ---
     </script>
 </body>
 </html>
