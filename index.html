@@ -118,9 +118,19 @@
 
     <!-- Footer -->
     <footer id="footer">
-        <p>&copy; 2025 VELSCI Globals. All Rights Reserved.</p>
+        <p>&copy; © 2026 VELSCI Globals. All Rights Reserved.</p>
     </footer>
-
+    <script>
+    document.getElementById('acceptCookies')?.addEventListener('click', () => {
+      localStorage.setItem('cookiesAccepted', 'true');
+      document.getElementById('cookieBanner').style.display = 'none';
+    });
+    window.onload = () => {
+      if (!localStorage.getItem('cookiesAccepted')) {
+        document.getElementById('cookieBanner').style.display = 'block';
+      }
+    }
+    </script>
     <script>
         // Simple JavaScript for mobile menu toggle
         const menuToggle = document.querySelector('.menu-toggle');
