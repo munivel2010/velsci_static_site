@@ -6,9 +6,8 @@
   <title>Velsci Globals — Precision Fit. Circular Care. Zero Waste.</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Font Inter, Space Grotesk & Noto Sans Tamil -->
+  <!-- Google Fonts & FontAwesome -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap">
-  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <script>
@@ -40,27 +39,16 @@
   </script>
 
   <style>
-    body { 
-      font-family: 'Inter', 'Noto Sans Tamil', sans-serif; 
-      background-color: #071813; 
-      color: #f8fafc;
-    }
+    body { font-family: 'Inter', 'Noto Sans Tamil', sans-serif; background-color: #071813; color: #f8fafc; }
     .font-display { font-family: 'Space Grotesk', sans-serif; }
-    
     .gold-gradient-text {
       background: linear-gradient(135deg, #fef08a 0%, #d4af37 50%, #b45309 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-
-    .emerald-glow {
-      box-shadow: 0 0 50px -10px rgba(45, 106, 79, 0.35);
-    }
-
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #071813; }
     ::-webkit-scrollbar-thumb { background: #1b4332; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #2d6a4f; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-brand-950">
@@ -100,15 +88,24 @@
         <a href="#contact" class="hover:text-brand-gold transition-colors">தொடர்புக்கு</a>
       </nav>
 
-      <!-- Action Buttons -->
+      <!-- Action Buttons & Language Switcher -->
       <div class="hidden sm:flex items-center gap-3">
-        <a href="https://www.linkedin.com/company/velsci" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-200 hover:text-brand-gold bg-brand-800/60 hover:bg-brand-800 border border-brand-700/60 rounded-lg transition-all flex items-center justify-center">
+        <!-- LANGUAGE SWITCHER BUTTON -->
+        <div class="relative inline-block text-left">
+          <select onchange="changeLanguage(this.value)" class="bg-brand-800/80 text-white text-xs font-semibold px-2.5 py-2 rounded-lg border border-brand-700/60 focus:outline-none cursor-pointer">
+            <option value="ta" selected>🇮🇳 தமிழ்</option>
+            <option value="en">🇬🇧 English</option>
+            <option value="de">🇩🇪 Deutsch</option>
+          </select>
+        </div>
+
+        <a href="https://www.linkedin.com/company/144948047" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-200 hover:text-brand-gold bg-brand-800/60 hover:bg-brand-800 border border-brand-700/60 rounded-lg transition-all flex items-center justify-center">
           <i class="fa-brands fa-linkedin text-lg"></i>
         </a>
         <a href="mailto:info@velsci.com" class="px-3.5 py-2 text-xs font-semibold text-slate-200 hover:text-white bg-brand-800/60 hover:bg-brand-800 border border-brand-700/60 rounded-lg transition-all flex items-center gap-2">
           <i class="fa-regular fa-envelope text-brand-gold"></i> info@velsci.com
         </a>
-        <a href="#contact" class="px-4 py-2 text-xs font-bold bg-brand-gold hover:bg-brand-goldHover text-brand-950 rounded-lg shadow-lg shadow-brand-gold/10 transition-all transform active:scale-95 flex items-center gap-1.5">
+        <a href="#contact" class="px-4 py-2 text-xs font-bold bg-brand-gold hover:bg-brand-goldHover text-brand-950 rounded-lg shadow-lg shadow-brand-gold/10 transition-all flex items-center gap-1.5">
           <span>தொடங்கலாம்</span>
           <i class="fa-solid fa-arrow-right text-[11px]"></i>
         </a>
@@ -122,410 +119,118 @@
 
     <!-- Mobile Navigation Drawer -->
     <div id="mobile-menu" class="hidden md:hidden bg-[#0a251d] border-b border-brand-800 px-6 py-5 space-y-4 text-sm font-medium">
+      <div class="flex justify-between items-center pb-2 border-b border-brand-800/60">
+        <span class="text-xs text-slate-400">மொழியைத் தேர்ந்தெடுக்க:</span>
+        <select onchange="changeLanguage(this.value)" class="bg-brand-800 text-white text-xs font-semibold px-2 py-1 rounded border border-brand-700">
+          <option value="ta" selected>தமிழ்</option>
+          <option value="en">English</option>
+          <option value="de">Deutsch</option>
+        </select>
+      </div>
       <a href="#ecosystem" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">எங்கள் சேவைகள்</a>
       <a href="#how-it-works" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">செயல்முறை</a>
       <a href="#mission" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">எங்கள் நோக்கம்</a>
       <a href="#privacy" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">GDPR & பாதுகாப்பு</a>
       <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">தொடர்புக்கு</a>
-      <div class="pt-3 border-t border-brand-800/80 flex flex-col gap-2.5">
-        <a href="https://www.linkedin.com/company/velsci" target="_blank" class="text-xs text-brand-500 flex items-center gap-2">
-          <i class="fa-brands fa-linkedin"></i> LinkedIn பக்கம்
-        </a>
-        <a href="mailto:info@velsci.com" class="text-xs text-brand-500 flex items-center gap-2">
-          <i class="fa-regular fa-envelope"></i> info@velsci.com
-        </a>
-      </div>
     </div>
   </header>
 
   <main class="flex-grow">
     <!-- HERO SECTION -->
     <section class="relative bg-gradient-to-b from-[#0f382c] via-[#0b2920] to-[#071813] pt-20 pb-28 border-b border-brand-800/50 overflow-hidden">
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-brand-700/20 rounded-full blur-[140px] pointer-events-none"></div>
-
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <!-- Status Badge -->
-        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-800/70 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-8 backdrop-blur shadow-sm">
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-800/70 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-8">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           இண்டோ - ஐரோப்பிய தொழில்நுட்ப தளம்
         </div>
-
-        <!-- Main Headline -->
         <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl mx-auto leading-tight mb-6">
           துல்லியமான அளவீடு. <span class="gold-gradient-text">நிலையான பராமரிப்பு.</span> கழிவு இல்லா உற்பத்தி.
         </h1>
-
-        <!-- Subtitle -->
-        <p class="text-slate-300 text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+        <p class="text-slate-300 text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed">
           பாரம்பரிய இந்திய கைவினைத்திறனை ஐரோப்பிய அதிநவீன தொழில்நுட்பத்தோடு இணைக்கிறோம். தேவைகேற்ற தையல் கலை, சுழற்சி முறை ஆடை பராமரிப்பு மற்றும் குடும்பங்களுக்கான பிரத்யேக ஆதரவு சேவைகள்.
         </p>
-
-        <!-- CTA Action Buttons -->
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-          <a href="#ecosystem" class="w-full sm:w-auto px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-xl shadow-xl shadow-brand-gold/10 transition-all text-center transform hover:-translate-y-0.5">
+          <a href="#ecosystem" class="w-full sm:w-auto px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-xl shadow-xl transition-all text-center">
             சேவைகளை அறிந்துகொள்ள
           </a>
-          <a href="#mission" class="w-full sm:w-auto px-8 py-4 bg-brand-800/80 hover:bg-brand-800 text-white font-semibold text-sm rounded-xl border border-brand-700/80 transition-all text-center backdrop-blur transform hover:-translate-y-0.5">
+          <a href="#mission" class="w-full sm:w-auto px-8 py-4 bg-brand-800/80 hover:bg-brand-800 text-white font-semibold text-sm rounded-xl border border-brand-700/80 transition-all text-center">
             எங்கள் சமூக நோக்கம்
           </a>
         </div>
-
-        <!-- Key Metrics / Trust Signals -->
-        <div class="mt-20 pt-10 border-t border-brand-800/60 grid grid-cols-2 md:grid-cols-4 gap-6 text-slate-300 text-xs font-medium max-w-4xl mx-auto">
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-graduation-cap text-brand-gold text-lg"></i>
-            <span class="text-white font-bold text-sm">FAU Incubator</span>
-            <span class="text-slate-400">ஜெர்மன் கல்வி பங்குதாரர்</span>
-          </div>
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-shield-halved text-brand-gold text-lg"></i>
-            <span class="text-white font-bold text-sm">100% GDPR பாதுகாப்பு</span>
-            <span class="text-slate-400">உறுதியான தகவல் பாதுகாப்பு</span>
-          </div>
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-leaf text-brand-gold text-lg"></i>
-            <span class="text-white font-bold text-sm">பூஜ்ய கழிவு (Zero Waste)</span>
-            <span class="text-slate-400">தேவைக்கேற்ப உற்பத்தி</span>
-          </div>
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-hands-holding-circle text-brand-gold text-lg"></i>
-            <span class="text-white font-bold text-sm">நேர்மையான வாழ்வாதாரம்</span>
-            <span class="text-slate-400">நெசவாளர் மேம்பாடு</span>
-          </div>
-        </div>
       </div>
     </section>
 
-    <!-- CORE ECOSYSTEM (THREE PILLARS) -->
-    <section id="ecosystem" class="py-24 bg-[#071813] relative">
+    <!-- CORE ECOSYSTEM -->
+    <section id="ecosystem" class="py-24 bg-[#071813]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <span class="text-xs uppercase font-bold text-brand-500 tracking-widest block mb-2">ஒருங்கிணைந்த இயங்குதளம்</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">எங்கள் முக்கிய சேவைகள்</h2>
-          <p class="text-slate-400 text-sm mt-3">பாரம்பரிய கைவினைக்கலை, நிலையான ஆடை மேலாண்மை மற்றும் குடும்ப பாதுகாப்பு சேவைகளின் தூண்கள்.</p>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white">எங்கள் முக்கிய சேவைகள்</h2>
         </div>
-
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Pillar 1: Velsci Fit -->
-          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 hover:border-brand-gold/50 transition-all flex flex-col justify-between group hover:-translate-y-1 shadow-lg">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700/60 flex items-center justify-center text-brand-gold text-xl mb-6 group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-scissors"></i>
-              </div>
-              <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Fit</h3>
-              <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">கழிவில்லா ஆடை வடிவமைப்பு</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                வீட்டிலிருந்தபடியே மிகத் துல்லியமான ஆடை தையல் சேவை. புகைப்பட குறிப்பீடு மூலம் அளவீடுகளை சரிபார்த்து, இந்தியாவில் உள்ள பாரம்பரிய அனுபவமிக்க தையல் கலைஞர்கள் மூலம் ஆடைகள் தைக்கப்படுகின்றன.
-              </p>
-            </div>
-            <ul class="space-y-3 text-xs text-slate-300 border-t border-brand-800/60 pt-6">
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>கடைகளுக்கு நேரடியாகச் செல்ல வேண்டிய அவசியமில்லை</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>கைவினைஞர்களுக்கு நேரடி வருமான ஆதரவு</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>அதிக உற்பத்தி இல்லை, சரியான அளவீடு உறுதி</span>
-              </li>
-            </ul>
+          <div class="bg-[#0c241c] border border-brand-800 rounded-2xl p-8">
+            <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Fit</h3>
+            <p class="text-xs font-semibold text-brand-500 uppercase mb-4">கழிவில்லா ஆடை வடிவமைப்பு</p>
+            <p class="text-slate-300 text-sm mb-6">வீட்டிலிருந்தபடியே மிகத் துல்லியமான ஆடை தையல் சேவை.</p>
           </div>
-
-          <!-- Pillar 2: Velsci Care -->
-          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 hover:border-brand-gold/50 transition-all flex flex-col justify-between group hover:-translate-y-1 shadow-lg">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700/60 flex items-center justify-center text-brand-gold text-xl mb-6 group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-rotate"></i>
-              </div>
-              <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Care</h3>
-              <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">சுழற்சி ஆடை பராமரிப்பு</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                உயர்தர துணிகள் வீணாகக் கூடாது. Velsci Care மூலம் உடைகளின் ஆயுட்காலத்தை நீட்டித்து, இயற்கை முறையில் துணிகளைப் பாதுகாக்கவும், சுழற்சி முறையில் மறுசுழற்சி செய்யவும் வழிசெய்கிறோம்.
-              </p>
-            </div>
-            <ul class="space-y-3 text-xs text-slate-300 border-t border-brand-800/60 pt-6">
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>சுற்றுச்சூழலுக்கு உகந்த ஆடை பாதுகாப்பு முறை</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>துணிகளின் ஆயுட்காலம் 300% வரை உயர்வு</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>பழைய உடைகளை மாற்றிக் கொள்ளும் வாய்ப்பு</span>
-              </li>
-            </ul>
+          <div class="bg-[#0c241c] border border-brand-800 rounded-2xl p-8">
+            <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Care</h3>
+            <p class="text-xs font-semibold text-brand-500 uppercase mb-4">சுழற்சி ஆடை பராமரிப்பு</p>
+            <p class="text-slate-300 text-sm mb-6">ஆடைகளின் ஆயுட்காலத்தை நீட்டித்து மறுசுழற்சி செய்யும் சேவை.</p>
           </div>
-
-          <!-- Pillar 3: Velsci Assist -->
-          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 hover:border-brand-gold/50 transition-all flex flex-col justify-between group hover:-translate-y-1 shadow-lg">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700/60 flex items-center justify-center text-brand-gold text-xl mb-6 group-hover:scale-110 transition-transform">
-                <i class="fa-solid fa-heart-pulse"></i>
-              </div>
-              <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Assist</h3>
-              <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">பெற்றோர் & குடும்ப பாதுகாப்பு</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                வெளிநாட்டில் வசிக்கும் தமிழ் மக்களுக்கு, இந்தியாவில் உள்ள அவர்களது பெற்றோர் மற்றும் குடும்பத்தினருக்குத் தேவையான மருத்துவ உதவி மற்றும் அவசர கால சேவைகளை நம்பிக்கையுடன் வழங்கும் தளம்.
-              </p>
-            </div>
-            <ul class="space-y-3 text-xs text-slate-300 border-t border-brand-800/60 pt-6">
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>களத்தில் செயல்படும் பிரத்யேக சேவை மேலாளர்கள்</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>குடும்ப உறுப்பினர்களுக்குத் தொடர் டிஜிட்டல் தகவல்கள்</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>நேர்மையான, வெளிப்படையான ஒருங்கிணைப்பு</span>
-              </li>
-            </ul>
+          <div class="bg-[#0c241c] border border-brand-800 rounded-2xl p-8">
+            <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Assist</h3>
+            <p class="text-xs font-semibold text-brand-500 uppercase mb-4">பெற்றோர் & குடும்ப பாதுகாப்பு</p>
+            <p class="text-slate-300 text-sm mb-6">இந்தியாவில் உள்ள குடும்பத்தினருக்குத் தேவையான ஆதரவு சேவைகள்.</p>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS -->
-    <section id="how-it-works" class="py-24 bg-[#0a2119] border-t border-b border-brand-800/60 relative">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block mb-2">எளிமையான டிஜிட்டல் முறை</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">இது எப்படி செயல்படுகிறது?</h2>
-          <p class="text-slate-300 text-sm mt-3">ஐரோப்பிய பயனர்களை இந்திய கைவினைஞர்களோடு இணைக்கும் 3 எளிய நிலைகள்.</p>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          <!-- Step 1 -->
-          <div class="bg-[#0f382c]/80 border border-brand-800 rounded-2xl p-8 relative flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-6">
-              <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">01</span>
-              <i class="fa-solid fa-camera text-2xl text-brand-500"></i>
-            </div>
-            <h3 class="font-display text-xl font-bold text-white mb-3">புகைப்பட அளவீடு</h3>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6">
-              உங்கள் வசதிக்கேற்ப இரண்டு புகைப்படங்களை பதிவேற்றம் செய்வதன் மூலம் ஆடைக்கான அளவீடுகள் துல்லியமாக கணக்கிடப்படுகின்றன.
-            </p>
-            <div class="bg-[#071813] p-3.5 rounded-xl border border-brand-800/80 text-xs text-slate-400 flex items-center gap-2.5">
-              <i class="fa-solid fa-lock text-brand-gold"></i>
-              <span>புகைப்படங்கள் பாதுகாப்பாக செயலாக்கப்பட்டு உடனே நீக்கப்படும்.</span>
-            </div>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="bg-[#0f382c]/80 border border-brand-800 rounded-2xl p-8 relative flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-6">
-              <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">02</span>
-              <i class="fa-solid fa-scissors text-2xl text-brand-500"></i>
-            </div>
-            <h3 class="font-display text-xl font-bold text-white mb-3">கைவினை தையல் கலை</h3>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6">
-              டிஜிட்டல் அளவீடுகள் இந்தியாவில் உள்ள சிறந்த தையல் கலைஞர்களுக்கு நேரடியாக அனுப்பப்பட்டு, உடைகள் நேர்த்தியாக தைக்கப்படுகின்றன.
-            </p>
-            <div class="bg-[#071813] p-3.5 rounded-xl border border-brand-800/80 text-xs text-slate-400 flex items-center gap-2.5">
-              <i class="fa-solid fa-handshake text-brand-gold"></i>
-              <span>தையல் வல்லுநர்களுக்கு முறையான, நேர்மையான ஊதியம்.</span>
-            </div>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="bg-[#0f382c]/80 border border-brand-800 rounded-2xl p-8 relative flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-6">
-              <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">03</span>
-              <i class="fa-solid fa-box-open text-2xl text-brand-500"></i>
-            </div>
-            <h3 class="font-display text-xl font-bold text-white mb-3">உலகளாவிய விநியோகம்</h3>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6">
-              தைக்கப்பட்ட உடைகள் நேரடியாக ஐரோப்பாவில் உள்ள உங்கள் முகவரிக்கு பாதுகாப்பான முறையில் அனுப்பி வைக்கப்படும்.
-            </p>
-            <div class="bg-[#071813] p-3.5 rounded-xl border border-brand-800/80 text-xs text-slate-400 flex items-center gap-2.5">
-              <i class="fa-solid fa-truck-fast text-brand-gold"></i>
-              <span>சுற்றுச்சூழல் பாதிப்பில்லாத டிராக்கிங் முறை.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- MISSION & IMPACT STORY -->
-    <section id="mission" class="py-24 bg-[#071813]">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-[#0f382c] to-[#0a2119] border border-brand-800 rounded-3xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
-          
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold">
-              <i class="fa-solid fa-quote-left text-lg"></i>
-            </div>
-            <div>
-              <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block">நிறுவனரின் தொலைநோக்கு</span>
-              <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">நன்றியுணர்வில் தொடங்கி, மாற்றத்திற்காக உருவாக்கம்</h3>
-            </div>
-          </div>
-
-          <blockquote class="text-slate-200 text-base sm:text-lg leading-relaxed space-y-4 font-normal italic border-l-2 border-brand-gold pl-6 my-6">
-            <p>
-              "Velsci Globals ஒரு எளிய உண்மையின் அடிப்படையில் உருவாக்கப்பட்டது: தனியாக யாரும் வெற்றி பெற முடியாது. உழைக்கும் தாய், பாரம்பரிய கைவினைஞர்கள் மற்றும் கடினமான காலங்களில் தோள்கொடுத்த சமூகத்தின் ஆதரவோடு வளர்ந்த எங்களது நிறுவனர், மனித கண்ணியத்தையும் கைவினைத்திறனின் மதிப்பையும் நன்கு உணர்ந்தவர்."
-            </p>
-            <p class="not-italic text-sm text-slate-300 font-medium">
-              "சமூகத்திற்கு திரும்பக் கொடுக்கும் நோக்கிலேயே Velsci உருவானது. நவீன டிஜிட்டல் தொழில் நுட்பத்தை பாரம்பரிய தையல் கலைஞர்களின் திறமையோடு இணைப்பதன் மூலம், ஐரோப்பிய சமூகத்திற்கும் இந்திய பாரம்பரியத்திற்கும் இடையே ஒரு நிலையான பாலத்தை உருவாக்குகிறோம்."
-            </p>
-          </blockquote>
-
-          <div class="pt-8 border-t border-brand-800/80 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
-            <div>
-              <span class="font-display font-extrabold text-3xl text-brand-gold block">100%</span>
-              <span class="text-xs text-slate-400">தேவைக்கேற்ப மட்டுமே உற்பத்தி</span>
-            </div>
-            <div>
-              <span class="font-display font-extrabold text-3xl text-brand-gold block">3x</span>
-              <span class="text-xs text-slate-400">ஆடைகளின் ஆயுள் நீட்டிப்பு</span>
-            </div>
-            <div>
-              <span class="font-display font-extrabold text-3xl text-brand-gold block">நேர்மையான</span>
-              <span class="text-xs text-slate-400">ஆண்டு முழுவதுமான வருமானம்</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EUROPEAN GDPR PRIVACY COMPLIANCE -->
-    <section id="privacy" class="py-20 bg-[#0a2119] border-t border-brand-800/80">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-700/50 flex items-center justify-center text-emerald-400 font-bold">
-              <i class="fa-solid fa-user-shield text-lg"></i>
-            </div>
-            <div>
-              <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block">ஐரோப்பிய தரவு பாதுகாப்பு</span>
-              <h3 class="font-display text-2xl font-bold text-white">பொது தரவு பாதுகாப்பு ஒழுங்குமுறை (GDPR)</h3>
-            </div>
-          </div>
-          <span class="text-xs text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-3 py-1 rounded-full font-medium">
-            EU Regulation 2016/679
-          </span>
-        </div>
-
-        <div class="bg-[#071813] border border-brand-800 rounded-2xl p-6 sm:p-8 space-y-6 text-xs sm:text-sm text-slate-300 leading-relaxed">
-          <div>
-            <h4 class="font-bold text-white text-base mb-2">1. தரவு செயலாக்கப் பொறுப்பு</h4>
-            <p>Velsci Globals ஐரோப்பிய ஒன்றிய தரவு பாதுகாப்பு விதிகளுக்கு உட்பட்டு இயங்குகிறது. Velsci Fit-க்காகப் பெறப்படும் புகைப்படங்கள் மற்றும் அளவீடுகள் ஆடைகள் தைப்பதற்காக மட்டுமே பயன்படுத்தப்பட்டு, ஆர்டர் முடிந்ததும் உடனடியாக நீக்கப்படும்.</p>
-          </div>
-
-          <div>
-            <h4 class="font-bold text-white text-base mb-2">2. பயனரின் உரிமைகள்</h4>
-            <p>உங்கள் தகவல்களை அணுக, திருத்த அல்லது நீக்க உங்களுக்கு முழு உரிமை உள்ளது. கோரிக்கைகளுக்கு எங்கள் தரவு பாதுகாப்பு அதிகாரியை <a href="mailto:info@velsci.com" class="text-brand-gold underline font-semibold">info@velsci.com</a> மூலம் தொடர்பு கொள்ளவும்.</p>
-          </div>
-
-          <div class="pt-4 border-t border-brand-800 flex flex-wrap gap-4 items-center justify-between text-xs text-slate-400">
-            <span>அலுவலகச் செயல்பாடுகள்: ஜெர்மனி / செக்கியா / இந்தியா</span>
-            <button onclick="openModal('modal-impressum')" class="text-brand-gold hover:underline font-semibold flex items-center gap-1.5">
-              <i class="fa-solid fa-scale-balanced"></i> சட்ட அறிவிப்பு (Impressum)
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION -->
+    <!-- CONTACT SECTION WITH FORM -->
     <section id="contact" class="py-24 bg-[#071813]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
-          <!-- Contact Info -->
           <div>
             <span class="text-xs uppercase font-bold text-brand-500 tracking-widest block mb-2">நேரடி தொடர்பு</span>
             <h2 class="font-display text-3xl font-bold text-white mb-6">வெல்ஸ்சி குளோபல்ஸை தொடர்பு கொள்ளவும்</h2>
-            <p class="text-slate-300 text-sm leading-relaxed mb-8">
-              ஆடை தையல், ஆடை பாதுகாப்பு அல்லது குடும்ப உதவி சேவைகள் பற்றிய கேள்விகள் எதுவாக இருந்தாலும், ஐரோப்பா மற்றும் இந்தியாவில் உள்ள எங்கள் குழு உங்களுக்கு உதவ தயாராக உள்ளது.
-            </p>
-
-            <div class="space-y-4">
-              <!-- Email 1 -->
-              <a href="mailto:info@velsci.com" class="flex items-center gap-4 p-4 rounded-xl bg-[#0c241c] hover:bg-[#0f382c] border border-brand-800 transition-colors group">
-                <div class="w-10 h-10 rounded-lg bg-brand-800/80 text-brand-gold flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
-                  <i class="fa-solid fa-envelope"></i>
-                </div>
-                <div>
-                  <span class="text-[11px] text-slate-400 uppercase font-semibold block">பொதுவான தகவல்கள் & GDPR</span>
-                  <span class="text-sm font-bold text-white">info@velsci.com</span>
-                </div>
-              </a>
-
-              <!-- Email 2 -->
-              <a href="mailto:contact@velsci.com" class="flex items-center gap-4 p-4 rounded-xl bg-[#0c241c] hover:bg-[#0f382c] border border-brand-800 transition-colors group">
-                <div class="w-10 h-10 rounded-lg bg-brand-800/80 text-brand-gold flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
-                  <i class="fa-solid fa-headset"></i>
-                </div>
-                <div>
-                  <span class="text-[11px] text-slate-400 uppercase font-semibold block">வாடிக்கையாளர் சேவை</span>
-                  <span class="text-sm font-bold text-white">contact@velsci.com</span>
-                </div>
-              </a>
-
-              <!-- LinkedIn -->
-              <a href="https://www.linkedin.com/company/velsci" target="_blank" rel="noopener noreferrer" class="flex items-center gap-4 p-4 rounded-xl bg-[#0c241c] hover:bg-[#0f382c] border border-brand-800 transition-colors group">
-                <div class="w-10 h-10 rounded-lg bg-brand-800/80 text-brand-gold flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
-                  <i class="fa-brands fa-linkedin-in"></i>
-                </div>
-                <div>
-                  <span class="text-[11px] text-slate-400 uppercase font-semibold block">அதிகாரப்பூர்வ பக்கம்</span>
-                  <span class="text-sm font-bold text-white">Velsci Globals LinkedIn</span>
-                </div>
-              </a>
-            </div>
+            <p class="text-slate-300 text-sm mb-8">எந்தக் கேள்விகளாக இருந்தாலும் எங்களுக்கு செய்தி அனுப்பவும்.</p>
           </div>
 
-          <!-- Contact Form (Web3Forms Integrated) -->
+          <!-- Form Integration -->
           <div class="bg-[#0c241c] border border-brand-800 p-8 rounded-2xl shadow-xl">
             <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
               
-              <!-- Web3Forms Access Key Integration -->
-              <input type="hidden" name="access_key" value="f859961d-57c3-4937-94ac-198098f4317">
+              <!-- IMPORTANT: உங்கள் முழுமையான 36-எழுத்து Access Key-ஐ இதில் போடவும் -->
+              <input type="hidden" name="access_key" value="f859961d-57c3-4937-94ac-198098f47317">
               <input type="hidden" name="subject" value="New Inquiry from Velsci Website">
               <input type="hidden" name="from_name" value="Velsci Website">
 
               <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">உங்கள் முழு பெயர்</label>
-                <input type="text" name="name" required placeholder="எ.கா: முனைவர். அலெக்ஸ்" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">உங்கள் பெயர்</label>
+                <input type="text" name="name" required placeholder="உங்கள் பெயர்" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold">
               </div>
 
               <div>
                 <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">மின்னஞ்சல் முகவரி</label>
-                <input type="email" name="email" required placeholder="alex@domain.de" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
+                <input type="email" name="email" required placeholder="name@domain.com" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold">
               </div>
 
               <div>
                 <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">தேவையான சேவை</label>
-                <select name="service" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
-                  <option value="Velsci Fit">Velsci Fit (கழிவில்லா தையல் சேவை)</option>
-                  <option value="Velsci Care">Velsci Care (ஆடை பராமரிப்பு சேவை)</option>
-                  <option value="Velsci Assist">Velsci Assist (குடும்ப ஆதரவு சேவை)</option>
-                  <option value="General Inquiry">பொதுவான கேள்விகள் / முதலீடு</option>
+                <select name="service" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold">
+                  <option value="Velsci Fit">Velsci Fit</option>
+                  <option value="Velsci Care">Velsci Care</option>
+                  <option value="Velsci Assist">Velsci Assist</option>
                 </select>
               </div>
 
               <div>
                 <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">செய்தி</label>
-                <textarea name="message" rows="3" required placeholder="உங்களுக்கு நாங்கள் எவ்வாறு உதவ வேண்டும்?" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors"></textarea>
+                <textarea name="message" rows="3" required placeholder="உங்கள் செய்தி..." class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold"></textarea>
               </div>
 
-              <div class="flex items-start gap-3 pt-2">
-                <input type="checkbox" id="gdpr-form-check" required class="mt-1 w-4 h-4 rounded border-brand-800 bg-[#071813] text-brand-gold focus:ring-brand-gold">
-                <label for="gdpr-form-check" class="text-xs text-slate-400 leading-normal">
-                  எனது கேள்விகளுக்கு பதிலளிப்பதற்காக இந்த தகவல்களைப் பயன்படுத்த சம்மதிக்கிறேன் (<a href="#privacy" class="text-brand-gold underline font-semibold">பாதுகாப்புக் கொள்கை</a>).
-                </label>
-              </div>
-
-              <button type="submit" class="w-full py-3.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-lg shadow-lg shadow-brand-gold/10 transition-all active:scale-95">
+              <button type="submit" class="w-full py-3.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-lg shadow-lg">
                 செய்தி அனுப்புக (Send Inquiry)
               </button>
             </form>
@@ -537,113 +242,32 @@
 
   <!-- FOOTER -->
   <footer class="bg-[#05120e] text-slate-400 py-12 border-t border-brand-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-6">
       <div>
-        <span class="font-display font-extrabold text-xl text-white tracking-wider">VELSCI GLOBALS</span>
-        <p class="text-xs text-slate-400 mt-1">Precision Fit. Circular Care. Zero Waste.</p>
+        <span class="font-display font-extrabold text-xl text-white">VELSCI GLOBALS</span>
+        <p class="text-xs text-slate-400 mt-1">&copy; 2026 Velsci Globals. All rights reserved.</p>
       </div>
-
-      <div class="flex flex-wrap justify-center gap-6 text-xs font-semibold text-slate-300">
-        <a href="#ecosystem" class="hover:text-brand-gold transition-colors">Velsci Fit</a>
-        <a href="#ecosystem" class="hover:text-brand-gold transition-colors">Velsci Care</a>
-        <a href="#ecosystem" class="hover:text-brand-gold transition-colors">Velsci Assist</a>
-        <a href="https://www.linkedin.com/company/velsci" target="_blank" class="hover:text-brand-gold transition-colors">LinkedIn</a>
-        <a href="#privacy" class="hover:text-brand-gold transition-colors">பாதுகாப்புக் கொள்கை</a>
-        <button onclick="openModal('modal-impressum')" class="hover:text-brand-gold transition-colors">Impressum</button>
-      </div>
-
-      <div class="text-xs text-slate-400 space-y-1">
-        <p>&copy; 2026 Velsci Globals. அனைத்து உரிமைகளும் பாதுகாக்கப்பட்டவை.</p>
-        <p class="text-[11px] text-slate-400">www.velsci.com</p>
-      </div>
+      <a href="https://www.linkedin.com/company/144948047" target="_blank" class="text-xs text-brand-gold hover:underline">
+        <i class="fa-brands fa-linkedin"></i> LinkedIn Official Page
+      </a>
     </div>
   </footer>
 
-  <!-- IMPRESSUM MODAL -->
-  <div id="modal-impressum" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-[#0c241c] border border-brand-800 rounded-2xl max-w-lg w-full p-6 text-slate-200 space-y-4 shadow-2xl relative">
-      <div class="flex justify-between items-center border-b border-brand-800 pb-3">
-        <h3 class="font-display text-base font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-scale-balanced text-brand-gold"></i> Impressum (சட்டப்பூர்வ தகவல்கள்)
-        </h3>
-        <button onclick="closeModal('modal-impressum')" class="text-slate-400 hover:text-white text-lg font-bold">&times;</button>
-      </div>
-      <div class="text-xs space-y-3 leading-relaxed text-slate-300">
-        <p><strong class="text-white">நிறுவனத்தின் பெயர்:</strong> Velsci Globals</p>
-        <p><strong class="text-white">செயல்படும் பகுதிகள்:</strong> ஜெர்மனி / செக்கியா / இந்தியா</p>
-
-        <p><strong class="text-white">மின்னஞ்சல் முகவரிகள்:</strong><br>
-          <a href="mailto:info@velsci.com" class="text-brand-gold underline">info@velsci.com</a> (பொதுவான தகவல்கள்)<br>
-          <a href="mailto:contact@velsci.com" class="text-brand-gold underline">contact@velsci.com</a> (வாடிக்கையாளர் சேவை)
-        </p>
-        <p><strong class="text-white">கல்வி பங்குதாரர்:</strong> Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU), Germany</p>
-        <p><strong class="text-white">ஆன்லைன் தகராறு தீர்வு:</strong> European Commission platform: <a href="https://ec.europa.eu/consumers/odr" target="_blank" class="text-emerald-400 underline">ec.europa.eu/consumers/odr</a>.</p>
-      </div>
-      <div class="pt-3 border-t border-brand-800 text-right">
-        <button onclick="closeModal('modal-impressum')" class="px-4 py-2 bg-brand-800 hover:bg-brand-700 text-white rounded-lg text-xs font-semibold transition-colors">மூடுக (Close)</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- FLOATING GDPR COOKIE BANNER -->
-  <div id="gdpr-cookie-banner" class="fixed bottom-0 inset-x-0 z-50 p-4 sm:p-6 bg-[#0a2119]/95 backdrop-blur-md border-t border-brand-800 shadow-2xl">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-start gap-3">
-        <div class="w-8 h-8 rounded-lg bg-brand-800 border border-brand-700 flex-shrink-0 flex items-center justify-center text-brand-gold">
-          <i class="fa-solid fa-cookie-bite"></i>
-        </div>
-        <div>
-          <h4 class="text-sm font-bold text-white">ஐரோப்பிய தரவு உரிமை அறிவிப்பு (GDPR)</h4>
-          <p class="text-xs text-slate-300 leading-relaxed max-w-3xl">
-            இணையதளத்தின் சிறப்பான செயல்பாட்டிற்காக குக்கீகளைப் (Cookies) பயன்படுத்துகிறோம். மேலும் அறிய எங்கள் <a href="#privacy" class="text-brand-gold underline font-medium">பாதுகாப்புக் கொள்கையைப்</a> படிக்கவும்.
-          </p>
-        </div>
-      </div>
-      <div class="flex items-center gap-2.5 w-full md:w-auto flex-shrink-0">
-        <button onclick="acceptCookies('essential')" class="flex-1 md:flex-none px-4 py-2 bg-brand-800 hover:bg-brand-700 text-slate-200 text-xs font-semibold rounded-lg border border-brand-700 transition-colors">
-          அத்தியாவசியமானவை மட்டும்
-        </button>
-        <button onclick="acceptCookies('all')" class="flex-1 md:flex-none px-5 py-2 bg-brand-gold hover:bg-brand-goldHover text-brand-950 text-xs font-bold rounded-lg transition-colors">
-          அனைத்தையும் ஏற்கிறேன்
-        </button>
-      </div>
-    </div>
-  </div>
-
   <script>
-    // Mobile Drawer Logic
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
-      const icon = document.getElementById('menu-icon');
-      if (menu.classList.contains('hidden')) {
-        menu.classList.remove('hidden');
-        icon.className = 'fa-solid fa-xmark text-xl';
+      menu.classList.toggle('hidden');
+    }
+
+    // Language change handler (Google Translate Integration)
+    function changeLanguage(lang) {
+      if (lang === 'en') {
+        window.location.href = 'https://translate.google.com/translate?sl=ta&tl=en&u=' + encodeURIComponent(window.location.href);
+      } else if (lang === 'de') {
+        window.location.href = 'https://translate.google.com/translate?sl=ta&tl=de&u=' + encodeURIComponent(window.location.href);
       } else {
-        menu.classList.add('hidden');
-        icon.className = 'fa-solid fa-bars text-xl';
+        window.location.href = window.location.pathname;
       }
-    }
-
-    // Cookie Banner Logic
-    window.addEventListener('load', () => {
-      const consent = localStorage.getItem('velsci_gdpr_consent');
-      if (consent) {
-        document.getElementById('gdpr-cookie-banner').classList.add('hidden');
-      }
-    });
-
-    function acceptCookies(type) {
-      localStorage.setItem('velsci_gdpr_consent', type);
-      document.getElementById('gdpr-cookie-banner').classList.add('hidden');
-    }
-
-    // Modal Control Logic
-    function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
     }
   </script>
 </body>
