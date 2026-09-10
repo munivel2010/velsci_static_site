@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velsci Care — Circular Wardrobe & Textile Preservation</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 950: '#071813', 900: '#0f382c', 800: '#1b4332', 700: '#2d6a4f', 600: '#40916c', 500: '#52b788', 100: '#d8f3dc', gold: '#d4af37', goldHover: '#c19b2e' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #071813; color: #f8fafc; }
+    .gold-gradient-text { background: linear-gradient(135deg, #fef08a 0%, #d4af37 50%, #b45309 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased">
+
+  <!-- NAVIGATION HEADER -->
+  <header class="sticky top-0 z-50 bg-[#0f382c]/95 backdrop-blur-md border-b border-brand-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <svg width="42" height="42" viewBox="0 0 200 200" fill="none">
+          <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad)" stroke-width="6" fill="#0f382c" />
+          <circle cx="100" cy="100" r="62" stroke="#52b788" stroke-width="4" stroke-dasharray="8 4" />
+          <path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad)" />
+          <defs>
+            <linearGradient id="gold-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fef08a" /><stop offset="50%" stop-color="#d4af37" /><stop offset="100%" stop-color="#b45309" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="flex flex-col">
+          <span class="font-display font-extrabold text-xl tracking-wider text-white">VELSCI GLOBALS</span>
+          <span class="text-[10px] tracking-widest text-brand-500 font-medium uppercase -mt-1">Velsci Care Ecosystem</span>
+        </div>
+      </a>
+
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-200">
+        <a href="index.html" class="hover:text-brand-gold">Home</a>
+        <a href="fit.html" class="hover:text-brand-gold">Velsci Fit</a>
+        <a href="care.html" class="text-brand-gold font-bold">Velsci Care</a>
+        <a href="assist.html" class="hover:text-brand-gold">Velsci Assist</a>
+      </nav>
+
+      <a href="index.html#contact" class="px-4 py-2 text-xs font-bold bg-brand-gold hover:bg-brand-goldHover text-brand-950 rounded-lg">Request Care Service</a>
+    </div>
+  </header>
+
+  <main class="flex-grow">
+    <!-- HERO -->
+    <section class="py-20 bg-gradient-to-b from-[#0f382c] to-[#071813] text-center px-4">
+      <span class="text-xs font-bold uppercase tracking-widest text-brand-500 mb-2 block">Circular Textile Lifecycle</span>
+      <h1 class="font-display text-4xl sm:text-6xl font-bold text-white mb-4">Extend Garment Life by <span class="gold-gradient-text">300%</span></h1>
+      <p class="text-slate-300 max-w-2xl mx-auto text-sm sm:text-base">Eco-friendly textile restoration, professional alterations, and zero-waste fabric recycling engineered for high-value garments.</p>
+    </section>
+
+    <!-- HOW CARE WORKS (PROCESS STEPS) -->
+    <section class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+        <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl">
+          <div class="text-brand-gold font-bold text-2xl mb-3">01</div>
+          <h3 class="font-bold text-white text-base mb-2">Doorstep Pickup</h3>
+          <p class="text-xs text-slate-300">Schedule a seamless garment collection from your home across supported European hubs.</p>
+        </div>
+        <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl">
+          <div class="text-brand-gold font-bold text-2xl mb-3">02</div>
+          <h3 class="font-bold text-white text-base mb-2">Artisan Diagnosis</h3>
+          <p class="text-xs text-slate-300">Master craftspeople assess fabric condition, structural repairs, or re-dyeing needs.</p>
+        </div>
+        <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl">
+          <div class="text-brand-gold font-bold text-2xl mb-3">03</div>
+          <h3 class="font-bold text-white text-base mb-2">Eco Preservation</h3>
+          <p class="text-xs text-slate-300">Restoration using non-toxic, sustainable bio-treatments preserving fabric integrity.</p>
+        </div>
+        <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl">
+          <div class="text-brand-gold font-bold text-2xl mb-3">04</div>
+          <h3 class="font-bold text-white text-base mb-2">Return or Upcycle</h3>
+          <p class="text-xs text-slate-300">Delivered back fresh to your door, or optionally converted into circular trade credit.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="bg-[#05120e] text-slate-400 py-8 border-t border-brand-800/80 text-center text-xs">
+    &copy; 2026 Velsci Globals. All rights reserved.
+  </footer>
+</body>
+</html>
