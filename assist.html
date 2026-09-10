@@ -23,58 +23,75 @@
 </head>
 <body class="bg-[#071813] text-slate-200 antialiased min-h-screen flex flex-col">
 
-  <!-- HEADER -->
+  <!-- TOP NAVIGATION BAR (CARE FORMAT) -->
   <header class="sticky top-0 z-50 bg-[#0f382c]/95 backdrop-blur-md border-b border-brand-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
-        <span class="font-display font-extrabold text-xl tracking-wider text-white">VELSCI GLOBALS</span>
-      </a>
-      <a href="index.html" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-1.5">
-        <i class="fa-solid fa-arrow-left"></i> Back to Main Home
-      </a>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="index.html" class="font-display font-extrabold text-xl tracking-wider text-white">VELSCI GLOBALS</a>
+      <nav class="flex items-center gap-6 text-sm font-medium">
+        <a href="index.html" class="text-slate-300 hover:text-brand-gold transition-colors">Home</a>
+        <a href="fit.html" class="text-slate-300 hover:text-brand-gold transition-colors">Velsci Fit</a>
+        <a href="care.html" class="text-slate-300 hover:text-brand-gold transition-colors">Velsci Care</a>
+        <a href="assist.html" class="text-brand-gold font-bold transition-colors">Velsci Assist</a>
+      </nav>
     </div>
   </header>
 
-  <!-- HERO -->
+  <!-- HERO SECTION -->
   <main class="flex-grow">
-    <section class="py-16 bg-gradient-to-b from-[#0f382c] to-[#071813] border-b border-brand-800/60">
-      <div class="max-w-5xl mx-auto px-4 text-center">
-        <span class="px-3 py-1 rounded-full bg-brand-800 text-brand-gold text-xs font-semibold">Sub-Agent 03</span>
-        <h1 class="font-display text-4xl sm:text-5xl font-bold text-white mt-4 mb-4">Velsci Assist Process</h1>
-        <p class="text-slate-300 text-base max-w-2xl mx-auto">Dedicated, trustworthy ground support and healthcare navigation for parents living in India while you are abroad.</p>
+    <section class="py-20 bg-gradient-to-b from-[#0f382c] via-[#0b2920] to-[#071813] border-b border-brand-800/60 text-center">
+      <div class="max-w-5xl mx-auto px-4">
+        <span class="text-xs font-bold uppercase tracking-widest text-brand-500 block mb-3">NRI Family & Healthcare Support</span>
+        <h1 class="font-display text-4xl sm:text-6xl font-bold text-white tracking-tight mb-6">
+          Velsci Assist Process
+        </h1>
+        <p class="text-slate-300 text-base sm:text-lg max-w-3xl mx-auto leading-relaxed">
+          Dedicated, trustworthy ground support and healthcare navigation for parents living in India while you are abroad.
+        </p>
       </div>
     </section>
 
-    <!-- WORKFLOW STEPS -->
-    <section class="py-16">
-      <div class="max-w-5xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-[#0c241c] border border-brand-800 p-6 rounded-2xl">
-          <div class="w-10 h-10 rounded-lg bg-brand-800 text-brand-gold font-bold flex items-center justify-center mb-4">01</div>
-          <h3 class="font-bold text-lg text-white mb-2">Personal Care Manager Assignment</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">Assigning a verified, compassionate local support lead in India tailored to your parents' needs.</p>
-        </div>
-        <div class="bg-[#0c241c] border border-brand-800 p-6 rounded-2xl">
-          <div class="w-10 h-10 rounded-lg bg-brand-800 text-brand-gold font-bold flex items-center justify-center mb-4">02</div>
-          <h3 class="font-bold text-lg text-white mb-2">Medical & Life Operations</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">Direct support with medical checkups, emergency coordination, prescription delivery, and home assistance.</p>
-        </div>
-        <div class="bg-[#0c241c] border border-brand-800 p-6 rounded-2xl">
-          <div class="w-10 h-10 rounded-lg bg-brand-800 text-brand-gold font-bold flex items-center justify-center mb-4">03</div>
-          <h3 class="font-bold text-lg text-white mb-2">Real-Time European Status Reports</h3>
-          <p class="text-xs text-slate-300 leading-relaxed">Complete peace of mind via instant, transparent updates and reports sent straight to your device.</p>
-        </div>
-      </div>
+    <!-- WORKFLOW CARDS SECTION (MATCHING CARE SCREENSHOT GRID) -->
+    <section class="py-20">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          
+          <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl">
+            <span class="inline-block px-3 py-1 bg-brand-800 text-brand-gold font-bold text-xs rounded-md mb-4">01</span>
+            <h3 class="font-display text-lg font-bold text-white mb-2">Care Manager</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">Assigned local manager in India for dedicated parent assistance.</p>
+          </div>
 
-      <div class="text-center mt-12">
-        <a href="index.html#contact" class="px-8 py-3 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-xs rounded-lg transition-all">
-          Request Velsci Assist Service
-        </a>
+          <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl">
+            <span class="inline-block px-3 py-1 bg-brand-800 text-brand-gold font-bold text-xs rounded-md mb-4">02</span>
+            <h3 class="font-display text-lg font-bold text-white mb-2">Medical Escort</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">Direct support with medical checkups, doctor visits, and prescriptions.</p>
+          </div>
+
+          <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl">
+            <span class="inline-block px-3 py-1 bg-brand-800 text-brand-gold font-bold text-xs rounded-md mb-4">03</span>
+            <h3 class="font-display text-lg font-bold text-white mb-2">Home Assistance</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">Handling essential lifestyle operations and home maintenance needs.</p>
+          </div>
+
+          <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl">
+            <span class="inline-block px-3 py-1 bg-brand-800 text-brand-gold font-bold text-xs rounded-md mb-4">04</span>
+            <h3 class="font-display text-lg font-bold text-white mb-2">Real-Time Reports</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">Complete updates and transparent reports sent directly to you abroad.</p>
+          </div>
+
+        </div>
+
+        <div class="text-center mt-14">
+          <a href="index.html#contact" class="px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-xl shadow-lg transition-all inline-flex items-center gap-2">
+            <span>Request Velsci Assist Service</span>
+            <i class="fa-solid fa-arrow-right text-xs"></i>
+          </a>
+        </div>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#05120e] text-slate-400 py-6 border-t border-brand-800 text-center text-xs">
+  <footer class="bg-[#05120e] text-slate-400 py-6 border-t border-brand-800/80 text-center text-xs">
     &copy; 2026 Velsci Globals. All rights reserved.
   </footer>
 </body>
