@@ -325,7 +325,7 @@
                 if (!fileInput.files.length) return;
               
                 const formData = new FormData();
-                formData.append('garment_photo', fileInput.files[0]);
+                formData.append('file', fileInput.files[0]);
               
                 status.style.color = "#d4af37";
                 status.innerText = "⏳ Processing image & generating pattern...";
