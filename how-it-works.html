@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How It Works — Velsci Globals</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: { 950: '#071813', 900: '#0f382c', 800: '#1b4332', gold: '#d4af37', 500: '#52b788' }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#071813] text-white font-sans antialiased">
+  <header class="bg-[#0f382c] border-b border-brand-800 p-6">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <a href="index.html" class="font-bold text-xl tracking-wider text-white">VELSCI GLOBALS</a>
+      <a href="index.html" class="text-xs font-semibold bg-brand-800 px-4 py-2 rounded-lg text-brand-gold hover:bg-brand-900">
+        <i class="fa-solid fa-arrow-left mr-1"></i> Back to Home
+      </a>
+    </div>
+  </header>
+
+  <main class="max-w-5xl mx-auto py-16 px-4">
+    <h1 class="text-4xl font-bold font-display mb-4 text-center">How Velsci Ecosystem Works</h1>
+    <p class="text-slate-300 text-center max-w-2xl mx-auto mb-16">
+      Seamlessly connecting artisan tailor precision with circular garment sustainability.
+    </p>
+
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-[#0c241c] border border-brand-800 p-6 rounded-xl">
+        <span class="text-brand-gold font-bold text-xl block mb-2">Step 01</span>
+        <h3 class="text-xl font-bold mb-2">Guided Measurement</h3>
+        <p class="text-sm text-slate-300">Upload your measurements or follow our simple guided photo-fit setup.</p>
+      </div>
+
+      <div class="bg-[#0c241c] border border-brand-800 p-6 rounded-xl">
+        <span class="text-brand-gold font-bold text-xl block mb-2">Step 02</span>
+        <h3 class="text-xl font-bold mb-2">Artisan Precision</h3>
+        <p class="text-sm text-slate-300">Master tailors craft your garments with zero-waste material efficiency.</p>
+      </div>
+
+      <div class="bg-[#0c241c] border border-brand-800 p-6 rounded-xl">
+        <span class="text-brand-gold font-bold text-xl block mb-2">Step 03</span>
+        <h3 class="text-xl font-bold mb-2">Circular Care</h3>
+        <p class="text-sm text-slate-300">Enjoy lifecycle support including alterations, repair networks, and eco-recycling.</p>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
