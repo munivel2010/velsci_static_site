@@ -4,18 +4,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velsci Fit — Custom Tailoring</title>
+  
+  <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <!-- Custom External Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+
   <script>
     tailwind.config = {
       darkMode: 'class',
       theme: {
         extend: {
           colors: {
-            brand: { 950: '#071813', 900: '#0f382c', 800: '#1b4332', 700: '#2d6a4f', 600: '#40916c', 500: '#52b788', 100: '#d8f3dc', gold: '#d4af37', goldHover: '#c19b2e', accent: '#38bdf8' }
+            brand: { 
+              950: '#071813', 
+              900: '#0f382c', 
+              800: '#1b4332', 
+              700: '#2d6a4f', 
+              600: '#40916c', 
+              500: '#52b788', 
+              100: '#d8f3dc', 
+              gold: '#d4af37', 
+              goldHover: '#c19b2e', 
+              accent: '#38bdf8' 
+            }
           },
-          fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] }
+          fontFamily: { 
+            sans: ['Inter', 'sans-serif'], 
+            display: ['Space Grotesk', 'sans-serif'] 
+          }
         }
       }
     }
@@ -23,16 +42,33 @@
 </head>
 <body class="bg-[#071813] text-slate-200 antialiased min-h-screen flex flex-col">
 
-  <!-- TOP NAVIGATION BAR (CARE FORMAT) -->
+  <!-- HEADER (MATCHING LOGO & STYLE) -->
   <header class="sticky top-0 z-50 bg-[#0f382c]/95 backdrop-blur-md border-b border-brand-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="index.html" class="font-display font-extrabold text-xl tracking-wider text-white">VELSCI GLOBALS</a>
-      <nav class="flex items-center gap-6 text-sm font-medium">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- LOGO & BRAND NAME -->
+      <a href="index.html" class="flex items-center gap-3 group">
+        <img src="logo.svg" alt="Velsci Globals Logo" class="w-10 h-10 drop-shadow-lg">
+        <div class="flex flex-col">
+          <span class="font-display font-extrabold text-xl tracking-wider text-white group-hover:text-brand-gold transition-colors">VELSCI GLOBALS</span>
+          <span class="text-[10px] tracking-widest text-brand-500 font-medium uppercase -mt-1">Precision Fit &bull; Circular Care</span>
+        </div>
+      </a>
+
+      <!-- NAVIGATION MENU -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
         <a href="index.html" class="text-slate-300 hover:text-brand-gold transition-colors">Home</a>
         <a href="fit.html" class="text-brand-gold font-bold transition-colors">Velsci Fit</a>
         <a href="care.html" class="text-slate-300 hover:text-brand-gold transition-colors">Velsci Care</a>
         <a href="assist.html" class="text-slate-300 hover:text-brand-gold transition-colors">Velsci Assist</a>
+        <a href="index.html#contact" class="px-5 py-2.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold rounded-lg text-xs transition-all shadow-md">Get Started</a>
       </nav>
+
+      <!-- MOBILE MENU BUTTON -->
+      <div class="md:hidden">
+        <a href="index.html#contact" class="px-4 py-2 bg-brand-gold text-brand-950 font-bold rounded-lg text-xs">Contact</a>
+      </div>
+
     </div>
   </header>
 
@@ -50,7 +86,7 @@
       </div>
     </section>
 
-    <!-- WORKFLOW CARDS SECTION (MATCHING CARE SCREENSHOT GRID) -->
+    <!-- WORKFLOW CARDS SECTION (EXACT CARE FORMAT) -->
     <section class="py-20">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
@@ -91,8 +127,16 @@
     </section>
   </main>
 
-  <footer class="bg-[#05120e] text-slate-400 py-6 border-t border-brand-800/80 text-center text-xs">
-    &copy; 2026 Velsci Globals. All rights reserved.
+  <!-- FOOTER -->
+  <footer class="bg-[#040e0b] text-slate-400 py-8 border-t border-brand-800/80 text-center text-xs">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row justify-between items-center gap-4">
+      <div class="flex items-center gap-2">
+        <img src="logo.svg" alt="Logo" class="w-6 h-6">
+        <span class="font-display font-extrabold text-white">VELSCI GLOBALS</span>
+      </div>
+      <p>&copy; 2026 Velsci Globals. All rights reserved.</p>
+    </div>
   </footer>
+
 </body>
 </html>
