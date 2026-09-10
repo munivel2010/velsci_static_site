@@ -100,38 +100,61 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-3.5 group">
+      <a href="index.html" class="flex items-center gap-3.5 group">
         <svg width="42" height="42" viewBox="0 0 200 200" fill="none" class="drop-shadow-lg">
-             <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-header)" stroke-width="6" fill="#0f382c" />
-            <circle cx="100" cy="100" r="62" stroke="#52b788" stroke-width="4" stroke-dasharray="8 4" />
-            <path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-header)" />
-             <circle cx="100" cy="100" r="5" fill="#38bdf8" />
-            <defs>
-               <linearGradient id="gold-grad-header" x1="0%" y1="0%" x2="100%" y2="100%">
-                 <stop offset="0%" stop-color="#fef08a" />
-                 <stop offset="50%" stop-color="#d4af37" />
-                 <stop offset="100%" stop-color="#b45309" />
-               </linearGradient>
-             </defs>
-           </svg>
-          <div>
-          <div class="flex flex-col">
-            <span class="font-display font-extrabold text-xl tracking-wider text-white group-hover:text-brand-gold transition-colors">VELSCI GLOBALS</span>
-            <span class="text-[10px] tracking-widest text-brand-500 font-medium uppercase -mt-1">Precision Fit &bull; Circular Care</span>
-          </div>
-          </div>
-        </a>
+          <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-header)" stroke-width="6" fill="#0f382c" />
+          <circle cx="100" cy="100" r="62" stroke="#52b788" stroke-width="4" stroke-dasharray="8 4" />
+          <path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-header)" />
+          <circle cx="100" cy="100" r="5" fill="#38bdf8" />
+          <defs>
+            <linearGradient id="gold-grad-header" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#fef08a" />
+              <stop offset="50%" stop-color="#d4af37" />
+              <stop offset="100%" stop-color="#b45309" />
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="flex flex-col">
+          <span class="font-display font-extrabold text-xl tracking-wider text-white group-hover:text-brand-gold transition-colors">VELSCI GLOBALS</span>
+          <span class="text-[10px] tracking-widest text-brand-500 font-medium uppercase -mt-1">Precision Fit &bull; Circular Care</span>
+        </div>
+      </a>
 
-      <!-- Navigation Links -->
+      <!-- Navigation Links with Dropdown -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-200">
-        <a href="#ecosystem" class="hover:text-brand-gold transition-colors">Our Core Ecosystem</a>
-        <a href="how-it-works.html" class="hover:text-brand-gold transition-colors">How It Works</a>
-        <a href="#mission" class="hover:text-brand-gold transition-colors">Mission & Impact</a>
-        <a href="#contact" class="hover:text-brand-gold transition-colors">Contact</a>
+        <a href="#ecosystem" class="hover:text-brand-gold transition-colors">Ecosystem</a>
+        
+        <!-- HOW IT WORKS DROPDOWN MENU -->
+        <div class="relative group">
+          <button class="hover:text-brand-gold transition-colors flex items-center gap-1.5 py-2">
+            <span>How It Works</span>
+            <i class="fa-solid fa-chevron-down text-[10px] group-hover:rotate-180 transition-transform"></i>
+          </button>
+          
+          <!-- Dropdown Sub-menu -->
+          <div class="absolute top-full left-0 hidden group-hover:block w-64 bg-[#0c241c] border border-brand-800 rounded-xl shadow-2xl p-2 z-50">
+            <a href="fit.html" class="block p-3 rounded-lg hover:bg-brand-800/60 transition-colors">
+              <span class="text-xs font-bold text-brand-gold block">Velsci Fit Process</span>
+              <span class="text-[11px] text-slate-300">Custom Tailoring & Sizing</span>
+            </a>
+            <a href="care.html" class="block p-3 rounded-lg hover:bg-brand-800/60 transition-colors">
+              <span class="text-xs font-bold text-brand-gold block">Velsci Care Process</span>
+              <span class="text-[11px] text-slate-300">Circular Care & Upcycling</span>
+            </a>
+            <a href="assist.html" class="block p-3 rounded-lg hover:bg-brand-800/60 transition-colors">
+              <span class="text-xs font-bold text-brand-gold block">Velsci Assist Process</span>
+              <span class="text-[11px] text-slate-300">NRI Family & Healthcare Support</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="#mission" class="hover:text-brand-gold transition-colors">Mission</a>
+        <a href="#contact" class="hover:text-brand-gold transition-colors">Get Started</a>
       </nav>
 
-      <!-- Action Buttons & Language Switcher -->
+      <!-- Action Buttons, LinkedIn & Language Switcher -->
       <div class="hidden sm:flex items-center gap-3">
+        <!-- Language Switcher -->
         <div class="flex items-center bg-brand-800/80 border border-brand-700/80 rounded-lg p-1 text-xs font-semibold">
           <button onclick="translatePage('en')" class="px-2 py-1 text-slate-200 hover:text-brand-gold transition-colors">EN</button>
           <span class="text-brand-700">|</span>
@@ -140,42 +163,42 @@
           <button onclick="translatePage('ta')" class="px-2 py-1 text-slate-200 hover:text-brand-gold transition-colors">TA</button>
         </div>
 
-        <a href="mailto:info@velsci.com" class="px-3.5 py-2 text-xs font-semibold text-slate-200 hover:text-white bg-brand-800/60 hover:bg-brand-800 border border-brand-700/60 rounded-lg transition-all flex items-center gap-2">
-          <i class="fa-regular fa-envelope text-brand-gold"></i> info@velsci.com
+        <!-- LinkedIn Link -->
+        <a href="https://www.linkedin.com/company/velsci" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-200 hover:text-brand-gold bg-brand-800/60 hover:bg-brand-800 border border-brand-700/60 rounded-lg transition-all" title="Follow us on LinkedIn">
+          <i class="fa-brands fa-linkedin text-base"></i>
         </a>
+
         <a href="#contact" class="px-4 py-2 text-xs font-bold bg-brand-gold hover:bg-brand-goldHover text-brand-950 rounded-lg shadow-lg shadow-brand-gold/10 transition-all transform active:scale-95 flex items-center gap-1.5">
-          <span>Get Started</span>
+          <span>Request Service</span>
           <i class="fa-solid fa-arrow-right text-[11px]"></i>
         </a>
       </div>
 
-      <!-- Mobile Menu Toggle Button -->
+      <!-- Mobile Menu Button -->
       <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-200 hover:text-white focus:outline-none">
         <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
       </button>
     </div>
 
-    <!-- Mobile Navigation Drawer -->
+    <!-- Mobile Drawer -->
     <div id="mobile-menu" class="hidden md:hidden bg-[#0a251d] border-b border-brand-800 px-6 py-5 space-y-4 text-sm font-medium">
-      <a href="#ecosystem" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Our Core Ecosystem</a>
-      <a href="#how-it-works" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">How It Works</a>
-      <a href="#mission" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Mission & Impact</a>
-      <a href="#privacy" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">GDPR & Compliance</a>
-      <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Contact</a>
-      
-      <div class="flex items-center gap-2 pt-2 border-t border-brand-800/80">
-        <span class="text-xs text-slate-400 mr-2">Language:</span>
-        <button onclick="translatePage('en')" class="px-2.5 py-1 text-xs bg-brand-800 rounded text-slate-200">EN</button>
-        <button onclick="translatePage('de')" class="px-2.5 py-1 text-xs bg-brand-800 rounded text-slate-200">DE</button>
-        <button onclick="translatePage('ta')" class="px-2.5 py-1 text-xs bg-brand-800 rounded text-slate-200">TA</button>
+      <a href="#ecosystem" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Ecosystem</a>
+      <div class="pl-2 border-l border-brand-800 space-y-2">
+        <a href="fit.html" class="block text-xs text-slate-300 hover:text-brand-gold">Velsci Fit Process</a>
+        <a href="care.html" class="block text-xs text-slate-300 hover:text-brand-gold">Velsci Care Process</a>
+        <a href="assist.html" class="block text-xs text-slate-300 hover:text-brand-gold">Velsci Assist Process</a>
       </div>
-
-      <div class="pt-3 border-t border-brand-800/80 flex flex-col gap-2.5">
-        <a href="mailto:info@velsci.com" class="text-xs text-brand-500 flex items-center gap-2">
-          <i class="fa-regular fa-envelope"></i> info@velsci.com
-        </a>
-        <a href="mailto:contact@velsci.com" class="text-xs text-brand-500 flex items-center gap-2">
-          <i class="fa-solid fa-headset"></i> contact@velsci.com
+      <a href="#mission" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Mission</a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Get Started</a>
+      
+      <div class="flex items-center justify-between pt-3 border-t border-brand-800/80">
+        <div class="flex items-center gap-2">
+          <button onclick="translatePage('en')" class="px-2.5 py-1 text-xs bg-brand-800 rounded text-slate-200">EN</button>
+          <button onclick="translatePage('de')" class="px-2.5 py-1 text-xs bg-brand-800 rounded text-slate-200">DE</button>
+          <button onclick="translatePage('ta')" class="px-2.5 py-1 text-xs bg-brand-800 rounded text-slate-200">TA</button>
+        </div>
+        <a href="https://www.linkedin.com/company/velsci" target="_blank" class="text-brand-gold flex items-center gap-2 text-xs">
+          <i class="fa-brands fa-linkedin text-lg"></i> LinkedIn
         </a>
       </div>
     </div>
@@ -184,10 +207,8 @@
   <main class="flex-grow">
     <!-- HERO SECTION -->
     <section class="relative bg-gradient-to-b from-[#0f382c] via-[#0b2920] to-[#071813] pt-20 pb-28 border-b border-brand-800/50 overflow-hidden">
-      <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-brand-700/20 rounded-full blur-[140px] pointer-events-none"></div>
-
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-800/70 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-8 backdrop-blur shadow-sm">
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-800/70 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-8 backdrop-blur">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           Indo - European High Tech Platform
         </div>
@@ -201,415 +222,269 @@
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-          <a href="#ecosystem" class="w-full sm:w-auto px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-xl shadow-xl shadow-brand-gold/10 transition-all text-center transform hover:-translate-y-0.5">
-            Explore Velsci Services
+          <a href="#contact" class="w-full sm:w-auto px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-xl shadow-xl shadow-brand-gold/10 transition-all text-center">
+            Submit Your Requirement
           </a>
-          <a href="#mission" class="w-full sm:w-auto px-8 py-4 bg-brand-800/80 hover:bg-brand-800 text-white font-semibold text-sm rounded-xl border border-brand-700/80 transition-all text-center backdrop-blur transform hover:-translate-y-0.5">
-            Our Social Mission
+          <a href="#ecosystem" class="w-full sm:w-auto px-8 py-4 bg-brand-800/80 hover:bg-brand-800 text-white font-semibold text-sm rounded-xl border border-brand-700/80 transition-all text-center">
+            Explore Services
           </a>
-        </div>
-
-        <div class="mt-20 pt-10 border-t border-brand-800/60 grid grid-cols-2 md:grid-cols-4 gap-6 text-slate-300 text-xs font-medium max-w-4xl mx-auto">
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-graduation-cap text-brand-gold text-lg"></i>
-            <span class="text-white font-bold text-sm">FAU Incubator</span>
-            <span class="text-slate-400">German Academic Partner</span>
-          </div>
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-shield-halved text-brand-gold text-lg"></i>
-            <span class="text-white font-bold text-sm">100% GDPR Ready</span>
-            <span class="text-slate-400">Strict Data Privacy</span>
-          </div>
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-leaf text-brand-gold text-lg"></i>
-            <span class="text-white font-bold text-sm">Zero Waste</span>
-            <span class="text-slate-400">On-Demand Production</span>
-          </div>
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-hands-holding-circle text-brand-gold text-lg"></i>
-            <span class="text-white font-bold text-sm">Fair Livelihood</span>
-            <span class="text-slate-400">Artisan Empowerment</span>
-          </div>
         </div>
       </div>
     </section>
 
-    <!-- CORE ECOSYSTEM (THREE PILLARS) -->
-    <section id="ecosystem" class="py-24 bg-[#071813] relative">
+    <!-- CORE ECOSYSTEM -->
+    <section id="ecosystem" class="py-24 bg-[#071813]">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
           <span class="text-xs uppercase font-bold text-brand-500 tracking-widest block mb-2">Integrated Platform</span>
           <h2 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">Our Core Ecosystem</h2>
-          <p class="text-slate-400 text-sm mt-3">Combining artisan mastery, circular textiles, and care coordination into one European-standard platform.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Pillar 1: Velsci Fit -->
-          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 hover:border-brand-gold/50 transition-all flex flex-col justify-between group hover:-translate-y-1 shadow-lg">
+          <!-- Pillar 1 -->
+          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700/60 flex items-center justify-center text-brand-gold text-xl mb-6 group-hover:scale-110 transition-transform">
+              <div class="w-12 h-12 rounded-xl bg-brand-800/80 text-brand-gold flex items-center justify-center text-xl mb-6">
                 <i class="fa-solid fa-scissors"></i>
               </div>
               <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Fit</h3>
               <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">Zero-Waste Tailoring</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                Experience hassle-free custom tailoring from home. Using non-intrusive photo-reference alignment, we map your sizing preferences directly to traditional master tailors in India.
-              </p>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">Custom tailoring mapped directly to traditional master tailors in India via non-intrusive reference photos.</p>
             </div>
-            <ul class="space-y-3 text-xs text-slate-300 border-t border-brand-800/60 pt-6">
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>No physical store visits or fitting appointments</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>Direct income model for artisan craftspeople</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>Zero inventory overproduction & exact fit guarantee</span>
-              </li>
-            </ul>
+            <a href="fit.html" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-2">
+              <span>Explore Fit Process</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </a>
           </div>
 
-          <!-- Pillar 2: Velsci Care -->
-          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 hover:border-brand-gold/50 transition-all flex flex-col justify-between group hover:-translate-y-1 shadow-lg">
+          <!-- Pillar 2 -->
+          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700/60 flex items-center justify-center text-brand-gold text-xl mb-6 group-hover:scale-110 transition-transform">
+              <div class="w-12 h-12 rounded-xl bg-brand-800/80 text-brand-gold flex items-center justify-center text-xl mb-6">
                 <i class="fa-solid fa-rotate"></i>
               </div>
               <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Care</h3>
               <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">Circular Wardrobe</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                High-grade textiles shouldn't sit idle or degrade from domestic washing. Velsci Care offers gentle eco-preservation that extends garment lifespan and enables circular recycling.
-              </p>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">Eco-preservation that extends garment lifespan up to 300% and enables circular recycling.</p>
             </div>
-            <ul class="space-y-3 text-xs text-slate-300 border-t border-brand-800/60 pt-6">
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>Gentle industrial fabric preservation</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>Extends fabric life up to 300%</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>Buyback & circular textile swap options</span>
-              </li>
-            </ul>
+            <a href="care.html" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-2">
+              <span>Explore Care Process</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </a>
           </div>
 
-          <!-- Pillar 3: Velsci Assist -->
-          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 hover:border-brand-gold/50 transition-all flex flex-col justify-between group hover:-translate-y-1 shadow-lg">
+          <!-- Pillar 3 -->
+          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 flex flex-col justify-between">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700/60 flex items-center justify-center text-brand-gold text-xl mb-6 group-hover:scale-110 transition-transform">
+              <div class="w-12 h-12 rounded-xl bg-brand-800/80 text-brand-gold flex items-center justify-center text-xl mb-6">
                 <i class="fa-solid fa-heart-pulse"></i>
               </div>
               <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Assist</h3>
-              <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">NRI Family & Senior Support</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                Bridging the distance between global citizens in Europe and parents back home in India. Velsci Assist provides reliable support—from healthcare navigation to errands and emergency logistics.
-              </p>
+              <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">NRI Family Support</p>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6">Dedicated on-ground care managers providing reliable healthcare navigation and support for parents in India.</p>
             </div>
-            <ul class="space-y-3 text-xs text-slate-300 border-t border-brand-800/60 pt-6">
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>Dedicated on-ground care managers</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>Regular digital updates for family members</span>
-              </li>
-              <li class="flex items-center gap-2.5">
-                <i class="fa-solid fa-circle-check text-brand-500"></i>
-                <span>Transparent, trusted operational coordination</span>
-              </li>
-            </ul>
+            <a href="assist.html" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-2">
+              <span>Explore Assist Process</span> <i class="fa-solid fa-chevron-right text-[10px]"></i>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- UPDATED: HOW IT WORKS SECTION -->
-    <section id="how-it-works" class="py-24 bg-[#0a2119] border-t border-b border-brand-800/60 relative">
+    <!-- HOW IT WORKS SECTION LINKED TO SUB-PAGES -->
+    <section id="how-it-works" class="py-20 bg-[#0a2119] border-t border-b border-brand-800/60">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block mb-2">Simple, Digital & Transparent</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">How Velsci Platform Works</h2>
-          <p class="text-slate-300 text-sm mt-3">A streamlined 4-step workflow connecting European clients with master artisans in India with full transparency.</p>
+          <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block mb-2">Simplified Workflow</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">How Our Ecosystem Operates</h2>
+          <p class="text-slate-300 text-sm mt-3">Select a service below to view its dedicated step-by-step workflow.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
-          
-          <!-- Step 1 -->
-          <div class="bg-[#0f382c]/90 border border-brand-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-brand-gold/60 transition-all hover:-translate-y-1 shadow-lg">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <!-- Fit Card -->
+          <div class="bg-[#071813] border border-brand-800/90 rounded-2xl p-6 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between mb-5">
-                <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">01</span>
-                <i class="fa-solid fa-camera text-2xl text-brand-500"></i>
-              </div>
-              <h3 class="font-display text-lg font-bold text-white mb-2">1. Easy Digital Input</h3>
-              <p class="text-slate-300 text-xs leading-relaxed mb-4">
-                Upload two simple photo references using standard clothing as a benchmark, or share preferred measurements directly on our secure portal.
-              </p>
+              <span class="text-xs font-bold text-brand-500 uppercase tracking-wider">01. Precision Fit</span>
+              <h3 class="text-xl font-bold text-white mt-1 mb-3">Custom Tailoring Flow</h3>
+              <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                <li>&bull; Non-intrusive photo reference sizing</li>
+                <li>&bull; Handcrafted by Indian master tailors</li>
+                <li>&bull; Direct door delivery in Europe</li>
+              </ul>
             </div>
-            <div class="bg-[#071813] p-3 rounded-xl border border-brand-800/80 text-[11px] text-slate-400 flex items-center gap-2">
-              <i class="fa-solid fa-shield-halved text-brand-gold"></i>
-              <span>GDPR compliant photo handling.</span>
-            </div>
+            <a href="fit.html" class="px-4 py-2.5 bg-brand-800/80 hover:bg-brand-800 text-brand-gold text-xs font-bold rounded-lg text-center border border-brand-700/60 transition-all">
+              View Velsci Fit Workflow &rarr;
+            </a>
           </div>
 
-          <!-- Step 2 -->
-          <div class="bg-[#0f382c]/90 border border-brand-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-brand-gold/60 transition-all hover:-translate-y-1 shadow-lg">
+          <!-- Care Card -->
+          <div class="bg-[#071813] border border-brand-800/90 rounded-2xl p-6 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between mb-5">
-                <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">02</span>
-                <i class="fa-solid fa-microchip text-2xl text-brand-500"></i>
-              </div>
-              <h3 class="font-display text-lg font-bold text-white mb-2">2. Digital Pattern Vectoring</h3>
-              <p class="text-slate-300 text-xs leading-relaxed mb-4">
-                Our algorithm translates sizing inputs into high-precision digital vector patterns, removing standard measurement errors and fabric waste.
-              </p>
+              <span class="text-xs font-bold text-brand-500 uppercase tracking-wider">02. Circular Care</span>
+              <h3 class="text-xl font-bold text-white mt-1 mb-3">Garment Upcycling Flow</h3>
+              <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                <li>&bull; Doorstep pickup & fabric diagnosis</li>
+                <li>&bull; Sustainable bio-preservation</li>
+                <li>&bull; Return or trade-in recycling</li>
+              </ul>
             </div>
-            <div class="bg-[#071813] p-3 rounded-xl border border-brand-800/80 text-[11px] text-slate-400 flex items-center gap-2">
-              <i class="fa-solid fa-bolt text-brand-gold"></i>
-              <span>Precision vector generation.</span>
-            </div>
+            <a href="care.html" class="px-4 py-2.5 bg-brand-800/80 hover:bg-brand-800 text-brand-gold text-xs font-bold rounded-lg text-center border border-brand-700/60 transition-all">
+              View Velsci Care Workflow &rarr;
+            </a>
           </div>
 
-          <!-- Step 3 -->
-          <div class="bg-[#0f382c]/90 border border-brand-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-brand-gold/60 transition-all hover:-translate-y-1 shadow-lg">
+          <!-- Assist Card -->
+          <div class="bg-[#071813] border border-brand-800/90 rounded-2xl p-6 flex flex-col justify-between">
             <div>
-              <div class="flex items-center justify-between mb-5">
-                <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">03</span>
-                <i class="fa-solid fa-scissors text-2xl text-brand-500"></i>
-              </div>
-              <h3 class="font-display text-lg font-bold text-white mb-2">3. Artisan Tailoring</h3>
-              <p class="text-slate-300 text-xs leading-relaxed mb-4">
-                Certified master tailors in India receive patterns directly and hand-craft custom garments, earning sustainable fair-trade wages.
-              </p>
+              <span class="text-xs font-bold text-brand-500 uppercase tracking-wider">03. Family Assist</span>
+              <h3 class="text-xl font-bold text-white mt-1 mb-3">NRI Care Support Flow</h3>
+              <ul class="text-xs text-slate-300 space-y-2 mb-6">
+                <li>&bull; Dedicated on-ground care manager</li>
+                <li>&bull; Real-time medical & lifestyle support</li>
+                <li>&bull; Transparent updates for diaspora</li>
+              </ul>
             </div>
-            <div class="bg-[#071813] p-3 rounded-xl border border-brand-800/80 text-[11px] text-slate-400 flex items-center gap-2">
-              <i class="fa-solid fa-hands-holding-child text-brand-gold"></i>
-              <span>Empowering heritage tailors.</span>
-            </div>
+            <a href="assist.html" class="px-4 py-2.5 bg-brand-800/80 hover:bg-brand-800 text-brand-gold text-xs font-bold rounded-lg text-center border border-brand-700/60 transition-all">
+              View Velsci Assist Workflow &rarr;
+            </a>
           </div>
-
-          <!-- Step 4 -->
-          <div class="bg-[#0f382c]/90 border border-brand-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-brand-gold/60 transition-all hover:-translate-y-1 shadow-lg">
-            <div>
-              <div class="flex items-center justify-between mb-5">
-                <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">04</span>
-                <i class="fa-solid fa-box-open text-2xl text-brand-500"></i>
-              </div>
-              <h3 class="font-display text-lg font-bold text-white mb-2">4. Doorstep Delivery & Care</h3>
-              <p class="text-slate-300 text-xs leading-relaxed mb-4">
-                Your custom apparel is delivered directly to your home in Europe, accompanied by a circular garment care passport for future maintenance.
-              </p>
-            </div>
-            <div class="bg-[#071813] p-3 rounded-xl border border-brand-800/80 text-[11px] text-slate-400 flex items-center gap-2">
-              <i class="fa-solid fa-rotate-left text-brand-gold"></i>
-              <span>Circular lifecycle passport included.</span>
-            </div>
-          </div>
-
         </div>
       </div>
     </section>
 
-    <!-- MISSION & IMPACT STORY -->
-    <section id="mission" class="py-24 bg-[#071813]">
+    <!-- MISSION & STORY -->
+    <section id="mission" class="py-20 bg-[#071813]">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-[#0f382c] to-[#0a2119] border border-brand-800 rounded-3xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
-          
-          <div class="flex items-center gap-3 mb-6">
-            <div class="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold">
-              <i class="fa-solid fa-quote-left text-lg"></i>
-            </div>
-            <div>
-              <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block">Founder's Vision</span>
-              <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">Born from Gratitude, Built for Impact</h3>
-            </div>
-          </div>
-
-          <blockquote class="text-slate-200 text-base sm:text-lg leading-relaxed space-y-4 font-normal italic border-l-2 border-brand-gold pl-6 my-6">
-            <p>
-              "Velsci Globals was founded on a simple truth: no one succeeds alone. Growing up with the support of a hardworking mother, traditional craftspeople, and a community that stepped in when times were tough, our founder learned the true value of human dignity and artisan craft."
-            </p>
-            <p class="not-italic text-sm text-slate-300 font-medium">
-              "Velsci was built to give back. By pairing modern digital efficiency with the time-honored expertise of local tailors—like the master craftsmen who supported our founder's early education—we create a sustainable bridge between European communities and traditional heritage."
-            </p>
-          </blockquote>
-
-          <div class="pt-8 border-t border-brand-800/80 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
-            <div>
-              <span class="font-display font-extrabold text-3xl text-brand-gold block">100%</span>
-              <span class="text-xs text-slate-400">On-Demand Production</span>
-            </div>
-            <div>
-              <span class="font-display font-extrabold text-3xl text-brand-gold block">3x</span>
-              <span class="text-xs text-slate-400">Garment Life Extension</span>
-            </div>
-            <div>
-              <span class="font-display font-extrabold text-3xl text-brand-gold block">Fair</span>
-              <span class="text-xs text-slate-400">Year-Round Artisan Income</span>
-            </div>
+        <div class="bg-gradient-to-br from-[#0f382c] to-[#0a2119] border border-brand-800 rounded-3xl p-8 sm:p-12">
+          <h3 class="font-display text-2xl font-bold text-white mb-4">Born from Gratitude, Built for Impact</h3>
+          <p class="text-slate-300 text-sm leading-relaxed italic mb-6">
+            "Velsci Globals was built to pair modern digital efficiency with traditional artisan craftsmanship—creating a sustainable bridge between European citizens and master tailors in India."
+          </p>
+          <div class="flex items-center gap-4 border-t border-brand-800/80 pt-4">
+            <a href="https://www.linkedin.com/company/velsci" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 text-xs font-bold text-brand-gold hover:underline">
+              <i class="fa-brands fa-linkedin text-base"></i>
+              <span>Connect with us on LinkedIn</span>
+            </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- EUROPEAN GDPR PRIVACY COMPLIANCE -->
-    <section id="privacy" class="py-20 bg-[#0a2119] border-t border-brand-800/80">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="flex items-center justify-between flex-wrap gap-4 mb-8">
-          <div class="flex items-center gap-3">
-            <div class="w-10 h-10 rounded-xl bg-emerald-950 border border-emerald-700/50 flex items-center justify-center text-emerald-400 font-bold">
-              <i class="fa-solid fa-user-shield text-lg"></i>
-            </div>
-            <div>
-              <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block">EU Data Rights</span>
-              <h3 class="font-display text-2xl font-bold text-white">General Data Protection Regulation (GDPR)</h3>
-            </div>
-          </div>
-          <span class="text-xs text-emerald-400 bg-emerald-950/80 border border-emerald-800/80 px-3 py-1 rounded-full font-medium">
-            EU Regulation 2016/679
-          </span>
-        </div>
-
-        <div class="bg-[#071813] border border-brand-800 rounded-2xl p-6 sm:p-8 space-y-6 text-xs sm:text-sm text-slate-300 leading-relaxed">
-          <div>
-            <h4 class="font-bold text-white text-base mb-2">1. Data Processing Responsibility</h4>
-            <p>Velsci Globals operates under strict EU data protection standards. Sizing inputs and photo references for Velsci Fit are processed strictly for custom garment creation and deleted immediately after order fulfillment.</p>
-          </div>
-
-          <div>
-            <h4 class="font-bold text-white text-base mb-2">2. Your Explicit Rights</h4>
-            <p>You have full rights to request access, rectification, erasure ("Right to be Forgotten"), or restriction of data processing at any time. Address all requests to our Data Protection Officer at <a href="mailto:info@velsci.com" class="text-brand-gold underline font-semibold">info@velsci.com</a>.</p>
-          </div>
-
-          <div class="pt-4 border-t border-brand-800 flex flex-wrap gap-4 items-center justify-between text-xs text-slate-400">
-            <span>Official Operations: Germany / Czechia / India</span>
-            <button onclick="openModal('modal-impressum')" class="text-brand-gold hover:underline font-semibold flex items-center gap-1.5">
-              <i class="fa-solid fa-scale-balanced"></i> View Legal Disclosure (Impressum)
-            </button>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION WITH WEB3FORMS INTEGRATION -->
+    <!-- HIGH-QUALITY SMART LEAD CAPTURE FORM -->
     <section id="contact" class="py-24 bg-[#071813]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
-          <!-- Contact Info -->
-          <div>
-            <span class="text-xs uppercase font-bold text-brand-500 tracking-widest block mb-2">Direct Communication</span>
-            <h2 class="font-display text-3xl font-bold text-white mb-6">Get in Touch with Velsci Globals</h2>
-            <p class="text-slate-300 text-sm leading-relaxed mb-8">
-              Whether you have questions regarding custom tailoring, circular garment care, or family assistance services, our teams in Europe and India are ready to help.
-            </p>
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block mb-2">Direct Service Request</span>
+          <h2 class="font-display text-3xl font-bold text-white">Tell Us What You Need</h2>
+          <p class="text-slate-400 text-sm mt-2">No sign-up required. Share your requirement, and our team will get in touch within 24 hours.</p>
+        </div>
 
-            <div class="space-y-4">
-              <!-- Email 1 -->
-              <a href="mailto:info@velsci.com" class="flex items-center gap-4 p-4 rounded-xl bg-[#0c241c] hover:bg-[#0f382c] border border-brand-800 transition-colors group">
-                <div class="w-10 h-10 rounded-lg bg-brand-800/80 text-brand-gold flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
-                  <i class="fa-solid fa-envelope"></i>
-                </div>
-                <div>
-                  <span class="text-[11px] text-slate-400 uppercase font-semibold block">General & GDPR Inquiries</span>
-                  <span class="text-sm font-bold text-white">info@velsci.com</span>
-                </div>
-              </a>
-
-              <!-- Email 2 -->
-              <a href="mailto:contact@velsci.com" class="flex items-center gap-4 p-4 rounded-xl bg-[#0c241c] hover:bg-[#0f382c] border border-brand-800 transition-colors group">
-                <div class="w-10 h-10 rounded-lg bg-brand-800/80 text-brand-gold flex items-center justify-center font-bold group-hover:scale-105 transition-transform">
-                  <i class="fa-solid fa-headset"></i>
-                </div>
-                <div>
-                  <span class="text-[11px] text-slate-400 uppercase font-semibold block">Customer Support & Assist</span>
-                  <span class="text-sm font-bold text-white">contact@velsci.com</span>
-                </div>
-              </a>
-            </div>
+        <div class="bg-[#0c241c] border border-brand-800 p-8 rounded-2xl shadow-2xl">
+          <div id="form-success" class="hidden mb-6 p-4 rounded-lg bg-emerald-900/80 border border-emerald-500 text-emerald-200 text-sm">
+            <i class="fa-solid fa-circle-check mr-2"></i> Thank you! Your request has been received. We will contact you shortly.
           </div>
 
-          <!-- Contact Form -->
-          <div class="bg-[#0c241c] border border-brand-800 p-8 rounded-2xl shadow-xl">
-            
-            <div id="form-success" class="hidden mb-4 p-4 rounded-lg bg-emerald-900/80 border border-emerald-500 text-emerald-200 text-sm">
-              <i class="fa-solid fa-circle-check mr-2"></i> Thank you! Your message has been sent successfully.
-            </div>
+          <form id="velsci-contact-form" class="space-y-5">
+            <input type="hidden" name="access_key" value="f859961d-57c3-4937-94ac-198098f47317">
+            <input type="hidden" name="subject" value="New Service Request — Velsci Globals">
 
-            <form id="velsci-contact-form" class="space-y-4">
-              <input type="hidden" name="access_key" value="f859961d-57c3-4937-94ac-198098f47317">
-              <input type="hidden" name="subject" value="New Inquiry from Velsci Website">
-
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
               <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Your Full Name</label>
-                <input type="text" name="name" required placeholder="Dr. Alex Neumann" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Full Name *</label>
+                <input type="text" name="name" required placeholder="Alex Neumann" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Email Address</label>
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Email Address *</label>
                 <input type="email" name="email" required placeholder="alex@domain.de" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
               </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Phone / WhatsApp (Optional)</label>
+                <input type="tel" name="phone" placeholder="+49 151 12345678" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
+              </div>
 
               <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Inquiry Pillar</label>
-                <select name="service" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
-                  <option value="Velsci Fit">Velsci Fit (Zero-Waste Tailoring)</option>
-                  <option value="Velsci Care">Velsci Care (Circular Garment Subscription)</option>
-                  <option value="Velsci Assist">Velsci Assist (NRI Family Care)</option>
-                  <option value="General Inquiry">General Academic / Investment Inquiry</option>
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Select Service *</label>
+                <select id="service-select" name="service" required class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
+                  <option value="Velsci Fit">Velsci Fit (Custom Tailoring)</option>
+                  <option value="Velsci Care">Velsci Care (Circular Garment Care)</option>
+                  <option value="Velsci Assist">Velsci Assist (NRI Parent Support)</option>
+                  <option value="General Inquiry">General / Partnership Inquiry</option>
                 </select>
               </div>
+            </div>
 
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Message</label>
-                <textarea name="message" rows="3" required placeholder="How can we assist you today?" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors"></textarea>
-              </div>
+            <div>
+              <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Service Details / Requirements *</label>
+              <textarea name="message" rows="4" required placeholder="Specify your sizing preference, clothing type, or required family support details..." class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors"></textarea>
+            </div>
 
-              <div class="flex items-start gap-3 pt-2">
-                <input type="checkbox" id="gdpr-form-check" required class="mt-1 w-4 h-4 rounded border-brand-800 bg-[#071813] text-brand-gold focus:ring-brand-gold">
-                <label for="gdpr-form-check" class="text-xs text-slate-400 leading-normal">
-                  I agree that Velsci Globals may process my submitted details to respond to my inquiry as outlined in the <a href="#privacy" class="text-brand-gold underline font-semibold">Privacy Notice</a>.
-                </label>
-              </div>
+            <div class="flex items-start gap-3">
+              <input type="checkbox" id="gdpr-check" required class="mt-1 w-4 h-4 rounded border-brand-800 bg-[#071813] text-brand-gold focus:ring-brand-gold">
+              <label for="gdpr-check" class="text-xs text-slate-400">
+                I agree to the processing of my provided details to respond to this service request according to GDPR guidelines.
+              </label>
+            </div>
 
-              <button type="submit" id="submit-btn" class="w-full py-3.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-lg shadow-lg shadow-brand-gold/10 transition-all active:scale-95">
-                Send Inquiry
-              </button>
-            </form>
+            <button type="submit" id="submit-btn" class="w-full py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-lg shadow-lg transition-all active:scale-95">
+              Submit Request
+            </button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- COLLAPSIBLE GDPR & LEGAL DISCLOSURE -->
+    <section class="py-10 bg-[#0a2119] border-t border-brand-800/80">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        
+        <button onclick="togglePrivacyAccordion()" class="w-full flex items-center justify-between p-4 bg-[#071813] border border-brand-800 rounded-xl text-left hover:border-brand-700 transition-colors">
+          <div class="flex items-center gap-3">
+            <i class="fa-solid fa-user-shield text-brand-gold text-lg"></i>
+            <div>
+              <span class="text-sm font-bold text-white block">EU Privacy & Legal Compliance (GDPR)</span>
+              <span class="text-[11px] text-slate-400">Click to expand legal disclosures & data processing policies</span>
+            </div>
+          </div>
+          <i id="accordion-icon" class="fa-solid fa-chevron-down text-slate-400 transition-transform"></i>
+        </button>
+
+        <div id="privacy-accordion-content" class="hidden mt-3 p-6 bg-[#071813] border border-brand-800/80 rounded-xl space-y-4 text-xs text-slate-300 leading-relaxed">
+          <div>
+            <h4 class="font-bold text-white mb-1">Data Controller & Purpose</h4>
+            <p>Velsci Globals processes submitted contact and sizing data solely for customer fulfillment. No data is stored or shared with third parties for marketing without consent.</p>
+          </div>
+          <div>
+            <h4 class="font-bold text-white mb-1">Your Rights Under EU Regulation 2016/679</h4>
+            <p>You have full rights to request access, erasure, or restriction of your data at any time by contacting <a href="mailto:info@velsci.com" class="text-brand-gold underline">info@velsci.com</a>.</p>
+          </div>
+          <div class="pt-2 border-t border-brand-800 flex justify-between items-center text-[11px] text-slate-400">
+            <span>Official Operations: Germany / Czechia / India</span>
+            <button onclick="openModal('modal-impressum')" class="text-brand-gold hover:underline font-semibold">View Impressum</button>
           </div>
         </div>
+
       </div>
     </section>
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-[#05120e] text-slate-400 py-12 border-t border-brand-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
+  <footer class="bg-[#05120e] text-slate-400 py-10 border-t border-brand-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
       <div>
-        <span class="font-display font-extrabold text-xl text-white tracking-wider">VELSCI GLOBALS</span>
-        <p class="text-xs text-slate-400 mt-1">Precision Fit. Circular Care. Zero Waste.</p>
+        <span class="font-display font-extrabold text-xl text-white">VELSCI GLOBALS</span>
+        <p class="text-xs text-slate-400 mt-0.5">Precision Fit. Circular Care. Zero Waste.</p>
       </div>
 
-      <div class="flex flex-wrap justify-center gap-6 text-xs font-semibold text-slate-300">
-        <a href="#ecosystem" class="hover:text-brand-gold transition-colors">Velsci Fit</a>
-        <a href="#ecosystem" class="hover:text-brand-gold transition-colors">Velsci Care</a>
-        <a href="#ecosystem" class="hover:text-brand-gold transition-colors">Velsci Assist</a>
-        <a href="#privacy" class="hover:text-brand-gold transition-colors">Privacy Policy</a>
+      <div class="flex items-center gap-6 text-xs font-semibold text-slate-300">
+        <a href="https://www.linkedin.com/company/velsci" target="_blank" rel="noopener noreferrer" class="hover:text-brand-gold transition-colors flex items-center gap-1.5">
+          <i class="fa-brands fa-linkedin text-base"></i> LinkedIn
+        </a>
         <button onclick="openModal('modal-impressum')" class="hover:text-brand-gold transition-colors">Impressum</button>
       </div>
 
-      <div class="text-xs text-slate-400 space-y-1">
-        <p>&copy; 2026 Velsci Globals. All rights reserved.</p>
-        <p class="text-[11px] text-slate-400">www.velsci.com</p>
-      </div>
+      <p class="text-xs text-slate-400">&copy; 2026 Velsci Globals. All rights reserved.</p>
     </div>
   </footer>
 
@@ -625,47 +500,19 @@
       <div class="text-xs space-y-3 leading-relaxed text-slate-300">
         <p><strong class="text-white">Company Name:</strong> Velsci Globals</p>
         <p><strong class="text-white">Operating Regions:</strong> Germany / Czechia / India</p>
-
         <p><strong class="text-white">Official Contact Emails:</strong><br>
-          <a href="mailto:info@velsci.com" class="text-brand-gold underline">info@velsci.com</a> (General & Privacy)<br>
-          <a href="mailto:contact@velsci.com" class="text-brand-gold underline">contact@velsci.com</a> (Support & Operations)
+          <a href="mailto:info@velsci.com" class="text-brand-gold underline">info@velsci.com</a><br>
+          <a href="mailto:contact@velsci.com" class="text-brand-gold underline">contact@velsci.com</a>
         </p>
-        <p><strong class="text-white">Academic Incubator Partner:</strong> Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU), Germany</p>
-        <p><strong class="text-white">Online Dispute Resolution:</strong> The European Commission provides a platform for online dispute resolution (OS): <a href="https://ec.europa.eu/consumers/odr" target="_blank" class="text-emerald-400 underline">ec.europa.eu/consumers/odr</a>.</p>
+        <p><strong class="text-white">Academic Partner:</strong> Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU), Germany</p>
       </div>
       <div class="pt-3 border-t border-brand-800 text-right">
-        <button onclick="closeModal('modal-impressum')" class="px-4 py-2 bg-brand-800 hover:bg-brand-700 text-white rounded-lg text-xs font-semibold transition-colors">Close Notice</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- FLOATING GDPR COOKIE BANNER -->
-  <div id="gdpr-cookie-banner" class="fixed bottom-0 inset-x-0 z-50 p-4 sm:p-6 bg-[#0a2119]/95 backdrop-blur-md border-t border-brand-800 shadow-2xl">
-    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-      <div class="flex items-start gap-3">
-        <div class="w-8 h-8 rounded-lg bg-brand-800 border border-brand-700 flex-shrink-0 flex items-center justify-center text-brand-gold">
-          <i class="fa-solid fa-cookie-bite"></i>
-        </div>
-        <div>
-          <h4 class="text-sm font-bold text-white">European Privacy Rights (GDPR)</h4>
-          <p class="text-xs text-slate-300 leading-relaxed max-w-3xl">
-            We use essential cookies to maintain operational security and platform functionality. Read our <a href="#privacy" class="text-brand-gold underline font-medium">Privacy Policy</a>.
-          </p>
-        </div>
-      </div>
-      <div class="flex items-center gap-2.5 w-full md:w-auto flex-shrink-0">
-        <button onclick="acceptCookies('essential')" class="flex-1 md:flex-none px-4 py-2 bg-brand-800 hover:bg-brand-700 text-slate-200 text-xs font-semibold rounded-lg border border-brand-700 transition-colors">
-          Essential Only
-        </button>
-        <button onclick="acceptCookies('all')" class="flex-1 md:flex-none px-5 py-2 bg-brand-gold hover:bg-brand-goldHover text-brand-950 text-xs font-bold rounded-lg transition-colors">
-          Accept All
-        </button>
+        <button onclick="closeModal('modal-impressum')" class="px-4 py-2 bg-brand-800 hover:bg-brand-700 text-white rounded-lg text-xs font-semibold">Close</button>
       </div>
     </div>
   </div>
 
   <script>
-    // Handle Mobile Drawer Navigation
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       const icon = document.getElementById('menu-icon');
@@ -678,43 +525,34 @@
       }
     }
 
-    // Handle Cookie Preferences
-    window.addEventListener('load', () => {
-      const consent = localStorage.getItem('velsci_gdpr_consent');
-      if (consent) {
-        document.getElementById('gdpr-cookie-banner').classList.add('hidden');
+    function togglePrivacyAccordion() {
+      const content = document.getElementById('privacy-accordion-content');
+      const icon = document.getElementById('accordion-icon');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
       }
-    });
-
-    function acceptCookies(type) {
-      localStorage.setItem('velsci_gdpr_consent', type);
-      document.getElementById('gdpr-cookie-banner').classList.add('hidden');
     }
 
-    // Modal Control Logic
-    function openModal(id) {
-      document.getElementById(id).classList.remove('hidden');
-    }
+    function openModal(id) { document.getElementById(id).classList.remove('hidden'); }
+    function closeModal(id) { document.getElementById(id).classList.add('hidden'); }
 
-    function closeModal(id) {
-      document.getElementById(id).classList.add('hidden');
-    }
-
-    // Web3Forms AJAX Form Handler
+    // Web3Forms Submit Integration
     const form = document.getElementById('velsci-contact-form');
     const successMsg = document.getElementById('form-success');
     const submitBtn = document.getElementById('submit-btn');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
-      submitBtn.innerText = 'Sending...';
+      submitBtn.innerText = 'Submitting Request...';
       submitBtn.disabled = true;
-
-      const formData = new FormData(form);
 
       fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        body: formData
+        body: new FormData(form)
       })
       .then(response => response.json())
       .then(data => {
@@ -722,14 +560,12 @@
           successMsg.classList.remove('hidden');
           form.reset();
         } else {
-          alert('Error sending message. Please try again.');
+          alert('Submission error. Please try again.');
         }
       })
-      .catch(error => {
-        alert('Something went wrong. Please check your connection.');
-      })
+      .catch(() => alert('Network error. Please try again.'))
       .finally(() => {
-        submitBtn.innerText = 'Send Inquiry';
+        submitBtn.innerText = 'Submit Request';
         submitBtn.disabled = false;
       });
     });
