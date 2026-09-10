@@ -278,89 +278,89 @@
               <p class="text-slate-300 text-sm leading-relaxed mb-6" data-i18n="fit-desc">
                 Enables precise digital sizing using non-intrusive reference photos. We map measurements directly to master tailors in India for custom-fit garments delivered to Europe with zero fabric waste.
                 <!-- Velsci Fit AI Feature Container -->
-<div style="background: rgba(255, 255, 255, 0.03); border: 1px solid #d4af37; border-radius: 12px; padding: 20px; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center;">
-  
-  <!-- Visual Highlight Banner (User Understanding) -->
-  <div style="background: linear-gradient(90deg, rgba(212,175,55,0.2), rgba(0,0,0,0.4)); border-radius: 8px; padding: 12px; margin-bottom: 15px; border-left: 4px solid #d4af37;">
-    <div style="font-size: 0.85rem; color: #d4af37; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
-      📸 Photo ➔ ✂️ AI Pattern PDF
-    </div>
-    <div style="font-size: 0.8rem; color: #ccc; margin-top: 4px;">
-      உங்களின் ஆடை படத்தை அப்லோட் செய்யுங்கள், AI துல்லியமான PDF Pattern-ஆக மாற்றி தரும்!
-    </div>
-  </div>
-
-  <!-- Upload Form -->
-  <form id="aiFitForm" style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
-    <label for="aiPhotoInput" style="font-size: 0.8rem; color: #aaa; cursor: pointer; border: 1px dashed #d4af37; padding: 10px; border-radius: 6px; background: rgba(0,0,0,0.2);">
-      <span>📁 Click to Select Garment Photo</span>
-      <input type="file" id="aiPhotoInput" accept="image/*" required style="display: none;" onchange="document.getElementById('fileName').innerText = this.files[0].name">
-    </label>
-    <div id="fileName" style="font-size: 0.75rem; color: #d4af37;"></div>
-
-    <button type="submit" id="aiUploadBtn" style="background: linear-gradient(90deg, #d4af37, #aa7c11); color: #000; border: none; padding: 10px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s; font-size: 0.9rem;">
-      ✨ Generate PDF Pattern
-    </button>
-  </form>
-
-  <div id="aiStatus" style="margin-top: 10px; font-size: 0.8rem; font-weight: bold;"></div>
-</div>
-
-<!-- API Integration Script -->
-<script>
-document.getElementById('aiPhotoInput').addEventListener('change', function() {
-  if (this.files && this.files[0]) {
-    document.getElementById('fileName').innerText = 'Selected: ' + this.files[0].name;
-  }
-});
-
-document.getElementById('aiFitForm').addEventListener('submit', async function(e) {
-  e.preventDefault();
-  
-  const fileInput = document.getElementById('aiPhotoInput');
-  const status = document.getElementById('aiStatus');
-  const btn = document.getElementById('aiUploadBtn');
-
-  if (!fileInput.files.length) return;
-
-  const formData = new FormData();
-  formData.append('file', fileInput.files[0]);
-
-  status.style.color = "#d4af37";
-  status.innerText = "⏳ Processing image & generating pattern...";
-  btn.disabled = true;
-
-  try {
-    // Replace with your active Render API URL
-    const response = await fetch('YOUR_RENDER_API_URL/generate-pattern', {
-      method: 'POST',
-      body: formData
-    });
-
-    if (response.ok) {
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'velsci-garment-pattern.pdf';
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      
-      status.style.color = "#10b981";
-      status.innerText = "✓ PDF Pattern downloaded successfully!";
-    } else {
-      status.style.color = "#ef4444";
-      status.innerText = "Error processing image. Try again.";
-    }
-  } catch (err) {
-    status.style.color = "#ef4444";
-    status.innerText = "Connection error to Render backend.";
-  } finally {
-    btn.disabled = false;
-  }
-});
-</script>
+                <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid #d4af37; border-radius: 12px; padding: 20px; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center;">
+                  
+                  <!-- Visual Highlight Banner (User Understanding) -->
+                  <div style="background: linear-gradient(90deg, rgba(212,175,55,0.2), rgba(0,0,0,0.4)); border-radius: 8px; padding: 12px; margin-bottom: 15px; border-left: 4px solid #d4af37;">
+                    <div style="font-size: 0.85rem; color: #d4af37; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
+                      📸 Photo ➔ ✂️ AI Pattern PDF
+                    </div>
+                    <div style="font-size: 0.8rem; color: #ccc; margin-top: 4px;">
+                      உங்களின் ஆடை படத்தை அப்லோட் செய்யுங்கள், AI துல்லியமான PDF Pattern-ஆக மாற்றி தரும்!
+                    </div>
+                  </div>
+                
+                  <!-- Upload Form -->
+                  <form id="aiFitForm" style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
+                    <label for="aiPhotoInput" style="font-size: 0.8rem; color: #aaa; cursor: pointer; border: 1px dashed #d4af37; padding: 10px; border-radius: 6px; background: rgba(0,0,0,0.2);">
+                      <span>📁 Click to Select Garment Photo</span>
+                      <input type="file" id="aiPhotoInput" accept="image/*" required style="display: none;" onchange="document.getElementById('fileName').innerText = this.files[0].name">
+                    </label>
+                    <div id="fileName" style="font-size: 0.75rem; color: #d4af37;"></div>
+                
+                    <button type="submit" id="aiUploadBtn" style="background: linear-gradient(90deg, #d4af37, #aa7c11); color: #000; border: none; padding: 10px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s; font-size: 0.9rem;">
+                      ✨ Generate PDF Pattern
+                    </button>
+                  </form>
+                
+                  <div id="aiStatus" style="margin-top: 10px; font-size: 0.8rem; font-weight: bold;"></div>
+                </div>
+                
+                <!-- API Integration Script -->
+                <script>
+                document.getElementById('aiPhotoInput').addEventListener('change', function() {
+                  if (this.files && this.files[0]) {
+                    document.getElementById('fileName').innerText = 'Selected: ' + this.files[0].name;
+                  }
+                });
+                
+                document.getElementById('aiFitForm').addEventListener('submit', async function(e) {
+                  e.preventDefault();
+                  
+                  const fileInput = document.getElementById('aiPhotoInput');
+                  const status = document.getElementById('aiStatus');
+                  const btn = document.getElementById('aiUploadBtn');
+                
+                  if (!fileInput.files.length) return;
+                
+                  const formData = new FormData();
+                  formData.append('file', fileInput.files[0]);
+                
+                  status.style.color = "#d4af37";
+                  status.innerText = "⏳ Processing image & generating pattern...";
+                  btn.disabled = true;
+                
+                  try {
+                    // Replace with your active Render API URL
+                    const response = await fetch('YOUR_RENDER_API_URL/generate-pattern', {
+                      method: 'POST',
+                      body: formData
+                    });
+                
+                    if (response.ok) {
+                      const blob = await response.blob();
+                      const url = window.URL.createObjectURL(blob);
+                      const a = document.createElement('a');
+                      a.href = url;
+                      a.download = 'velsci-garment-pattern.pdf';
+                      document.body.appendChild(a);
+                      a.click();
+                      a.remove();
+                      
+                      status.style.color = "#10b981";
+                      status.innerText = "✓ PDF Pattern downloaded successfully!";
+                    } else {
+                      status.style.color = "#ef4444";
+                      status.innerText = "Error processing image. Try again.";
+                    }
+                  } catch (err) {
+                    status.style.color = "#ef4444";
+                    status.innerText = "Connection error to Render backend.";
+                  } finally {
+                    btn.disabled = false;
+                  }
+                });
+                </script>
               </p>              
             </div>
             <a href="fit.html" class="flex items-center justify-between text-xs font-bold text-brand-gold border-t border-brand-800/60 pt-4 group-hover:underline">
