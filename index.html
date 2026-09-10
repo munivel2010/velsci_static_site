@@ -339,16 +339,12 @@
               
                   if (response.ok) {
                     const blob = await response.blob();
-                    const url = window.URL.createObjectURL(blob);
-                    const a = document.createElement('a');
-                    a.href = url;
-                    a.download = 'velsci-garment-pattern.pdf';
-                    document.body.appendChild(a);
-                    a.click();
-                    a.remove();
+                    const pdfUrl = URL.createObjectURL(blob);
+                    
+                    window.open(pdfUrl, '_blank');
                     
                     status.style.color = "#10b981";
-                    status.innerText = "✓ PDF Pattern downloaded successfully!";
+                    status.innerText = "✓ PDF Pattern generated successfully!";
                   } else {
                     status.style.color = "#ef4444";
                     status.innerText = "Error processing image. Try again.";
