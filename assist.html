@@ -3,9 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velsci Assist — Dedicated Ground Support Ecosystem</title>
-
+  <title>Velsci Assist — Velsci Globals</title>
+  <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Font Inter & Space Grotesk -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700;800&display=swap">
+  <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
   <script>
@@ -14,93 +17,136 @@
       theme: {
         extend: {
           colors: {
-            brand: { 
-              950: '#071813', 
-              900: '#0f382c', 
-              800: '#1b4332', 
-              700: '#2d6a4f', 
-              600: '#40916c', 
-              500: '#52b788', 
-              100: '#d8f3dc', 
-              gold: '#d4af37', 
-              goldHover: '#c19b2e', 
-              accent: '#38bdf8' 
+            brand: {
+              950: '#071813',
+              900: '#0f382c',
+              800: '#1b4332',
+              700: '#2d6a4f',
+              600: '#40916c',
+              500: '#52b788',
+              100: '#d8f3dc',
+              gold: '#d4af37',
+              goldHover: '#c19b2e',
+              accent: '#38bdf8'
             }
           },
-          fontFamily: { 
-            sans: ['Inter', 'sans-serif'], 
-            display: ['Space Grotesk', 'sans-serif'] 
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
           }
         }
       }
     }
   </script>
-  
+
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
-    body { font-family: 'Inter', sans-serif; background-color: #071813; color: #f8fafc; }
+    body { 
+      font-family: 'Inter', sans-serif; 
+      background-color: #127255; 
+      color: #ffffff;
+    }
     .font-display { font-family: 'Space Grotesk', sans-serif; }
   </style>
 </head>
-<body class="bg-[#071813] text-slate-200 antialiased min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col justify-between bg-[#127255] antialiased">
 
-  <!-- HEADER -->
-  <header class="sticky top-0 z-50 bg-[#0f382c]/95 backdrop-blur-md border-b border-brand-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3 group">
-        <img src="logo.svg" alt="Velsci Globals Logo" class="w-10 h-10 drop-shadow-lg">
+  <!-- NAVIGATION HEADER -->
+  <header class="w-full bg-[#127255] border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="index.html" class="flex items-center gap-3">
+        <svg width="36" height="36" viewBox="0 0 200 200" fill="none">
+          <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="#ffffff" stroke-width="8" fill="none" />
+          <path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="#ffffff" />
+        </svg>
         <div class="flex flex-col">
-          <span class="font-display font-extrabold text-xl tracking-wider text-white group-hover:text-brand-gold transition-colors">VELSCI GLOBALS</span>
-          <span class="text-[10px] tracking-widest text-brand-500 font-medium uppercase -mt-1">Precision Fit &bull; Circular Care</span>
+          <span class="font-display font-extrabold text-xl tracking-wider text-white uppercase">VELSCI GLOBALS</span>
+          <span class="text-[10px] tracking-widest text-slate-200 uppercase font-semibold">VELSCI ASSIST ECOSYSTEM</span>
         </div>
       </a>
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
-        <a href="index.html" class="text-slate-300 hover:text-brand-gold transition-colors">Home</a>
-        <a href="fit.html" class="text-slate-300 hover:text-brand-gold transition-colors">Velsci Fit</a>
-        <a href="care.html" class="text-slate-300 hover:text-brand-gold transition-colors">Velsci Care</a>
-        <a href="assist.html" class="text-brand-gold font-bold transition-colors">Velsci Assist</a>
-        <a href="index.html#contact" class="px-5 py-2.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold rounded-lg text-xs transition-all">Get Started</a>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-semibold text-white/90">
+        <a href="index.html" class="hover:text-white transition-colors">Home</a>
+        <a href="fit.html" class="hover:text-white transition-colors">Velsci Fit</a>
+        <a href="care.html" class="hover:text-white transition-colors">Velsci Care</a>
+        <a href="assist.html" class="text-white underline underline-offset-8 decoration-2 font-bold">Velsci Assist</a>
       </nav>
+
+      <!-- Top Right Button -->
+      <div class="hidden sm:block">
+        <a href="index.html#contact" class="px-5 py-2.5 text-xs font-bold text-slate-800 bg-white rounded-md hover:bg-slate-100 transition-all">
+          Get Started
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
-  <main class="flex-grow">
-    
-    <section class="py-16 sm:py-20 bg-gradient-to-b from-[#0f382c] to-[#071813] border-b border-brand-800/60">
-      <div class="max-w-4xl mx-auto px-4 text-center">
-        <span class="text-xs font-bold uppercase tracking-widest text-brand-500 block mb-3">Sub-System 03</span>
-        <h1 class="font-display text-3xl sm:text-5xl font-extrabold text-white mb-6">Velsci Assist System</h1>
-        <p class="text-slate-300 text-sm sm:text-base leading-relaxed font-light">
-          Reliable ground management, healthcare navigation, and essential life assistance for parents in India managed by overseas professionals.
-        </p>
-      </div>
-    </section>
+  <!-- MAIN HERO & 4 STEPS -->
+  <main class="flex-grow flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl w-full mx-auto text-center">
+      
+      <!-- Top Sub-Title Badge -->
+      <p class="text-xs sm:text-sm font-bold text-emerald-200 uppercase tracking-widest mb-4">
+        NRI FAMILY & SENIOR CARE ECOSYSTEM
+      </p>
 
-    <section class="py-16 max-w-5xl mx-auto px-4">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="bg-[#0c241c] p-6 rounded-2xl border border-brand-800">
-          <div class="text-brand-gold text-2xl font-bold mb-3"><i class="fa-solid fa-user-doctor"></i></div>
-          <h3 class="text-white font-bold text-lg mb-2">Health Navigation</h3>
-          <p class="text-slate-300 text-xs leading-relaxed">Medical checkup coordination, prescription delivery, and doctor appointments in South India.</p>
-        </div>
-        <div class="bg-[#0c241c] p-6 rounded-2xl border border-brand-800">
-          <div class="text-brand-gold text-2xl font-bold mb-3"><i class="fa-solid fa-house-chimney-crack"></i></div>
-          <h3 class="text-white font-bold text-lg mb-2">Home Operations</h3>
-          <p class="text-slate-300 text-xs leading-relaxed">Dedicated logistics support for home maintenance, utility coordination, and emergency response.</p>
-        </div>
-        <div class="bg-[#0c241c] p-6 rounded-2xl border border-brand-800">
-          <div class="text-brand-gold text-2xl font-bold mb-3"><i class="fa-solid fa-shield-halved"></i></div>
-          <h3 class="text-white font-bold text-lg mb-2">Trusted Verification</h3>
-          <p class="text-slate-300 text-xs leading-relaxed">Transparent real-time updates sent to Europe-based NRI family members for complete peace of mind.</p>
-        </div>
-      </div>
-    </section>
+      <!-- Main Title (Computer Display Font Match) -->
+      <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-6">
+        Compassionate Care Across Oceans
+      </h1>
 
+      <!-- Subtitle -->
+      <p class="text-slate-100 text-sm sm:text-lg max-w-3xl mx-auto mb-16 font-normal leading-relaxed opacity-90">
+        Dedicated health navigation, emergency response, and daily errand assistance tailored for parents in India and families living abroad.
+      </p>
+
+      <!-- 4 STEPS GRID (Exact Card Box Match) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 text-left">
+        
+        <!-- Box 01 -->
+        <div class="bg-emerald-900/30 border border-emerald-400/30 rounded-2xl p-6 backdrop-blur-sm shadow-lg hover:border-emerald-300/60 transition-all">
+          <span class="font-display font-extrabold text-4xl text-white block mb-3">01</span>
+          <h3 class="font-display text-lg font-bold text-white mb-2">Care Assessment</h3>
+          <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+            Schedule a personal consultation to define customized health, errand, or emergency support plans.
+          </p>
+        </div>
+
+        <!-- Box 02 -->
+        <div class="bg-emerald-900/30 border border-emerald-400/30 rounded-2xl p-6 backdrop-blur-sm shadow-lg hover:border-emerald-300/60 transition-all">
+          <span class="font-display font-extrabold text-4xl text-white block mb-3">02</span>
+          <h3 class="font-display text-lg font-bold text-white mb-2">Manager Assignment</h3>
+          <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+            A verified local care manager is assigned on-ground to handle daily needs and appointments.
+          </p>
+        </div>
+
+        <!-- Box 03 -->
+        <div class="bg-emerald-900/30 border border-emerald-400/30 rounded-2xl p-6 backdrop-blur-sm shadow-lg hover:border-emerald-300/60 transition-all">
+          <span class="font-display font-extrabold text-4xl text-white block mb-3">03</span>
+          <h3 class="font-display text-lg font-bold text-white mb-2">Active Support</h3>
+          <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+            Seamless execution of hospital visits, medication coordination, and essential house support.
+          </p>
+        </div>
+
+        <!-- Box 04 -->
+        <div class="bg-emerald-900/30 border border-emerald-400/30 rounded-2xl p-6 backdrop-blur-sm shadow-lg hover:border-emerald-300/60 transition-all">
+          <span class="font-display font-extrabold text-4xl text-white block mb-3">04</span>
+          <h3 class="font-display text-lg font-bold text-white mb-2">Real-Time Updates</h3>
+          <p class="text-slate-200 text-xs sm:text-sm leading-relaxed">
+            Receive direct health updates, vitals logs, and status reports straight to your phone anywhere.
+          </p>
+        </div>
+
+      </div>
+    </div>
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-[#040e0b] text-slate-400 py-8 border-t border-brand-800/80 text-xs text-center">
+  <footer class="w-full py-6 border-t border-white/10 text-center text-xs text-emerald-100 opacity-80">
     <p>&copy; 2026 Velsci Globals. All rights reserved.</p>
   </footer>
 
