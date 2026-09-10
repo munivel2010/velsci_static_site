@@ -9,9 +9,6 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
-  <!-- Custom External Stylesheet -->
-  <link rel="stylesheet" href="style.css">
-
   <script>
     tailwind.config = {
       darkMode: 'class',
@@ -39,6 +36,12 @@
       }
     }
   </script>
+  
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap');
+    body { font-family: 'Inter', sans-serif; background-color: #071813; color: #f8fafc; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+  </style>
 </head>
 <body class="bg-[#071813] text-slate-200 antialiased min-h-screen flex flex-col">
 
@@ -76,23 +79,23 @@
   <main class="flex-grow">
 
     <!-- HERO SECTION -->
-    <section class="py-24 bg-gradient-to-b from-[#0f382c] via-[#0b2920] to-[#071813] border-b border-brand-800/60 relative overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-800/70 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-8 shadow-sm">
+    <section class="py-16 sm:py-20 bg-gradient-to-b from-[#0f382c] via-[#0b2920] to-[#071813] border-b border-brand-800/60 relative overflow-hidden">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-800/70 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-6 shadow-sm">
           <i class="fa-solid fa-earth-europe text-brand-accent"></i> Seamless Cross-Border Value Chain
         </div>
-        <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold text-white tracking-tight mb-8 max-w-4xl mx-auto leading-tight">
+        <h1 class="font-display text-3xl sm:text-5xl lg:text-6xl font-extrabold text-white tracking-tight mb-6 max-w-4xl mx-auto leading-tight">
           Precision Custom Tailoring & Dedicated Care Ecosystem
         </h1>
-        <p class="text-slate-300 text-base sm:text-xl max-w-3xl mx-auto leading-relaxed mb-12 font-light">
+        <p class="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto leading-relaxed mb-8 font-light">
           Bridging European precision measurements with traditional master tailoring in India. Engineering zero-waste garment crafting, sustainable circular textile preservation, and trustworthy NRI parent support.
         </p>
-        <div class="flex flex-wrap items-center justify-center gap-5">
-          <a href="#services" class="px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-xl shadow-xl transition-all flex items-center gap-2">
+        <div class="flex flex-wrap items-center justify-center gap-4">
+          <a href="#services" class="px-6 py-3 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-xs sm:text-sm rounded-xl shadow-xl transition-all flex items-center gap-2">
             <span>Explore Ecosystem</span>
             <i class="fa-solid fa-arrow-down text-xs"></i>
           </a>
-          <a href="#contact" class="px-8 py-4 bg-brand-800/80 hover:bg-brand-800 text-white font-semibold text-sm rounded-xl border border-brand-700/50 transition-all">
+          <a href="#contact" class="px-6 py-3 bg-brand-800/80 hover:bg-brand-800 text-white font-semibold text-xs sm:text-sm rounded-xl border border-brand-700/50 transition-all">
             Get in Touch
           </a>
         </div>
@@ -100,63 +103,52 @@
     </section>
 
     <!-- KEY HIGHLIGHTS / METRICS -->
-    <section class="py-12 bg-[#091f19] border-b border-brand-800/40">
+    <section class="py-10 bg-[#091f19] border-b border-brand-800/40">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-          <div class="p-4">
-            <div class="font-display text-3xl sm:text-4xl font-extrabold text-brand-gold mb-1">100%</div>
-            <div class="text-xs text-slate-400 font-medium tracking-wider uppercase">Custom Fitting Accuracy</div>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+          <div class="p-3">
+            <div class="font-display text-2xl sm:text-3xl font-extrabold text-brand-gold mb-1">100%</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 font-medium tracking-wider uppercase">Custom Fitting Accuracy</div>
           </div>
-          <div class="p-4">
-            <div class="font-display text-3xl sm:text-4xl font-extrabold text-brand-accent mb-1">0%</div>
-            <div class="text-xs text-slate-400 font-medium tracking-wider uppercase">Fabric Material Waste</div>
+          <div class="p-3">
+            <div class="font-display text-2xl sm:text-3xl font-extrabold text-brand-accent mb-1">0%</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 font-medium tracking-wider uppercase">Fabric Material Waste</div>
           </div>
-          <div class="p-4">
-            <div class="font-display text-3xl sm:text-4xl font-extrabold text-brand-500 mb-1">300%</div>
-            <div class="text-xs text-slate-400 font-medium tracking-wider uppercase">Garment Life Extension</div>
+          <div class="p-3">
+            <div class="font-display text-2xl sm:text-3xl font-extrabold text-brand-500 mb-1">300%</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 font-medium tracking-wider uppercase">Garment Life Extension</div>
           </div>
-          <div class="p-4">
-            <div class="font-display text-3xl sm:text-4xl font-extrabold text-white mb-1">24/7</div>
-            <div class="text-xs text-slate-400 font-medium tracking-wider uppercase">On-Ground Support</div>
+          <div class="p-3">
+            <div class="font-display text-2xl sm:text-3xl font-extrabold text-white mb-1">24/7</div>
+            <div class="text-[10px] sm:text-xs text-slate-400 font-medium tracking-wider uppercase">On-Ground Support</div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- SERVICES ECOSYSTEM SECTION -->
-    <section id="services" class="py-24 relative">
+    <section id="services" class="py-16 sm:py-20 relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        <div class="text-center max-w-3xl mx-auto mb-20">
+        <div class="text-center max-w-2xl mx-auto mb-12">
           <span class="text-xs font-bold uppercase tracking-widest text-brand-500 block mb-2">Triple-Pillar Model</span>
-          <h2 class="font-display text-3xl sm:text-5xl font-bold text-white tracking-tight">Integrated Services Ecosystem</h2>
-          <p class="text-slate-400 text-sm sm:text-base mt-4">Three specialized domains designed to simplify life, preserve quality, and connect India with Europe.</p>
+          <h2 class="font-display text-2xl sm:text-4xl font-bold text-white tracking-tight">Integrated Services Ecosystem</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-3">Three specialized domains designed to simplify life, preserve quality, and connect India with Europe.</p>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
           
           <!-- PILLAR 1: VELSCI FIT -->
-          <div class="bg-[#0c241c] border border-brand-800/80 p-8 rounded-2xl flex flex-col justify-between hover:border-brand-gold/60 transition-all duration-300 shadow-lg group">
+          <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl flex flex-col justify-between hover:border-brand-gold/60 transition-all duration-300 shadow-lg group">
             <div>
-              <div class="w-14 h-14 rounded-2xl bg-brand-800/90 text-brand-gold flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition-transform">
+              <div class="w-12 h-12 rounded-xl bg-brand-800/90 text-brand-gold flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-scissors"></i>
               </div>
-              <span class="text-[11px] font-bold tracking-widest text-brand-500 uppercase">Sub-System 01</span>
-              <h3 class="font-display text-2xl font-bold text-white mt-1 mb-4">Velsci Fit</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-8">
+              <span class="text-[10px] font-bold tracking-widest text-brand-500 uppercase">Sub-System 01</span>
+              <h3 class="font-display text-xl font-bold text-white mt-1 mb-3">Velsci Fit</h3>
+              <p class="text-slate-300 text-xs leading-relaxed mb-6">
                 Custom precision tailoring connecting European measurement standards with master tailors in India. Zero-fitting error mapping combined with zero-waste fabric utilization.
               </p>
-              <ul class="space-y-3 mb-8 text-xs text-slate-400">
-                <li class="flex items-center gap-2.5">
-                  <i class="fa-solid fa-check text-brand-500"></i> Non-intrusive sizing reference mapping
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <i class="fa-solid fa-check text-brand-500"></i> Master artisan crafting in South India
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <i class="fa-solid fa-check text-brand-500"></i> Direct door-to-door European shipping
-                </li>
-              </ul>
             </div>
             <a href="fit.html" class="pt-4 border-t border-brand-800/60 text-brand-gold font-bold text-xs hover:underline flex items-center justify-between">
               <span>Explore Fit Workflow</span>
@@ -165,27 +157,16 @@
           </div>
 
           <!-- PILLAR 2: VELSCI CARE -->
-          <div class="bg-[#0c241c] border border-brand-800/80 p-8 rounded-2xl flex flex-col justify-between hover:border-brand-gold/60 transition-all duration-300 shadow-lg group">
+          <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl flex flex-col justify-between hover:border-brand-gold/60 transition-all duration-300 shadow-lg group">
             <div>
-              <div class="w-14 h-14 rounded-2xl bg-brand-800/90 text-brand-gold flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition-transform">
+              <div class="w-12 h-12 rounded-xl bg-brand-800/90 text-brand-gold flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-rotate"></i>
               </div>
-              <span class="text-[11px] font-bold tracking-widest text-brand-500 uppercase">Sub-System 02</span>
-              <h3 class="font-display text-2xl font-bold text-white mt-1 mb-4">Velsci Care</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-8">
+              <span class="text-[10px] font-bold tracking-widest text-brand-500 uppercase">Sub-System 02</span>
+              <h3 class="font-display text-xl font-bold text-white mt-1 mb-3">Velsci Care</h3>
+              <p class="text-slate-300 text-xs leading-relaxed mb-6">
                 Sustainable garment bio-preservation, precision hand-restitching, and circular textile upcycling designed to extend high-value garment lifespan by up to 300%.
               </p>
-              <ul class="space-y-3 mb-8 text-xs text-slate-400">
-                <li class="flex items-center gap-2.5">
-                  <i class="fa-solid fa-check text-brand-500"></i> Non-toxic fiber restoration treatments
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <i class="fa-solid fa-check text-brand-500"></i> Structural alterations & re-dyeing
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <i class="fa-solid fa-check text-brand-500"></i> Circular fabric trade-in credit program
-                </li>
-              </ul>
             </div>
             <a href="care.html" class="pt-4 border-t border-brand-800/60 text-brand-gold font-bold text-xs hover:underline flex items-center justify-between">
               <span>Explore Care Workflow</span>
@@ -194,27 +175,16 @@
           </div>
 
           <!-- PILLAR 3: VELSCI ASSIST -->
-          <div class="bg-[#0c241c] border border-brand-800/80 p-8 rounded-2xl flex flex-col justify-between hover:border-brand-gold/60 transition-all duration-300 shadow-lg group">
+          <div class="bg-[#0c241c] border border-brand-800/80 p-6 rounded-2xl flex flex-col justify-between hover:border-brand-gold/60 transition-all duration-300 shadow-lg group">
             <div>
-              <div class="w-14 h-14 rounded-2xl bg-brand-800/90 text-brand-gold flex items-center justify-center text-2xl mb-8 group-hover:scale-110 transition-transform">
+              <div class="w-12 h-12 rounded-xl bg-brand-800/90 text-brand-gold flex items-center justify-center text-xl mb-6 group-hover:scale-110 transition-transform">
                 <i class="fa-solid fa-heart-pulse"></i>
               </div>
-              <span class="text-[11px] font-bold tracking-widest text-brand-500 uppercase">Sub-System 03</span>
-              <h3 class="font-display text-2xl font-bold text-white mt-1 mb-4">Velsci Assist</h3>
-              <p class="text-slate-300 text-sm leading-relaxed mb-8">
+              <span class="text-[10px] font-bold tracking-widest text-brand-500 uppercase">Sub-System 03</span>
+              <h3 class="font-display text-xl font-bold text-white mt-1 mb-3">Velsci Assist</h3>
+              <p class="text-slate-300 text-xs leading-relaxed mb-6">
                 Dedicated ground support, healthcare navigation, and life operations for NRI parents residing in India while family members live in Europe and worldwide.
               </p>
-              <ul class="space-y-3 mb-8 text-xs text-slate-400">
-                <li class="flex items-center gap-2.5">
-                  <i class="fa-solid fa-check text-brand-500"></i> Personal care coordinator assignment
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <i class="fa-solid fa-check text-brand-500"></i> Medical checkup & prescription escorts
-                </li>
-                <li class="flex items-center gap-2.5">
-                  <i class="fa-solid fa-check text-brand-500"></i> Real-time status reporting to Europe
-                </li>
-              </ul>
             </div>
             <a href="assist.html" class="pt-4 border-t border-brand-800/60 text-brand-gold font-bold text-xs hover:underline flex items-center justify-between">
               <span>Explore Assist Workflow</span>
@@ -227,94 +197,31 @@
       </div>
     </section>
 
-    <!-- TECHNICAL SPECIFICATIONS & ARCHITECTURE -->
-    <section class="py-20 bg-[#051410] border-y border-brand-800/60">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          <div>
-            <span class="text-xs font-bold uppercase tracking-widest text-brand-500 block mb-2">Engineering Standard</span>
-            <h2 class="font-display text-3xl sm:text-4xl font-bold text-white mb-6">Built on Sustainability & Transparent Quality</h2>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6">
-              Velsci Globals operates on a lean, high-trust operational model. By eliminating intermediary markups and utilizing digital measurement workflows, we deliver hand-crafted quality with complete transparency.
-            </p>
-            <div class="space-y-4 text-xs text-slate-300">
-              <div class="p-4 rounded-xl bg-[#0c241c] border border-brand-800/60 flex items-start gap-4">
-                <i class="fa-solid fa-microchip text-brand-gold text-lg mt-0.5"></i>
-                <div>
-                  <h4 class="font-bold text-white text-sm mb-1">Digital Pattern Mapping</h4>
-                  <p class="text-slate-400">Measurements are translated into dynamic digital patterns to eliminate physical fitting trials.</p>
-                </div>
-              </div>
-              <div class="p-4 rounded-xl bg-[#0c241c] border border-brand-800/60 flex items-start gap-4">
-                <i class="fa-solid fa-leaf text-brand-500 text-lg mt-0.5"></i>
-                <div>
-                  <h4 class="font-bold text-white text-sm mb-1">Zero Fabric Waste Directive</h4>
-                  <p class="text-slate-400">Off-cut materials are redirected into secondary accessories or circular upcycling loops.</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="bg-[#0c241c] border border-brand-800 p-8 rounded-3xl relative">
-            <h3 class="font-display text-xl font-bold text-white mb-6 flex items-center gap-2">
-              <i class="fa-solid fa-network-wire text-brand-gold"></i> Global Operational Corridor
-            </h3>
-            <div class="space-y-6 text-xs text-slate-300">
-              <div class="flex justify-between items-center pb-4 border-b border-brand-800/60">
-                <span class="text-slate-400">European Measurement Point</span>
-                <span class="font-bold text-white">Germany / EU Desk</span>
-              </div>
-              <div class="flex justify-between items-center pb-4 border-b border-brand-800/60">
-                <span class="text-slate-400">Artisan Crafting Hub</span>
-                <span class="font-bold text-white">Tamil Nadu, India</span>
-              </div>
-              <div class="flex justify-between items-center pb-4 border-b border-brand-800/60">
-                <span class="text-slate-400">Logistics & Express Freight</span>
-                <span class="font-bold text-brand-gold">Door-to-Door European Air</span>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-slate-400">Quality Assurance Standard</span>
-                <span class="font-bold text-brand-accent">100% Zero-Defect Inspection</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- CONTACT SECTION -->
-    <section id="contact" class="py-24 relative">
-      <div class="max-w-4xl mx-auto px-4 text-center">
+    <section id="contact" class="py-16 relative bg-[#05120e] border-t border-brand-800/80">
+      <div class="max-w-3xl mx-auto px-4 text-center">
         <span class="text-xs font-bold uppercase tracking-widest text-brand-500 block mb-2">Get Started</span>
-        <h2 class="font-display text-3xl sm:text-5xl font-bold text-white mb-6">Connect With Velsci Globals</h2>
-        <p class="text-slate-300 text-sm sm:text-base mb-10 max-w-2xl mx-auto">
-          Whether you need precision custom clothing, wardrobe circular care, or family assistance in India, our team is ready to assist you.
+        <h2 class="font-display text-2xl sm:text-4xl font-bold text-white mb-4">Connect With Velsci Globals</h2>
+        <p class="text-slate-300 text-xs sm:text-sm mb-8">
+          Reach out to us directly for inquiries regarding custom tailoring, garment care, or family assist services.
         </p>
-        <div class="bg-[#0c241c] border border-brand-800/80 p-8 sm:p-12 rounded-3xl shadow-2xl">
-          <a href="mailto:info@velsci.com" class="px-10 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-base rounded-xl transition-all inline-flex items-center gap-3 shadow-lg">
-            <i class="fa-solid fa-envelope"></i>
-            <span>Send Direct Inquiry</span>
-          </a>
-          <p class="text-slate-500 text-xs mt-6">Average response time: within 24 hours.</p>
-        </div>
+        <a href="mailto:info@velsci.com" class="px-8 py-3.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-xs sm:text-sm rounded-xl transition-all inline-flex items-center gap-2 shadow-lg">
+          <i class="fa-solid fa-envelope"></i>
+          <span>Send Direct Inquiry</span>
+        </a>
       </div>
     </section>
 
   </main>
 
   <!-- FOOTER -->
-  <footer class="bg-[#040e0b] text-slate-400 py-10 border-t border-brand-800/80 text-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6">
+  <footer class="bg-[#040e0b] text-slate-400 py-8 border-t border-brand-800/80 text-xs">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-4">
       <div class="flex items-center gap-3">
-        <img src="logo.svg" alt="Logo" class="w-7 h-7">
+        <img src="logo.svg" alt="Logo" class="w-6 h-6">
         <span class="font-display font-extrabold text-white text-sm tracking-wider">VELSCI GLOBALS</span>
       </div>
-      <p class="text-slate-500">&copy; 2026 Velsci Globals. All rights reserved. Cross-Border Operations.</p>
-      <div class="flex gap-6 text-slate-400">
-        <a href="fit.html" class="hover:text-brand-gold transition-colors">Fit</a>
-        <a href="care.html" class="hover:text-brand-gold transition-colors">Care</a>
-        <a href="assist.html" class="hover:text-brand-gold transition-colors">Assist</a>
-      </div>
+      <p class="text-slate-500">&copy; 2026 Velsci Globals. All rights reserved.</p>
     </div>
   </footer>
 
