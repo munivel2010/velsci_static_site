@@ -54,16 +54,12 @@
       -webkit-text-fill-color: transparent;
     }
 
-    .emerald-glow {
-      box-shadow: 0 0 50px -10px rgba(45, 106, 79, 0.35);
-    }
-
     ::-webkit-scrollbar { width: 8px; }
     ::-webkit-scrollbar-track { background: #071813; }
     ::-webkit-scrollbar-thumb { background: #1b4332; border-radius: 4px; }
     ::-webkit-scrollbar-thumb:hover { background: #2d6a4f; }
 
-    /* HIDE GOOGLE TRANSLATE POPUPS & TOOLTIPS FOR CLEAN LOOK */
+    /* HIDE GOOGLE TRANSLATE POPUPS & TOOLTIPS */
     .goog-te-banner-frame, 
     .goog-te-balloon-frame,
     #goog-gt-tt, 
@@ -134,10 +130,8 @@
         <a href="#contact" class="hover:text-brand-gold transition-colors">Contact</a>
       </nav>
 
-      <!-- Action Buttons & Custom Clean Language Switcher -->
+      <!-- Action Buttons & Language Switcher -->
       <div class="hidden sm:flex items-center gap-3">
-        
-        <!-- Language Switcher -->
         <div class="flex items-center bg-brand-800/80 border border-brand-700/80 rounded-lg p-1 text-xs font-semibold">
           <button onclick="translatePage('en')" class="px-2 py-1 text-slate-200 hover:text-brand-gold transition-colors">EN</button>
           <span class="text-brand-700">|</span>
@@ -169,7 +163,6 @@
       <a href="#privacy" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">GDPR & Compliance</a>
       <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Contact</a>
       
-      <!-- Mobile Language Buttons -->
       <div class="flex items-center gap-2 pt-2 border-t border-brand-800/80">
         <span class="text-xs text-slate-400 mr-2">Language:</span>
         <button onclick="translatePage('en')" class="px-2.5 py-1 text-xs bg-brand-800 rounded text-slate-200">EN</button>
@@ -338,63 +331,89 @@
       </div>
     </section>
 
-    <!-- HOW IT WORKS (3 CLEAR PHOTO-REFERENCE STEPS) -->
+    <!-- UPDATED: HOW IT WORKS SECTION -->
     <section id="how-it-works" class="py-24 bg-[#0a2119] border-t border-b border-brand-800/60 relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block mb-2">Simple & Digital</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">How It Works</h2>
-          <p class="text-slate-300 text-sm mt-3">Three seamless photo-reference steps connecting European users to Indian artisans.</p>
+          <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block mb-2">Simple, Digital & Transparent</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">How Velsci Platform Works</h2>
+          <p class="text-slate-300 text-sm mt-3">A streamlined 4-step workflow connecting European clients with master artisans in India with full transparency.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 relative">
+          
           <!-- Step 1 -->
-          <div class="bg-[#0f382c]/80 border border-brand-800 rounded-2xl p-8 relative flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-6">
-              <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">01</span>
-              <i class="fa-solid fa-camera text-2xl text-brand-500"></i>
+          <div class="bg-[#0f382c]/90 border border-brand-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-brand-gold/60 transition-all hover:-translate-y-1 shadow-lg">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">01</span>
+                <i class="fa-solid fa-camera text-2xl text-brand-500"></i>
+              </div>
+              <h3 class="font-display text-lg font-bold text-white mb-2">1. Easy Digital Input</h3>
+              <p class="text-slate-300 text-xs leading-relaxed mb-4">
+                Upload two simple photo references using standard clothing as a benchmark, or share preferred measurements directly on our secure portal.
+              </p>
             </div>
-            <h3 class="font-display text-xl font-bold text-white mb-3">Photo-Reference Scan</h3>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6">
-              Upload two non-intrusive full-length reference photos using standard clothing as a scale benchmark. No complex 3D body scanners required.
-            </p>
-            <div class="bg-[#071813] p-3.5 rounded-xl border border-brand-800/80 text-xs text-slate-400 flex items-center gap-2.5">
-              <i class="fa-solid fa-lock text-brand-gold"></i>
-              <span>Photos are processed securely and deleted post-cutting.</span>
+            <div class="bg-[#071813] p-3 rounded-xl border border-brand-800/80 text-[11px] text-slate-400 flex items-center gap-2">
+              <i class="fa-solid fa-shield-halved text-brand-gold"></i>
+              <span>GDPR compliant photo handling.</span>
             </div>
           </div>
 
           <!-- Step 2 -->
-          <div class="bg-[#0f382c]/80 border border-brand-800 rounded-2xl p-8 relative flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-6">
-              <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">02</span>
-              <i class="fa-solid fa-scissors text-2xl text-brand-500"></i>
+          <div class="bg-[#0f382c]/90 border border-brand-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-brand-gold/60 transition-all hover:-translate-y-1 shadow-lg">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">02</span>
+                <i class="fa-solid fa-microchip text-2xl text-brand-500"></i>
+              </div>
+              <h3 class="font-display text-lg font-bold text-white mb-2">2. Digital Pattern Vectoring</h3>
+              <p class="text-slate-300 text-xs leading-relaxed mb-4">
+                Our algorithm translates sizing inputs into high-precision digital vector patterns, removing standard measurement errors and fabric waste.
+              </p>
             </div>
-            <h3 class="font-display text-xl font-bold text-white mb-3">Artisan Crafting</h3>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6">
-              Our system generates digital pattern vectors and transmits them directly to certified master tailors in India, providing stable, year-round income.
-            </p>
-            <div class="bg-[#071813] p-3.5 rounded-xl border border-brand-800/80 text-xs text-slate-400 flex items-center gap-2.5">
-              <i class="fa-solid fa-handshake text-brand-gold"></i>
-              <span>Fair trade wages paid directly to master tailors.</span>
+            <div class="bg-[#071813] p-3 rounded-xl border border-brand-800/80 text-[11px] text-slate-400 flex items-center gap-2">
+              <i class="fa-solid fa-bolt text-brand-gold"></i>
+              <span>Precision vector generation.</span>
             </div>
           </div>
 
           <!-- Step 3 -->
-          <div class="bg-[#0f382c]/80 border border-brand-800 rounded-2xl p-8 relative flex flex-col justify-between">
-            <div class="flex items-center justify-between mb-6">
-              <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">03</span>
-              <i class="fa-solid fa-box-open text-2xl text-brand-500"></i>
+          <div class="bg-[#0f382c]/90 border border-brand-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-brand-gold/60 transition-all hover:-translate-y-1 shadow-lg">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">03</span>
+                <i class="fa-solid fa-scissors text-2xl text-brand-500"></i>
+              </div>
+              <h3 class="font-display text-lg font-bold text-white mb-2">3. Artisan Tailoring</h3>
+              <p class="text-slate-300 text-xs leading-relaxed mb-4">
+                Certified master tailors in India receive patterns directly and hand-craft custom garments, earning sustainable fair-trade wages.
+              </p>
             </div>
-            <h3 class="font-display text-xl font-bold text-white mb-3">Global Delivery & Care</h3>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6">
-              Your tailored outfit is delivered to your doorstep in Europe, complete with a circular care passport and option for future care preservation.
-            </p>
-            <div class="bg-[#071813] p-3.5 rounded-xl border border-brand-800/80 text-xs text-slate-400 flex items-center gap-2.5">
-              <i class="fa-solid fa-truck-fast text-brand-gold"></i>
-              <span>Shipped with carbon-neutral logistics tracking.</span>
+            <div class="bg-[#071813] p-3 rounded-xl border border-brand-800/80 text-[11px] text-slate-400 flex items-center gap-2">
+              <i class="fa-solid fa-hands-holding-child text-brand-gold"></i>
+              <span>Empowering heritage tailors.</span>
             </div>
           </div>
+
+          <!-- Step 4 -->
+          <div class="bg-[#0f382c]/90 border border-brand-800 rounded-2xl p-6 relative flex flex-col justify-between hover:border-brand-gold/60 transition-all hover:-translate-y-1 shadow-lg">
+            <div>
+              <div class="flex items-center justify-between mb-5">
+                <span class="w-10 h-10 rounded-xl bg-brand-gold text-brand-950 font-display font-bold text-lg flex items-center justify-center">04</span>
+                <i class="fa-solid fa-box-open text-2xl text-brand-500"></i>
+              </div>
+              <h3 class="font-display text-lg font-bold text-white mb-2">4. Doorstep Delivery & Care</h3>
+              <p class="text-slate-300 text-xs leading-relaxed mb-4">
+                Your custom apparel is delivered directly to your home in Europe, accompanied by a circular garment care passport for future maintenance.
+              </p>
+            </div>
+            <div class="bg-[#071813] p-3 rounded-xl border border-brand-800/80 text-[11px] text-slate-400 flex items-center gap-2">
+              <i class="fa-solid fa-rotate-left text-brand-gold"></i>
+              <span>Circular lifecycle passport included.</span>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
