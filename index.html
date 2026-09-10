@@ -3,11 +3,16 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velsci Globals — Precision Fit. Circular Care. Zero Waste.</title>
+  <title>Velsci Globals — Indo-European High-Tech Platform</title>
+  
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Font Inter & Space Grotesk -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+  
+  <!-- Google Fonts: Inter & Space Grotesk -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
   <!-- FontAwesome Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
@@ -18,15 +23,17 @@
         extend: {
           colors: {
             brand: {
-              950: '#071813',
-              900: '#0f382c',
-              800: '#1b4332',
-              700: '#2d6a4f',
-              600: '#40916c',
-              500: '#52b788',
-              100: '#d8f3dc',
-              gold: '#d4af37',
-              goldHover: '#c19b2e',
+              950: '#051410',
+              900: '#0a231b',
+              800: '#133a2d',
+              700: '#1f5342',
+              600: '#2d735d',
+              500: '#3e997d',
+              400: '#52c4a2',
+              100: '#d1fae5',
+              gold: '#e2b857',
+              goldHover: '#c89d3c',
+              goldLight: '#fef3c7',
               accent: '#38bdf8'
             }
           },
@@ -42,94 +49,104 @@
   <style>
     body { 
       font-family: 'Inter', sans-serif; 
-      background-color: #071813; 
+      background-color: #051410; 
       color: #f8fafc;
     }
     .font-display { font-family: 'Space Grotesk', sans-serif; }
     
     .gold-gradient-text {
-      background: linear-gradient(135deg, #fef08a 0%, #d4af37 50%, #b45309 100%);
+      background: linear-gradient(135deg, #fef08a 0%, #e2b857 50%, #b45309 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    .dropdown-content {
-      display: none;
-    }
-    .dropdown:hover .dropdown-content {
-      display: block;
+    .hero-gradient {
+      background: radial-gradient(circle at 50% 20%, rgba(31, 83, 66, 0.35) 0%, rgba(5, 20, 16, 1) 75%);
     }
 
+    .glass-card {
+      background: rgba(10, 35, 27, 0.65);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(31, 83, 66, 0.5);
+    }
+
+    .glass-card:hover {
+      border-color: rgba(226, 184, 87, 0.4);
+    }
+
+    .dropdown-content { display: none; }
+    .dropdown:hover .dropdown-content { display: block; }
+
     ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #071813; }
-    ::-webkit-scrollbar-thumb { background: #1b4332; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #2d6a4f; }
+    ::-webkit-scrollbar-track { background: #051410; }
+    ::-webkit-scrollbar-thumb { background: #133a2d; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #1f5342; }
   </style>
 </head>
 <body class="min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-brand-950">
 
   <!-- NAVIGATION HEADER -->
-  <header class="sticky top-0 z-50 bg-[#0f382c]/95 backdrop-blur-md border-b border-brand-800/80 transition-all">
+  <header class="sticky top-0 z-50 bg-[#0a231b]/90 backdrop-blur-md border-b border-brand-800/80 transition-all">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Brand Logo -->
       <a href="#" class="flex items-center gap-3.5 group">
         <svg width="42" height="42" viewBox="0 0 200 200" fill="none" class="drop-shadow-lg">
-          <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-header)" stroke-width="6" fill="#0f382c" />
-          <circle cx="100" cy="100" r="62" stroke="#52b788" stroke-width="4" stroke-dasharray="8 4" />
+          <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-header)" stroke-width="6" fill="#0a231b" />
+          <circle cx="100" cy="100" r="62" stroke="#52c4a2" stroke-width="4" stroke-dasharray="8 4" />
           <path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-header)" />
           <circle cx="100" cy="100" r="5" fill="#38bdf8" />
           <defs>
              <linearGradient id="gold-grad-header" x1="0%" y1="0%" x2="100%" y2="100%">
                <stop offset="0%" stop-color="#fef08a" />
-               <stop offset="50%" stop-color="#d4af37" />
+               <stop offset="50%" stop-color="#e2b857" />
                <stop offset="100%" stop-color="#b45309" />
              </linearGradient>
            </defs>
         </svg>
         <div class="flex flex-col">
           <span class="font-display font-extrabold text-xl tracking-wider text-white group-hover:text-brand-gold transition-colors">VELSCI GLOBALS</span>
-          <span class="text-[10px] tracking-widest text-brand-500 font-medium uppercase -mt-1">Precision Fit &bull; Circular Care</span>
+          <span class="text-[9px] tracking-widest text-brand-400 font-semibold uppercase -mt-0.5" data-i18n="tagline">Precision Fit • Circular Care • Social Impact</span>
         </div>
       </a>
 
-      <!-- Clean Navigation Links -->
-      <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-slate-200">
-        <a href="#mission-statement" class="hover:text-brand-gold transition-colors">Mission</a>
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-200">
+        <a href="#mission-statement" class="hover:text-brand-gold transition-colors" data-i18n="nav-mission">Mission</a>
         
-        <!-- DROPDOWN FOR SUB-PAGES -->
+        <!-- Dropdown for Services -->
         <div class="relative dropdown py-2">
-          <button class="hover:text-brand-gold transition-colors flex items-center gap-1 font-semibold text-brand-gold">
-            <span>Services & Portals</span>
+          <button class="hover:text-brand-gold transition-colors flex items-center gap-1.5 font-semibold text-brand-gold">
+            <span data-i18n="nav-services">Services & Portals</span>
             <i class="fa-solid fa-chevron-down text-[10px]"></i>
           </button>
-          <div class="dropdown-content absolute left-0 top-full w-56 bg-[#0c241c] border border-brand-800 rounded-xl shadow-2xl p-2 space-y-1 z-50">
-            <a href="fit.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-brand-800 text-xs text-slate-200 hover:text-white transition-colors">
-              <i class="fa-solid fa-scissors text-brand-gold"></i>
+          <div class="dropdown-content absolute left-0 top-full w-60 bg-[#0a231b] border border-brand-800 rounded-xl shadow-2xl p-2 space-y-1 z-50">
+            <a href="fit.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-800/60 text-xs text-slate-200 hover:text-white transition-colors">
+              <i class="fa-solid fa-scissors text-brand-gold w-4 text-center"></i>
               <div>
                 <span class="font-bold block">Velsci Fit</span>
-                <span class="text-[10px] text-slate-400">Custom Tailoring Portal</span>
+                <span class="text-[10px] text-slate-400" data-i18n="nav-fit-sub">On-Demand Precision Tailoring</span>
               </div>
             </a>
-            <a href="care.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-brand-800 text-xs text-slate-200 hover:text-white transition-colors">
-              <i class="fa-solid fa-rotate text-brand-gold"></i>
+            <a href="care.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-800/60 text-xs text-slate-200 hover:text-white transition-colors">
+              <i class="fa-solid fa-rotate text-brand-gold w-4 text-center"></i>
               <div>
                 <span class="font-bold block">Velsci Care</span>
-                <span class="text-[10px] text-slate-400">Garment Preservation</span>
+                <span class="text-[10px] text-slate-400" data-i18n="nav-care-sub">Circular Textile Management</span>
               </div>
             </a>
-            <a href="assist.html" class="flex items-center gap-2.5 px-3 py-2.5 rounded-lg hover:bg-brand-800 text-xs text-slate-200 hover:text-white transition-colors">
-              <i class="fa-solid fa-heart-pulse text-brand-gold"></i>
+            <a href="assist.html" class="flex items-center gap-3 px-3 py-2.5 rounded-lg hover:bg-brand-800/60 text-xs text-slate-200 hover:text-white transition-colors">
+              <i class="fa-solid fa-heart-pulse text-brand-gold w-4 text-center"></i>
               <div>
                 <span class="font-bold block">Velsci Assist</span>
-                <span class="text-[10px] text-slate-400">NRI Family & Senior Care</span>
+                <span class="text-[10px] text-slate-400" data-i18n="nav-assist-sub">Cross-Border Family Care</span>
               </div>
             </a>
           </div>
         </div>
 
-        <a href="#ecosystem" class="hover:text-brand-gold transition-colors">Ecosystem</a>
-        <a href="#mission" class="hover:text-brand-gold transition-colors">Social Impact</a>
+        <a href="#ecosystem" class="hover:text-brand-gold transition-colors" data-i18n="nav-ecosystem">Ecosystem</a>
+        <a href="#impact" class="hover:text-brand-gold transition-colors" data-i18n="nav-impact">Social Impact</a>
         <a href="https://linkedin.com/company/144948047" target="_blank" class="hover:text-brand-gold transition-colors flex items-center gap-1.5 text-[#0a66c2]">
           <i class="fa-brands fa-linkedin text-lg"></i>
           <span class="text-slate-200 hover:text-brand-gold">LinkedIn</span>
@@ -138,13 +155,12 @@
 
       <!-- Language & Contact Buttons -->
       <div class="hidden sm:flex items-center gap-4">
-        <!-- Professional Language Switcher Plug -->
-        <div class="flex items-center bg-brand-900/80 border border-brand-800 rounded-lg p-1 text-xs">
+        <div class="flex items-center bg-brand-900/90 border border-brand-800 rounded-lg p-1 text-xs">
           <button onclick="setLang('en')" id="btn-en" class="px-2.5 py-1 rounded-md font-bold bg-brand-gold text-brand-950 transition-all">🇬🇧 EN</button>
           <button onclick="setLang('de')" id="btn-de" class="px-2.5 py-1 rounded-md font-bold text-slate-300 hover:text-white transition-all">🇩🇪 DE</button>
         </div>
 
-        <a href="#contact" class="px-4 py-2 text-xs font-bold bg-brand-gold hover:bg-brand-goldHover text-brand-950 rounded-lg shadow-lg shadow-brand-gold/10 transition-all flex items-center gap-1.5">
+        <a href="#contact" class="px-4 py-2 text-xs font-bold bg-brand-gold hover:bg-brand-goldHover text-brand-950 rounded-lg shadow-lg shadow-brand-gold/10 transition-all flex items-center gap-1.5" data-i18n="btn-contact">
           <span>Contact Us</span>
           <i class="fa-solid fa-arrow-right text-[11px]"></i>
         </a>
@@ -157,16 +173,16 @@
     </div>
 
     <!-- Mobile Drawer -->
-    <div id="mobile-menu" class="hidden md:hidden bg-[#0a251d] border-b border-brand-800 px-6 py-5 space-y-4 text-sm font-medium">
+    <div id="mobile-menu" class="hidden md:hidden bg-[#0a231b] border-b border-brand-800 px-6 py-5 space-y-4 text-sm font-medium">
       <a href="#mission-statement" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Mission</a>
-      <div class="border-t border-b border-brand-800/80 py-2 space-y-2">
+      <div class="border-t border-b border-brand-800/80 py-3 space-y-2">
         <span class="text-xs uppercase font-bold text-brand-gold block">Services & Portals</span>
-        <a href="fit.html" class="block text-xs text-slate-300 hover:text-white pl-2">➔ Velsci Fit</a>
-        <a href="care.html" class="block text-xs text-slate-300 hover:text-white pl-2">➔ Velsci Care</a>
-        <a href="assist.html" class="block text-xs text-slate-300 hover:text-white pl-2">➔ Velsci Assist</a>
+        <a href="fit.html" class="block text-xs text-slate-300 hover:text-white pl-2">➔ Velsci Fit (Precision Tailoring)</a>
+        <a href="care.html" class="block text-xs text-slate-300 hover:text-white pl-2">➔ Velsci Care (Circular Wardrobe)</a>
+        <a href="assist.html" class="block text-xs text-slate-300 hover:text-white pl-2">➔ Velsci Assist (Family Logistics)</a>
       </div>
       <a href="#ecosystem" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Ecosystem</a>
-      <a href="#mission" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Social Impact</a>
+      <a href="#impact" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Social Impact</a>
       <a href="https://linkedin.com/company/144948047" target="_blank" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">LinkedIn Page</a>
       <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Contact Us</a>
     </div>
@@ -174,24 +190,24 @@
 
   <main class="flex-grow">
     <!-- HERO SECTION -->
-    <section class="relative bg-gradient-to-b from-[#0f382c] via-[#0b2920] to-[#071813] pt-20 pb-20 border-b border-brand-800/50 overflow-hidden">
+    <section class="relative hero-gradient pt-24 pb-20 border-b border-brand-800/50 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
         
-        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-800/70 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-8 backdrop-blur shadow-sm">
+        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-900/90 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-8 backdrop-blur shadow-sm">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-          Indo - European High Tech Platform
+          <span data-i18n="hero-badge">Indo-European High-Tech Ecosystem</span>
         </div>
 
         <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl mx-auto leading-tight mb-6">
           Precision Fit. <span class="gold-gradient-text">Circular Care.</span> Zero Waste.
         </h1>
 
-        <p class="text-slate-300 text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
-          Bridging traditional Indian craftsmanship with European tech-driven efficiency. On-demand custom tailoring, sustainable fabric management, and compassionate family support.
+        <p class="text-slate-300 text-base sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-normal" data-i18n="hero-desc">
+          Connecting traditional artisan expertise in South Asia with European tech-driven precision. We deliver zero-waste custom tailoring, circular fabric preservation, and compassionate cross-border family support.
         </p>
 
         <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-          <a href="#ecosystem" class="w-full sm:w-auto px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-xl shadow-xl shadow-brand-gold/10 transition-all text-center transform hover:-translate-y-0.5">
+          <a href="#ecosystem" class="w-full sm:w-auto px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-xl shadow-xl shadow-brand-gold/10 transition-all text-center transform hover:-translate-y-0.5" data-i18n="hero-btn-primary">
             Explore Ecosystem
           </a>
           <a href="https://linkedin.com/company/144948047" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-[#0a66c2]/20 hover:bg-[#0a66c2]/30 text-white font-semibold text-sm rounded-xl border border-[#0a66c2]/50 transition-all text-center flex items-center justify-center gap-2 transform hover:-translate-y-0.5">
@@ -200,107 +216,107 @@
           </a>
         </div>
 
-        <!-- Key Metrics -->
-        <div class="mt-16 pt-10 border-t border-brand-800/60 grid grid-cols-2 md:grid-cols-4 gap-6 text-slate-300 text-xs font-medium max-w-4xl mx-auto">
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-graduation-cap text-brand-gold text-lg"></i>
+        <!-- Metric Cards -->
+        <div class="mt-16 pt-10 border-t border-brand-800/60 grid grid-cols-2 md:grid-cols-4 gap-6 text-slate-300 text-xs font-medium max-w-5xl mx-auto">
+          <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center gap-2">
+            <i class="fa-solid fa-graduation-cap text-brand-gold text-xl"></i>
             <span class="text-white font-bold text-sm">FAU Incubator</span>
-            <span class="text-slate-400">German Academic Partner</span>
+            <span class="text-slate-400" data-i18n="stat-1">German Academic Partner</span>
           </div>
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-shield-halved text-brand-gold text-lg"></i>
-            <span class="text-white font-bold text-sm">100% GDPR Ready</span>
-            <span class="text-slate-400">Strict Data Privacy</span>
+          <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center gap-2">
+            <i class="fa-solid fa-shield-halved text-brand-gold text-xl"></i>
+            <span class="text-white font-bold text-sm">GDPR Compliant</span>
+            <span class="text-slate-400" data-i18n="stat-2">EU Data Protection</span>
           </div>
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-leaf text-brand-gold text-lg"></i>
+          <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center gap-2">
+            <i class="fa-solid fa-leaf text-brand-gold text-xl"></i>
             <span class="text-white font-bold text-sm">Zero Waste</span>
-            <span class="text-slate-400">On-Demand Production</span>
+            <span class="text-slate-400" data-i18n="stat-3">On-Demand Production</span>
           </div>
-          <div class="flex flex-col items-center gap-1.5 p-3 rounded-xl bg-brand-900/30 border border-brand-800/40">
-            <i class="fa-solid fa-hands-holding-circle text-brand-gold text-lg"></i>
+          <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center gap-2">
+            <i class="fa-solid fa-hands-holding-circle text-brand-gold text-xl"></i>
             <span class="text-white font-bold text-sm">Fair Livelihood</span>
-            <span class="text-slate-400">Artisan Empowerment</span>
+            <span class="text-slate-400" data-i18n="stat-4">Artisan Empowerment</span>
           </div>
         </div>
       </div>
     </section>
 
     <!-- MISSION STATEMENT -->
-    <section id="mission-statement" class="py-16 bg-[#092119] border-b border-brand-800/80 relative">
+    <section id="mission-statement" class="py-16 bg-[#0a231b] border-b border-brand-800/80">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
         <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-800/80 border border-brand-gold/30 text-brand-gold text-xs font-semibold uppercase tracking-widest mb-4">
-          <i class="fa-solid fa-bullseye text-brand-gold"></i> Core Mission
+          <i class="fa-solid fa-bullseye text-brand-gold"></i> <span data-i18n="mission-tag">Core Purpose</span>
         </div>
         <h2 class="font-display text-2xl sm:text-4xl font-extrabold text-white tracking-tight mb-6">
-          "Precision Fit. Circular Care. Zero Waste."
+          "Bridging Technical Precision with Craft Heritage."
         </h2>
-        <p class="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed font-light">
-          At Velsci Globals, our mission is to empower local master artisans, preserve valuable textile resources, and redefine custom fashion through a zero-waste, fully circular fashion ecosystem. We seamlessly connect traditional craftsmanship with modern international precision.
+        <p class="text-slate-300 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed font-light" data-i18n="mission-body">
+          Velsci Globals serves as a technology bridge between Europe and South Asia. By combining European digital quality controls with the master craftsmanship of traditional Indian artisans, we build a zero-waste apparel pipeline and offer seamless cross-border personal services.
         </p>
       </div>
     </section>
 
-    <!-- CORE ECOSYSTEM (THREE PILLARS WITH SUB-PAGE LINKS) -->
-    <section id="ecosystem" class="py-24 bg-[#0a2119] border-b border-brand-800/60 relative">
+    <!-- INTEGRATED PLATFORM (THREE PILLARS) -->
+    <section id="ecosystem" class="py-24 bg-[#051410] border-b border-brand-800/60 relative">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-xs uppercase font-bold text-brand-500 tracking-widest block mb-2">Integrated Platform</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">Our Core Ecosystem</h2>
-          <p class="text-slate-400 text-sm mt-3">Combining artisan mastery, circular textiles, and care coordination into one European-standard platform.</p>
+          <span class="text-xs uppercase font-bold text-brand-400 tracking-widest block mb-2" data-i18n="eco-tag">Unified Infrastructure</span>
+          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight" data-i18n="eco-title">Our Integrated Ecosystem</h2>
+          <p class="text-slate-400 text-sm mt-3" data-i18n="eco-subtitle">Three core operations managed under unified European data and quality standards.</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
           <!-- Pillar 1: Velsci Fit -->
-          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 hover:border-brand-gold/50 transition-all flex flex-col justify-between group shadow-lg">
+          <div class="glass-card rounded-2xl p-8 flex flex-col justify-between group shadow-xl">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700/60 flex items-center justify-center text-brand-gold text-xl mb-6">
+              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700 flex items-center justify-center text-brand-gold text-xl mb-6 group-hover:scale-105 transition-transform">
                 <i class="fa-solid fa-scissors"></i>
               </div>
               <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Fit</h3>
-              <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">Zero-Waste Tailoring</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                Experience hassle-free custom tailoring from home. Using non-intrusive photo-reference alignment, we map your sizing preferences directly to traditional master tailors in India.
+              <p class="text-xs font-semibold text-brand-400 uppercase tracking-wider mb-4" data-i18n="fit-sub">On-Demand Custom Tailoring</p>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6" data-i18n="fit-desc">
+                Enables precise digital sizing using non-intrusive reference photos. We map measurements directly to master tailors in India for custom-fit garments delivered to Europe with zero fabric waste.
               </p>
             </div>
             <a href="fit.html" class="flex items-center justify-between text-xs font-bold text-brand-gold border-t border-brand-800/60 pt-4 group-hover:underline">
-              <span>Open Fit Module & How It Works</span>
+              <span data-i18n="link-fit">Explore Velsci Fit Module</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
 
           <!-- Pillar 2: Velsci Care -->
-          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 hover:border-brand-gold/50 transition-all flex flex-col justify-between group shadow-lg">
+          <div class="glass-card rounded-2xl p-8 flex flex-col justify-between group shadow-xl">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700/60 flex items-center justify-center text-brand-gold text-xl mb-6">
+              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700 flex items-center justify-center text-brand-gold text-xl mb-6 group-hover:scale-105 transition-transform">
                 <i class="fa-solid fa-rotate"></i>
               </div>
               <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Care</h3>
-              <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">Circular Wardrobe</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                High-grade textiles shouldn't sit idle or degrade from domestic washing. Velsci Care offers gentle eco-preservation that extends garment lifespan and enables circular recycling.
+              <p class="text-xs font-semibold text-brand-400 uppercase tracking-wider mb-4" data-i18n="care-sub">Circular Garment Preservation</p>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6" data-i18n="care-desc">
+                Dedicated eco-preservation methods that triple the lifespan of high-grade textiles. We prevent damage caused by conventional domestic washing and manage circular garment recycling.
               </p>
             </div>
             <a href="care.html" class="flex items-center justify-between text-xs font-bold text-brand-gold border-t border-brand-800/60 pt-4 group-hover:underline">
-              <span>Open Care Preservation Portal</span>
+              <span data-i18n="link-care">Explore Velsci Care Portal</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
 
           <!-- Pillar 3: Velsci Assist -->
-          <div class="bg-[#0c241c] border border-brand-800/80 rounded-2xl p-8 hover:border-brand-gold/50 transition-all flex flex-col justify-between group shadow-lg">
+          <div class="glass-card rounded-2xl p-8 flex flex-col justify-between group shadow-xl">
             <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700/60 flex items-center justify-center text-brand-gold text-xl mb-6">
+              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700 flex items-center justify-center text-brand-gold text-xl mb-6 group-hover:scale-105 transition-transform">
                 <i class="fa-solid fa-heart-pulse"></i>
               </div>
               <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Assist</h3>
-              <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">NRI Family & Senior Support</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                Bridging the distance between global citizens in Europe and parents back home in India. Velsci Assist provides reliable support—from healthcare navigation to errands and emergency logistics.
+              <p class="text-xs font-semibold text-brand-400 uppercase tracking-wider mb-4" data-i18n="assist-sub">Cross-Border Family Support</p>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6" data-i18n="assist-desc">
+                Connecting professionals in Europe with reliable support for aging parents in India. Providing structured assistance with healthcare navigation, emergency response, and daily logistics.
               </p>
             </div>
             <a href="assist.html" class="flex items-center justify-between text-xs font-bold text-brand-gold border-t border-brand-800/60 pt-4 group-hover:underline">
-              <span>Open Family Care Module</span>
+              <span data-i18n="link-assist">Explore Velsci Assist Portal</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
@@ -308,83 +324,83 @@
       </div>
     </section>
 
-    <!-- MISSION & IMPACT STORY -->
-    <section id="mission" class="py-24 bg-[#0a2119]">
+    <!-- SOCIAL IMPACT & FOUNDER'S STORY -->
+    <section id="impact" class="py-24 bg-[#0a231b]">
       <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="bg-gradient-to-br from-[#0f382c] to-[#071813] border border-brand-800 rounded-3xl p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+        <div class="glass-card rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
           
           <div class="flex items-center gap-3 mb-6">
             <div class="w-10 h-10 rounded-xl bg-brand-gold/10 border border-brand-gold/30 flex items-center justify-center text-brand-gold">
-              <i class="fa-solid fa-quote-left text-lg"></i>
+              <i class="fa-solid fa-hand-holding-heart text-lg"></i>
             </div>
             <div>
-              <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block">Founder's Vision</span>
-              <h3 class="font-display text-2xl sm:text-3xl font-bold text-white">Born from Gratitude, Built for Impact</h3>
+              <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block" data-i18n="story-tag">Ethical Foundation</span>
+              <h3 class="font-display text-2xl sm:text-3xl font-bold text-white" data-i18n="story-title">Born from Gratitude, Built for Impact</h3>
             </div>
           </div>
 
           <blockquote class="text-slate-200 text-base sm:text-lg leading-relaxed space-y-4 font-normal italic border-l-2 border-brand-gold pl-6 my-6">
-            <p>
-              "Velsci Globals was founded on a simple truth: no one succeeds alone. Growing up with the support of a hardworking mother, traditional craftspeople, and a community that stepped in when times were tough, our founder learned the true value of human dignity and artisan craft."
+            <p data-i18n="story-quote-1">
+              "Velsci Globals was built on the principle that modern engineering and traditional craftsmanship can empower one another. Growing up under the care of a dedicated mother and skilled local tailors, our founder experienced firsthand the dignity of traditional craft and community support."
             </p>
-            <p class="not-italic text-sm text-slate-300 font-medium">
-              "Velsci was built to give back. By pairing modern digital efficiency with the time-honored expertise of local tailors—like the master craftsmen who supported our founder's early education—we create a sustainable bridge between European communities and traditional heritage."
+            <p class="not-italic text-sm text-slate-300 font-medium" data-i18n="story-quote-2">
+              "Today, Velsci provides year-round livelihoods for artisan tailors in South Asia while giving European consumers sustainable, zero-waste wardrobe options and reliable family care solutions."
             </p>
           </blockquote>
 
           <div class="pt-8 border-t border-brand-800/80 grid grid-cols-1 sm:grid-cols-3 gap-6 text-center sm:text-left">
             <div>
               <span class="font-display font-extrabold text-3xl text-brand-gold block">100%</span>
-              <span class="text-xs text-slate-400">On-Demand Production</span>
+              <span class="text-xs text-slate-400" data-i18n="stat-impact-1">On-Demand Production</span>
             </div>
             <div>
               <span class="font-display font-extrabold text-3xl text-brand-gold block">3x</span>
-              <span class="text-xs text-slate-400">Garment Life Extension</span>
+              <span class="text-xs text-slate-400" data-i18n="stat-impact-2">Garment Life Extension</span>
             </div>
             <div>
               <span class="font-display font-extrabold text-3xl text-brand-gold block">Fair</span>
-              <span class="text-xs text-slate-400">Year-Round Artisan Income</span>
+              <span class="text-xs text-slate-400" data-i18n="stat-impact-3">Year-Round Artisan Income</span>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SIMPLIFIED CONTACT SECTION -->
-    <section id="contact" class="py-24 bg-[#071813] border-t border-brand-800/80">
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="py-24 bg-[#051410] border-t border-brand-800/80">
       <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-12">
-          <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block mb-2">Get In Touch</span>
-          <h2 class="font-display text-3xl font-bold text-white">Contact Velsci Globals</h2>
-          <p class="text-slate-400 text-sm mt-2">Have questions about our custom tailoring, circular care, or NRI assistance services?</p>
+          <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block mb-2" data-i18n="contact-tag">Get In Touch</span>
+          <h2 class="font-display text-3xl font-bold text-white" data-i18n="contact-title">Contact Velsci Globals</h2>
+          <p class="text-slate-400 text-sm mt-2" data-i18n="contact-subtitle">Have questions about our platform, services, or incubator partnership?</p>
         </div>
 
-        <div class="bg-[#0c241c] border border-brand-800 p-8 rounded-2xl shadow-xl">
+        <div class="glass-card p-8 rounded-2xl shadow-xl">
           <form onsubmit="handleFormSubmit(event)" class="space-y-5">
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Your Name</label>
-                <input type="text" required placeholder="Alex Neumann" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1" data-i18n="form-name">Your Name</label>
+                <input type="text" required placeholder="Alex Neumann" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#051410] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
               </div>
 
               <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Email Address</label>
-                <input type="email" required placeholder="alex@domain.de" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
+                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1" data-i18n="form-email">Email Address</label>
+                <input type="email" required placeholder="alex@domain.de" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#051410] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
               </div>
             </div>
 
             <div>
-              <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">How can we help?</label>
-              <textarea rows="4" required placeholder="Write your message here..." class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors"></textarea>
+              <label class="block text-xs font-semibold text-slate-300 uppercase mb-1" data-i18n="form-message">How can we help?</label>
+              <textarea rows="4" required placeholder="Write your message here..." class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#051410] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors"></textarea>
             </div>
 
-            <button type="submit" class="w-full py-3.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-lg shadow-lg shadow-brand-gold/10 transition-all active:scale-95">
+            <button type="submit" class="w-full py-3.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-lg shadow-lg shadow-brand-gold/10 transition-all active:scale-95" data-i18n="form-btn">
               Send Message
             </button>
           </form>
         </div>
 
-        <!-- Direct Emails -->
+        <!-- Direct Contact Emails -->
         <div class="mt-8 flex flex-wrap justify-center items-center gap-6 text-xs text-slate-400">
           <span>General Inquiries: <a href="mailto:info@velsci.com" class="text-brand-gold font-bold underline">info@velsci.com</a></span>
           <span>Support: <a href="mailto:contact@velsci.com" class="text-brand-gold font-bold underline">contact@velsci.com</a></span>
@@ -393,12 +409,12 @@
     </section>
   </main>
 
-  <!-- FOOTER WITH HIDDEN GDPR / IMPRESSUM MODALS -->
-  <footer class="bg-[#05120e] text-slate-400 py-12 border-t border-brand-800/80">
+  <!-- FOOTER -->
+  <footer class="bg-[#030d0a] text-slate-400 py-12 border-t border-brand-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row justify-between items-center gap-6 text-center sm:text-left">
       <div>
         <span class="font-display font-extrabold text-xl text-white tracking-wider">VELSCI GLOBALS</span>
-        <p class="text-xs text-slate-400 mt-1">Precision Fit. Circular Care. Zero Waste.</p>
+        <p class="text-xs text-slate-400 mt-1">Precision Fit • Circular Care • Social Impact</p>
       </div>
 
       <div class="flex flex-wrap justify-center gap-6 text-xs font-semibold text-slate-300">
@@ -419,7 +435,7 @@
 
   <!-- IMPRESSUM MODAL -->
   <div id="modal-impressum" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-[#0c241c] border border-brand-800 rounded-2xl max-w-lg w-full p-6 text-slate-200 space-y-4 shadow-2xl relative">
+    <div class="bg-[#0a231b] border border-brand-800 rounded-2xl max-w-lg w-full p-6 text-slate-200 space-y-4 shadow-2xl relative">
       <div class="flex justify-between items-center border-b border-brand-800 pb-3">
         <h3 class="font-display text-base font-bold text-white flex items-center gap-2">
           <i class="fa-solid fa-scale-balanced text-brand-gold"></i> Impressum (Legal Disclosure)
@@ -443,7 +459,7 @@
 
   <!-- PRIVACY MODAL -->
   <div id="modal-privacy" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-[#0c241c] border border-brand-800 rounded-2xl max-w-lg w-full p-6 text-slate-200 space-y-4 shadow-2xl relative">
+    <div class="bg-[#0a231b] border border-brand-800 rounded-2xl max-w-lg w-full p-6 text-slate-200 space-y-4 shadow-2xl relative">
       <div class="flex justify-between items-center border-b border-brand-800 pb-3">
         <h3 class="font-display text-base font-bold text-white flex items-center gap-2">
           <i class="fa-solid fa-user-shield text-brand-gold"></i> EU Privacy Policy (GDPR)
@@ -461,7 +477,123 @@
     </div>
   </div>
 
+  <!-- SCRIPT LOGIC -->
   <script>
+    const translations = {
+      en: {
+        "tagline": "Precision Fit • Circular Care • Social Impact",
+        "nav-mission": "Mission",
+        "nav-services": "Services & Portals",
+        "nav-fit-sub": "On-Demand Precision Tailoring",
+        "nav-care-sub": "Circular Textile Management",
+        "nav-assist-sub": "Cross-Border Family Care",
+        "nav-ecosystem": "Ecosystem",
+        "nav-impact": "Social Impact",
+        "btn-contact": "Contact Us",
+        "hero-badge": "Indo-European High-Tech Ecosystem",
+        "hero-desc": "Connecting traditional artisan expertise in South Asia with European tech-driven precision. We deliver zero-waste custom tailoring, circular fabric preservation, and compassionate cross-border family support.",
+        "hero-btn-primary": "Explore Ecosystem",
+        "stat-1": "German Academic Partner",
+        "stat-2": "EU Data Protection",
+        "stat-3": "On-Demand Production",
+        "stat-4": "Artisan Empowerment",
+        "mission-tag": "Core Purpose",
+        "mission-body": "Velsci Globals serves as a technology bridge between Europe and South Asia. By combining European digital quality controls with the master craftsmanship of traditional Indian artisans, we build a zero-waste apparel pipeline and offer seamless cross-border personal services.",
+        "eco-tag": "Unified Infrastructure",
+        "eco-title": "Our Integrated Ecosystem",
+        "eco-subtitle": "Three core operations managed under unified European data and quality standards.",
+        "fit-sub": "On-Demand Custom Tailoring",
+        "fit-desc": "Enables precise digital sizing using non-intrusive reference photos. We map measurements directly to master tailors in India for custom-fit garments delivered to Europe with zero fabric waste.",
+        "link-fit": "Explore Velsci Fit Module",
+        "care-sub": "Circular Garment Preservation",
+        "care-desc": "Dedicated eco-preservation methods that triple the lifespan of high-grade textiles. We prevent damage caused by conventional domestic washing and manage circular garment recycling.",
+        "link-care": "Explore Velsci Care Portal",
+        "assist-sub": "Cross-Border Family Support",
+        "assist-desc": "Connecting professionals in Europe with reliable support for aging parents in India. Providing structured assistance with healthcare navigation, emergency response, and daily logistics.",
+        "link-assist": "Explore Velsci Assist Portal",
+        "story-tag": "Ethical Foundation",
+        "story-title": "Born from Gratitude, Built for Impact",
+        "story-quote-1": "\"Velsci Globals was built on the principle that modern engineering and traditional craftsmanship can empower one another. Growing up under the care of a dedicated mother and skilled local tailors, our founder experienced firsthand the dignity of traditional craft and community support.\"",
+        "story-quote-2": "\"Today, Velsci provides year-round livelihoods for artisan tailors in South Asia while giving European consumers sustainable, zero-waste wardrobe options and reliable family care solutions.\"",
+        "stat-impact-1": "On-Demand Production",
+        "stat-impact-2": "Garment Life Extension",
+        "stat-impact-3": "Year-Round Artisan Income",
+        "contact-tag": "Get In Touch",
+        "contact-title": "Contact Velsci Globals",
+        "contact-subtitle": "Have questions about our platform, services, or incubator partnership?",
+        "form-name": "Your Name",
+        "form-email": "Email Address",
+        "form-message": "How can we help?",
+        "form-btn": "Send Message"
+      },
+      de: {
+        "tagline": "Präzise Passform • Zirkuläre Pflege • Soziale Wirkung",
+        "nav-mission": "Mission",
+        "nav-services": "Dienste & Portale",
+        "nav-fit-sub": "Maßschneiderei auf Bestellung",
+        "nav-care-sub": "Zirkuläre Textilpflege",
+        "nav-assist-sub": "Grenzüberschreitende Seniorenbetreuung",
+        "nav-ecosystem": "Ökosystem",
+        "nav-impact": "Soziale Wirkung",
+        "btn-contact": "Kontakt",
+        "hero-badge": "Indo-Europäisches High-Tech Ökosystem",
+        "hero-desc": "Verbindung traditioneller Handwerkskunst aus Südasiens mit europäischer technischer Präzision. Wir bieten am Bedarf orientierte Maßschneiderei, zirkuläre Textilerhaltung und verlässliche Seniorenbetreuung.",
+        "hero-btn-primary": "Ökosystem Entdecken",
+        "stat-1": "Deutscher Akademischer Partner",
+        "stat-2": "EU-Datenschutzkonform",
+        "stat-3": "Bedarfsorientierte Produktion",
+        "stat-4": "Stärkung des Handwerks",
+        "mission-tag": "Kernziel",
+        "mission-body": "Velsci Globals dient als Brücke zwischen Europa und Südasiens. Durch die Kombination europäischer digitaler Qualitätsstandards mit der Handwerkskunst traditioneller indischer Schneider schaffen wir eine nachhaltige Bekleidungslieferkette und verlässliche Dienste.",
+        "eco-tag": "Integrierte Infrastruktur",
+        "eco-title": "Unser Ökosystem",
+        "eco-subtitle": "Drei Kernbereiche, geführt unter einheitlichen europäischen Qualitäts- und Datenschutzstandards.",
+        "fit-sub": "Maßschneiderei Auf Bestellung",
+        "fit-desc": "Ermöglicht präzise digitale Größenbestimmung ohne störende Vermessung. Wir übertragen Maßdaten direkt an Meisterschneider in Indien – für passgenaue Kleidung ohne Stoffverschwendung.",
+        "link-fit": "Velsci Fit Modul Öffnen",
+        "care-sub": "Zirkuläre Textilpflege",
+        "care-desc": "Schonende Pflegemethoden, die die Lebensdauer hochwertiger Textilien verdreifachen. Wir schützen Stoffe vor Schäden durch normale Wäsche und ermöglichen nachhaltiges Recycling.",
+        "link-care": "Velsci Care Portal Öffnen",
+        "assist-sub": "Grenzüberschreitende Seniorenbetreuung",
+        "assist-desc": "Unterstützung für in Europa lebende Menschen, deren Eltern in Indien leben. Zuverlässige Organisation von Gesundheitsversorgung, Notfallhilfe und Alltagslogistik.",
+        "link-assist": "Velsci Assist Portal Öffnen",
+        "story-tag": "Ethisches Fundament",
+        "story-title": "Aus Dankbarkeit Entstanden, Für Wirkung Gebaut",
+        "story-quote-1": "\"Velsci Globals wurde auf dem Prinzip gegründet, dass moderne Ingenieurskunst und traditionelles Handwerk einander stärken. Aufgewachsen mit der Unterstützung einer engagierten Mutter und lokaler Schneider, erlebte unser Gründer den Wert von Handwerk und Gemeinschaft.\"",
+        "story-quote-2": "\"Heute bietet Velsci Handwerkern in Südasiens ganzjährige Existenzgrundlagen und gibt Kunden in Europa nachhaltige, maßgeschneiderte Optionen sowie verlässliche Familienunterstützung.\"",
+        "stat-impact-1": "Bedarfsorientierte Produktion",
+        "stat-impact-2": "Verlängerte Textillebensdauer",
+        "stat-impact-3": "Faires Ganzjähriges Einkommen",
+        "contact-tag": "Kontakt Aufnehmen",
+        "contact-title": "Kontakt zu Velsci Globals",
+        "contact-subtitle": "Haben Sie Fragen zu unseren Diensten oder unserer Inkubator-Partnerschaft?",
+        "form-name": "Ihr Name",
+        "form-email": "E-Mail-Adresse",
+        "form-message": "Wie können wir helfen?",
+        "form-btn": "Nachricht Senden"
+      }
+    };
+
+    function setLang(lang) {
+      const btnEn = document.getElementById('btn-en');
+      const btnDe = document.getElementById('btn-de');
+      
+      if (lang === 'de') {
+        btnDe.className = "px-2.5 py-1 rounded-md font-bold bg-brand-gold text-brand-950 transition-all";
+        btnEn.className = "px-2.5 py-1 rounded-md font-bold text-slate-300 hover:text-white transition-all";
+      } else {
+        btnEn.className = "px-2.5 py-1 rounded-md font-bold bg-brand-gold text-brand-950 transition-all";
+        btnDe.className = "px-2.5 py-1 rounded-md font-bold text-slate-300 hover:text-white transition-all";
+      }
+
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang] && translations[lang][key]) {
+          el.innerText = translations[lang][key];
+        }
+      });
+    }
+
     function toggleMobileMenu() {
       const menu = document.getElementById('mobile-menu');
       const icon = document.getElementById('menu-icon');
@@ -480,19 +612,6 @@
 
     function closeModal(id) {
       document.getElementById(id).classList.add('hidden');
-    }
-
-    function setLang(lang) {
-      const btnEn = document.getElementById('btn-en');
-      const btnDe = document.getElementById('btn-de');
-      if (lang === 'de') {
-        btnDe.className = "px-2.5 py-1 rounded-md font-bold bg-brand-gold text-brand-950 transition-all";
-        btnEn.className = "px-2.5 py-1 rounded-md font-bold text-slate-300 hover:text-white transition-all";
-        alert('German translation plug active.');
-      } else {
-        btnEn.className = "px-2.5 py-1 rounded-md font-bold bg-brand-gold text-brand-950 transition-all";
-        btnDe.className = "px-2.5 py-1 rounded-md font-bold text-slate-300 hover:text-white transition-all";
-      }
     }
 
     function handleFormSubmit(e) {
