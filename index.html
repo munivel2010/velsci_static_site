@@ -4,9 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Velsci Globals — Precision Fit. Circular Care. Zero Waste.</title>
-  <!-- Tailwind CSS -->
+  
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts & FontAwesome -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   
@@ -46,281 +45,201 @@
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #071813; }
-    ::-webkit-scrollbar-thumb { background: #1b4332; border-radius: 4px; }
 
-    /* Hide Google Translate attribution bar */
-    .goog-te-banner-frame { display: none !important; }
-    .goog-te-gadget-simple {
-      background-color: #1b4332 !important;
-      border: 1px solid #2d6a4f !important;
-      padding: 6px 10px !important;
-      border-radius: 8px !important;
-      font-size: 12px !important;
-      color: #fff !important;
+    /* GOOGLE TRANSLATE POPUP HIDING CSS */
+    .goog-te-banner-frame, 
+    .goog-te-balloon-frame,
+    #goog-gt-tt, 
+    .goog-te-spinner-pos,
+    .VIpgJd-yDvfNd-O22p2e { 
+      display: none !important; 
+      visibility: hidden !important;
     }
-    .goog-te-gadget-simple span { color: #fff !important; }
-    .goog-te-menu-value span { color: #fff !important; border: none !important; }
-    .goog-te-gadget-icon { display: none !important; }
+    body { top: 0px !important; }
+    .goog-text-highlight { background-color: transparent !important; box-shadow: none !important; }
   </style>
 
-  <!-- GOOGLE TRANSLATE SCRIPT -->
+  <!-- GOOGLE TRANSLATE ENGINE -->
+  <div id="google_translate_element" class="hidden"></div>
   <script type="text/javascript">
     function googleTranslateElementInit() {
       new google.translate.TranslateElement({
         pageLanguage: 'en',
         includedLanguages: 'en,de,ta',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE,
         autoDisplay: false
       }, 'google_translate_element');
+    }
+
+    function translatePage(langCode) {
+      const select = document.querySelector('.goog-te-combo');
+      if (select) {
+        select.value = langCode;
+        select.dispatchEvent(new Event('change'));
+      }
     }
   </script>
   <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-brand-950">
+<body class="min-h-screen flex flex-col antialiased">
 
-  <!-- NAVIGATION HEADER -->
-  <header class="sticky top-0 z-50 bg-[#0f382c]/95 backdrop-blur-md border-b border-brand-800/80 transition-all">
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-[#0f382c]/95 backdrop-blur-md border-b border-brand-800/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-3.5 group">
-        <svg width="42" height="42" viewBox="0 0 200 200" fill="none" class="drop-shadow-lg">
-             <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-header)" stroke-width="6" fill="#0f382c" />
+      <!-- LOGO -->
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <svg width="42" height="42" viewBox="0 0 200 200" fill="none">
+            <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-header)" stroke-width="6" fill="#0f382c" />
             <circle cx="100" cy="100" r="62" stroke="#52b788" stroke-width="4" stroke-dasharray="8 4" />
             <path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-header)" />
-             <circle cx="100" cy="100" r="5" fill="#38bdf8" />
+            <circle cx="100" cy="100" r="5" fill="#38bdf8" />
             <defs>
                <linearGradient id="gold-grad-header" x1="0%" y1="0%" x2="100%" y2="100%">
                  <stop offset="0%" stop-color="#fef08a" />
                  <stop offset="50%" stop-color="#d4af37" />
                  <stop offset="100%" stop-color="#b45309" />
                </linearGradient>
-             </defs>
+            </defs>
         </svg>
-        <div>
-          <div class="flex flex-col">
-            <span class="font-display font-extrabold text-xl tracking-wider text-white group-hover:text-brand-gold transition-colors">VELSCI GLOBALS</span>
-            <span class="text-[10px] tracking-widest text-brand-500 font-medium uppercase -mt-1">Precision Fit &bull; Circular Care</span>
-          </div>
+        <div class="flex flex-col">
+          <span class="font-display font-extrabold text-xl text-white group-hover:text-brand-gold">VELSCI GLOBALS</span>
+          <span class="text-[10px] text-brand-500 uppercase -mt-1">Precision Fit &bull; Circular Care</span>
         </div>
       </a>
 
-      <!-- Navigation Links -->
+      <!-- NAVIGATION LINKS -->
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-200">
         <a href="#ecosystem" class="hover:text-brand-gold transition-colors">Ecosystem</a>
-        <a href="#how-it-works" class="hover:text-brand-gold transition-colors">How It Works</a>
+        <a href="how-it-works.html" class="hover:text-brand-gold text-brand-gold font-semibold transition-colors">
+          How It Works <i class="fa-solid fa-arrow-up-right-from-square text-[10px] ml-0.5"></i>
+        </a>
         <a href="#mission" class="hover:text-brand-gold transition-colors">Our Mission</a>
         <a href="#contact" class="hover:text-brand-gold transition-colors">Contact</a>
       </nav>
 
-      <!-- Action Buttons & Language Widget -->
+      <!-- CLEAN LANGUAGE SWITCHER & BUTTONS -->
       <div class="hidden sm:flex items-center gap-3">
-        <!-- GOOGLE TRANSLATE WIDGET -->
-        <div id="google_translate_element" class="inline-block"></div>
+        
+        <!-- Neat Custom Language Switcher -->
+        <div class="flex items-center bg-brand-800/80 border border-brand-700/80 rounded-lg p-1 text-xs font-semibold">
+          <button onclick="translatePage('en')" class="px-2 py-1 text-slate-200 hover:text-brand-gold transition-colors">EN</button>
+          <span class="text-brand-700">|</span>
+          <button onclick="translatePage('de')" class="px-2 py-1 text-slate-200 hover:text-brand-gold transition-colors">DE</button>
+          <span class="text-brand-700">|</span>
+          <button onclick="translatePage('ta')" class="px-2 py-1 text-slate-200 hover:text-brand-gold transition-colors">TA</button>
+        </div>
 
-        <a href="https://www.linkedin.com/company/144948047" target="_blank" rel="noopener noreferrer" class="p-2 text-slate-200 hover:text-brand-gold bg-brand-800/60 hover:bg-brand-800 border border-brand-700/60 rounded-lg transition-all flex items-center justify-center">
+        <a href="https://www.linkedin.com/company/144948047" target="_blank" class="p-2 text-slate-200 hover:text-brand-gold bg-brand-800/60 border border-brand-700/60 rounded-lg transition-colors">
           <i class="fa-brands fa-linkedin text-lg"></i>
         </a>
-        <a href="mailto:info@velsci.com" class="px-3.5 py-2 text-xs font-semibold text-slate-200 hover:text-white bg-brand-800/60 hover:bg-brand-800 border border-brand-700/60 rounded-lg transition-all flex items-center gap-2">
-          <i class="fa-regular fa-envelope text-brand-gold"></i> info@velsci.com
-        </a>
-        <a href="#contact" class="px-4 py-2 text-xs font-bold bg-brand-gold hover:bg-brand-goldHover text-brand-950 rounded-lg shadow-lg shadow-brand-gold/10 transition-all flex items-center gap-1.5">
-          <span>Get Started</span>
-          <i class="fa-solid fa-arrow-right text-[11px]"></i>
+        <a href="#contact" class="px-4 py-2 text-xs font-bold bg-brand-gold hover:bg-brand-goldHover text-brand-950 rounded-lg shadow-lg">
+          Get Started
         </a>
       </div>
 
-      <!-- Mobile Menu Toggle Button -->
-      <button onclick="toggleMobileMenu()" class="md:hidden p-2 text-slate-200 hover:text-white focus:outline-none">
-        <i id="menu-icon" class="fa-solid fa-bars text-xl"></i>
-      </button>
-    </div>
-
-    <!-- Mobile Navigation Drawer -->
-    <div id="mobile-menu" class="hidden md:hidden bg-[#0a251d] border-b border-brand-800 px-6 py-5 space-y-4 text-sm font-medium">
-      <a href="#ecosystem" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Ecosystem</a>
-      <a href="#how-it-works" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">How It Works</a>
-      <a href="#mission" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Our Mission</a>
-      <a href="#privacy" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">GDPR & Security</a>
-      <a href="#contact" onclick="toggleMobileMenu()" class="block text-slate-200 hover:text-brand-gold">Contact</a>
     </div>
   </header>
 
   <main class="flex-grow">
     <!-- HERO SECTION -->
-    <section class="relative bg-gradient-to-b from-[#0f382c] via-[#0b2920] to-[#071813] pt-20 pb-28 border-b border-brand-800/50 overflow-hidden">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-        <div class="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-brand-800/70 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-8">
+    <section class="bg-gradient-to-b from-[#0f382c] via-[#0b2920] to-[#071813] pt-20 pb-28 text-center px-4">
+      <div class="max-w-5xl mx-auto">
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brand-800/70 border border-brand-gold/30 text-brand-gold text-xs font-semibold mb-8">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           Indo-European Technology & Services Ecosystem
         </div>
-        <h1 class="font-display text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white max-w-5xl mx-auto leading-tight mb-6">
+        <h1 class="font-display text-4xl sm:text-7xl font-bold text-white mb-6">
           Precision Fit. <span class="gold-gradient-text">Circular Care.</span> Zero Waste.
         </h1>
-        <p class="text-slate-300 text-lg sm:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-normal">
+        <p class="text-slate-300 text-lg sm:text-xl max-w-3xl mx-auto mb-10">
           Bridging traditional artisan craftsmanship with European technological precision. On-demand tailoring, circular garment longevity, and dedicated family support.
         </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 max-w-md mx-auto">
-          <a href="#ecosystem" class="w-full sm:w-auto px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-xl shadow-xl transition-all text-center">
-            Explore Ecosystem
-          </a>
-          <a href="#mission" class="w-full sm:w-auto px-8 py-4 bg-brand-800/80 hover:bg-brand-800 text-white font-semibold text-sm rounded-xl border border-brand-700/80 transition-all text-center">
-            Our Mission
+        <div class="flex justify-center gap-4">
+          <a href="how-it-works.html" class="px-8 py-4 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-xl shadow-xl transition-all">
+            See How It Works
           </a>
         </div>
       </div>
     </section>
 
-    <!-- CORE ECOSYSTEM -->
-    <section id="ecosystem" class="py-24 bg-[#071813]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="text-center max-w-3xl mx-auto mb-16">
-          <span class="text-xs uppercase font-bold text-brand-500 tracking-widest block mb-2">Integrated Platform</span>
-          <h2 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">Our Core Offerings</h2>
+    <!-- CONTACT FORM SECTION -->
+    <section id="contact" class="py-24 bg-[#071813] px-4">
+      <div class="max-w-4xl mx-auto bg-[#0c241c] border border-brand-800 p-8 rounded-2xl shadow-xl">
+        <h2 class="font-display text-3xl font-bold text-white mb-6">Get in Touch with Velsci Globals</h2>
+        
+        <div id="form-success" class="hidden mb-4 p-4 rounded-lg bg-emerald-900/80 border border-emerald-500 text-emerald-200 text-sm">
+          <i class="fa-solid fa-circle-check mr-2"></i> Thank you! Your message has been sent successfully.
         </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Pillar 1: Velsci Fit -->
-          <div class="bg-[#0c241c] border border-brand-800 rounded-2xl p-8 hover:border-brand-gold/50 transition-all">
-            <div class="w-12 h-12 rounded-xl bg-brand-800/80 flex items-center justify-center text-brand-gold text-xl mb-6">
-              <i class="fa-solid fa-scissors"></i>
-            </div>
-            <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Fit</h3>
-            <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">Zero-Waste Custom Tailoring</p>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6">
-              Precision fit custom garments crafted remotely. Guided photo-assisted measurements powered by traditional tailoring artisans in India.
-            </p>
-          </div>
 
-          <!-- Pillar 2: Velsci Care -->
-          <div class="bg-[#0c241c] border border-brand-800 rounded-2xl p-8 hover:border-brand-gold/50 transition-all">
-            <div class="w-12 h-12 rounded-xl bg-brand-800/80 flex items-center justify-center text-brand-gold text-xl mb-6">
-              <i class="fa-solid fa-rotate"></i>
-            </div>
-            <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Care</h3>
-            <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">Circular Garment Subscription</p>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6">
-              Extending the lifecycle of premium apparel through eco-friendly restoration, repair networks, and circular recycling options.
-            </p>
-          </div>
+        <form id="velsci-contact-form" class="space-y-4">
+          <input type="hidden" name="access_key" value="f859961d-57c3-4937-94ac-198098f47317">
+          <input type="hidden" name="subject" value="New Inquiry from Velsci Website">
 
-          <!-- Pillar 3: Velsci Assist -->
-          <div class="bg-[#0c241c] border border-brand-800 rounded-2xl p-8 hover:border-brand-gold/50 transition-all">
-            <div class="w-12 h-12 rounded-xl bg-brand-800/80 flex items-center justify-center text-brand-gold text-xl mb-6">
-              <i class="fa-solid fa-heart-pulse"></i>
-            </div>
-            <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Assist</h3>
-            <p class="text-xs font-semibold text-brand-500 uppercase tracking-wider mb-4">Family Care & Logistics Support</p>
-            <p class="text-slate-300 text-sm leading-relaxed mb-6">
-              Dedicated, reliable family care logistics for the Indian diaspora, offering verified local support for elderly parents back home.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT SECTION WITH WORKING FORM -->
-    <section id="contact" class="py-24 bg-[#071813]">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          
           <div>
-            <span class="text-xs uppercase font-bold text-brand-500 tracking-widest block mb-2">Direct Contact</span>
-            <h2 class="font-display text-3xl font-bold text-white mb-6">Get in Touch with Velsci Globals</h2>
-            <p class="text-slate-300 text-sm leading-relaxed mb-8">
-              Whether you have questions about custom tailoring, circular care, or investment opportunities, our team across Europe and India is here to assist.
-            </p>
-
-            <div class="space-y-4">
-              <a href="mailto:info@velsci.com" class="flex items-center gap-4 p-4 rounded-xl bg-[#0c241c] border border-brand-800 hover:border-brand-gold/50 transition-colors">
-                <i class="fa-solid fa-envelope text-brand-gold text-xl"></i>
-                <div>
-                  <span class="text-[11px] text-slate-400 uppercase font-semibold block">General & GDPR Inquiries</span>
-                  <span class="text-sm font-bold text-white">info@velsci.com</span>
-                </div>
-              </a>
-
-              <a href="https://www.linkedin.com/company/144948047" target="_blank" class="flex items-center gap-4 p-4 rounded-xl bg-[#0c241c] border border-brand-800 hover:border-brand-gold/50 transition-colors">
-                <i class="fa-brands fa-linkedin-in text-brand-gold text-xl"></i>
-                <div>
-                  <span class="text-[11px] text-slate-400 uppercase font-semibold block">Official Presence</span>
-                  <span class="text-sm font-bold text-white">Velsci Globals LinkedIn Page</span>
-                </div>
-              </a>
-            </div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Your Full Name</label>
+            <input type="text" name="name" required placeholder="Name" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold">
           </div>
 
-          <!-- Web3Forms Form Integration -->
-          <div class="bg-[#0c241c] border border-brand-800 p-8 rounded-2xl shadow-xl">
-            <form action="https://api.web3forms.com/submit" method="POST" class="space-y-4">
-              
-              <!-- Corrected Web3Forms Access Key -->
-              <input type="hidden" name="access_key" value="f859961d-57c3-4937-94ac-198098f47317">
-              <input type="hidden" name="subject" value="New Inquiry from Velsci Website">
-              <input type="hidden" name="from_name" value="Velsci Website">
-
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Your Full Name</label>
-                <input type="text" name="name" required placeholder="e.g. Dr. Alex Smith" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Email Address</label>
-                <input type="email" name="email" required placeholder="alex@domain.com" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Service Interest</label>
-                <select name="service" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors">
-                  <option value="Velsci Fit">Velsci Fit (Zero-Waste Tailoring)</option>
-                  <option value="Velsci Care">Velsci Care (Circular Garment Subscription)</option>
-                  <option value="Velsci Assist">Velsci Assist (Family Support Logistics)</option>
-                  <option value="General Inquiry">General Inquiry / Investment</option>
-                </select>
-              </div>
-
-              <div>
-                <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Message</label>
-                <textarea name="message" rows="3" required placeholder="How can we help you?" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold transition-colors"></textarea>
-              </div>
-
-              <div class="flex items-start gap-3 pt-2">
-                <input type="checkbox" id="gdpr-form-check" required class="mt-1 w-4 h-4 rounded border-brand-800 bg-[#071813] text-brand-gold">
-                <label for="gdpr-form-check" class="text-xs text-slate-400">
-                  I consent to processing my data to respond to my inquiry.
-                </label>
-              </div>
-
-              <button type="submit" class="w-full py-3.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-lg shadow-lg transition-all active:scale-95">
-                Send Inquiry
-              </button>
-            </form>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Email Address</label>
+            <input type="email" name="email" required placeholder="alex@domain.com" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold">
           </div>
 
-        </div>
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Service Interest</label>
+            <select name="service" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold">
+              <option value="Velsci Fit">Velsci Fit (Zero-Waste Tailoring)</option>
+              <option value="Velsci Care">Velsci Care (Circular Garment Subscription)</option>
+              <option value="Velsci Assist">Velsci Assist (Family Support Logistics)</option>
+            </select>
+          </div>
+
+          <div>
+            <label class="block text-xs font-semibold text-slate-300 uppercase mb-1">Message</label>
+            <textarea name="message" rows="3" required placeholder="How can we help you?" class="w-full px-4 py-3 rounded-lg border border-brand-800 bg-[#071813] text-sm text-white focus:outline-none focus:border-brand-gold"></textarea>
+          </div>
+
+          <button type="submit" id="submit-btn" class="w-full py-3.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-sm rounded-lg shadow-lg">
+            Send Inquiry
+          </button>
+        </form>
       </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="bg-[#05120e] text-slate-400 py-12 border-t border-brand-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left flex flex-col sm:flex-row justify-between items-center gap-6">
-      <div>
-        <span class="font-display font-extrabold text-xl text-white">VELSCI GLOBALS</span>
-        <p class="text-xs text-slate-400 mt-1">&copy; 2026 Velsci Globals. All rights reserved.</p>
-      </div>
-      <a href="https://www.linkedin.com/company/144948047" target="_blank" class="text-xs text-brand-gold hover:underline">
-        <i class="fa-brands fa-linkedin"></i> LinkedIn Official Page
-      </a>
-    </div>
-  </footer>
-
   <script>
-    function toggleMobileMenu() {
-      const menu = document.getElementById('mobile-menu');
-      menu.classList.toggle('hidden');
-    }
+    const form = document.getElementById('velsci-contact-form');
+    const successMsg = document.getElementById('form-success');
+    const submitBtn = document.getElementById('submit-btn');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      submitBtn.innerText = 'Sending...';
+      submitBtn.disabled = true;
+
+      const formData = new FormData(form);
+
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.success) {
+          successMsg.classList.remove('hidden');
+          form.reset();
+        } else {
+          alert('Error sending message. Please try again.');
+        }
+      })
+      .catch(error => {
+        alert('Something went wrong. Please check your connection.');
+      })
+      .finally(() => {
+        submitBtn.innerText = 'Send Inquiry';
+        submitBtn.disabled = false;
+      });
+    });
   </script>
 </body>
 </html>
