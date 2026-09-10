@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Velsci Fit — Zero-Waste Custom Tailoring</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: { 950: '#071813', 900: '#0f382c', 800: '#1b4332', 700: '#2d6a4f', 600: '#40916c', 500: '#52b788', 100: '#d8f3dc', gold: '#d4af37', goldHover: '#c19b2e', accent: '#38bdf8' }
+          },
+          fontFamily: { sans: ['Inter', 'sans-serif'], display: ['Space Grotesk', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-[#071813] text-slate-200 antialiased min-h-screen flex flex-col">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-[#0f382c]/95 backdrop-blur-md border-b border-brand-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="font-display font-extrabold text-xl tracking-wider text-white">VELSCI GLOBALS</span>
+      </a>
+      <a href="index.html" class="text-xs font-bold text-brand-gold hover:underline flex items-center gap-1.5">
+        <i class="fa-solid fa-arrow-left"></i> Back to Main Home
+      </a>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <main class="flex-grow">
+    <section class="py-16 bg-gradient-to-b from-[#0f382c] to-[#071813] border-b border-brand-800/60">
+      <div class="max-w-5xl mx-auto px-4 text-center">
+        <span class="px-3 py-1 rounded-full bg-brand-800 text-brand-gold text-xs font-semibold">Sub-Agent 01</span>
+        <h1 class="font-display text-4xl sm:text-5xl font-bold text-white mt-4 mb-4">Velsci Fit Process</h1>
+        <p class="text-slate-300 text-base max-w-2xl mx-auto">Precision custom tailoring linking European sizing precision with traditional master tailors in India.</p>
+      </div>
+    </section>
+
+    <!-- WORKFLOW STEPS -->
+    <section class="py-16">
+      <div class="max-w-5xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-[#0c241c] border border-brand-800 p-6 rounded-2xl">
+          <div class="w-10 h-10 rounded-lg bg-brand-800 text-brand-gold font-bold flex items-center justify-center mb-4">01</div>
+          <h3 class="font-bold text-lg text-white mb-2">Photo & Reference Sizing</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Submit your simple reference measurements or non-intrusive photo profiles for zero-fitting error mapping.</p>
+        </div>
+        <div class="bg-[#0c241c] border border-brand-800 p-6 rounded-2xl">
+          <div class="w-10 h-10 rounded-lg bg-brand-800 text-brand-gold font-bold flex items-center justify-center mb-4">02</div>
+          <h3 class="font-bold text-lg text-white mb-2">Artisan Crafting</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Master tailors in India stitch your custom clothing using zero-waste fabric utilization techniques.</p>
+        </div>
+        <div class="bg-[#0c241c] border border-brand-800 p-6 rounded-2xl">
+          <div class="w-10 h-10 rounded-lg bg-brand-800 text-brand-gold font-bold flex items-center justify-center mb-4">03</div>
+          <h3 class="font-bold text-lg text-white mb-2">European Express Delivery</h3>
+          <p class="text-xs text-slate-300 leading-relaxed">Direct door delivery across Europe with 100% perfect fit guarantee and hassle-free adjustments.</p>
+        </div>
+      </div>
+
+      <div class="text-center mt-12">
+        <a href="index.html#contact" class="px-8 py-3 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-xs rounded-lg transition-all">
+          Request Velsci Fit Service
+        </a>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#05120e] text-slate-400 py-6 border-t border-brand-800 text-center text-xs">
+    &copy; 2026 Velsci Globals. All rights reserved.
+  </footer>
+</body>
+</html>
