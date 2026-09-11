@@ -267,77 +267,57 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <!-- Pillar 1: Velsci Fit -->
-          <div class="glass-card rounded-2xl p-8 flex flex-col justify-between group shadow-xl">
-            <div>
-              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700 flex items-center justify-center text-brand-gold text-xl mb-6 group-hover:scale-105 transition-transform">
-                <i class="fa-solid fa-scissors"></i>
-              </div>
-              <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Fit</h3>
-              <p class="text-xs font-semibold text-brand-400 uppercase tracking-wider mb-4" data-i18n="fit-sub">On-Demand Custom Tailoring</p>
-              <p class="text-slate-300 text-sm leading-relaxed mb-6" data-i18n="fit-desc">
-                Enables precise digital sizing using non-intrusive reference photos. We map measurements directly to master tailors in India for custom-fit garments delivered to Europe with zero fabric waste.
-              </p>
-              <!-- Velsci Fit AI Feature Container -->
-              <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid #d4af37; border-radius: 12px; padding: 20px; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center;">
-                
-                <!-- Visual Highlight Banner -->
-                <div style="background: linear-gradient(90deg, rgba(212,175,55,0.2), rgba(0,0,0,0.4)); border-radius: 8px; padding: 12px; margin-bottom: 15px; border-left: 4px solid #d4af37;">
-                  <div style="font-size: 0.85rem; color: #d4af37; font-weight: bold; text-transform: uppercase; letter-spacing: 1px;">
-                    📸 Photo ➔ ✂️ AI Pattern PDF
+              <!-- Pillar 1: Fit -->
+              <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
+                <div>
+                  <div class="w-12 h-12 rounded-xl bg-brand-800/80 flex items-center justify-center mb-4">
+                    <i class="fa-solid fa-scissors text-amber-400 text-xl"></i>
                   </div>
-                  <div style="font-size: 0.8rem; color: #ccc; margin-top: 4px;">
-                    Upload your garment photo; AI will transform it into a precise pattern PDF!
+                  <h3 class="font-display text-2xl font-bold text-white mb-2">Velsci Fit</h3>
+                  <p class="text-xs font-semibold text-brand-400 uppercase tracking-wider mb-2">AI Pattern Generator</p>
+                  <p class="text-slate-300 text-sm leading-relaxed mb-6">
+                    Enables precise digital sizing using non-intrusive measurements directly for custom-fit garments.
+                  </p>
+              
+                  <!-- New Silent Supabase Upload Card Only -->
+                  <div class="mt-4 p-4 rounded-xl border border-amber-500/30 bg-slate-900/50 text-center">
+                    <div class="inline-block px-2 py-1 mb-2 text-xs font-bold uppercase rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                      📸 Garment Fitting Analysis
+                    </div>
+                    <p class="text-xs text-slate-300 mb-3">
+                      Upload your garment photo to submit for fitting evaluation.
+                    </p>
+              
+                    <form id="aiFitForm" class="flex flex-col gap-2 max-w-xs mx-auto">
+                      <label for="aiPhotoInput" class="cursor-pointer border border-dashed border-amber-500/40 p-2 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition">
+                        <span class="text-xs text-slate-300 block">📁 Choose Photo</span>
+                        <input type="file" id="aiPhotoInput" accept="image/*" required class="hidden" onchange="document.getElementById('fileName').innerText = this.files[0].name">
+                      </label>
+                      <div id="fileName" class="text-xs text-amber-400 font-mono truncate"></div>
+              
+                      <button type="submit" id="aiUploadBtn" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 px-3 rounded-lg text-xs transition duration-200">
+                        Submit Photo
+                      </button>
+                    </form>
+              
+                    <div id="aiStatus" class="mt-2 text-xs font-semibold"></div>
                   </div>
                 </div>
               
-                <!-- Upload Form -->
-                <form id="aiFitForm" style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
-                  <label for="aiPhotoInput" style="font-size: 0.8rem; color: #aaa; cursor: pointer; border: 1px dashed #d4af37; padding: 10px; border-radius: 6px; background: rgba(0,0,0,0.2);">
-                    <span>📁 Click to Select Garment Photo</span>
-                    <input type="file" id="aiPhotoInput" accept="image/*" required style="display: none;">
-                  </label>
-                  <div id="fileName" style="font-size: 0.75rem; color: #d4af37;"></div>
-              
-                  <button type="submit" id="aiUploadBtn" style="background: linear-gradient(90deg, #d4af37, #aa7c11); color: #000; border: none; padding: 10px; font-weight: bold; border-radius: 6px; cursor: pointer; transition: 0.3s; font-size: 0.9rem;">
-                    ✨ Generate PDF Pattern
-                  </button>
-                </form>
-                <div id="aiStatus" style="margin-top: 10px; font-size: 0.8rem; font-weight: bold;"></div>
+                <a href="fit.html" class="flex items-center gap-2 text-amber-400 hover:text-amber-300 text-sm font-semibold mt-6 transition">
+                  <span data-i18n="link-fit">Explore Fit</span>
+                  <i class="fa-solid fa-arrow-right"></i>
+                </a>
               </div>
               
-              <!-- Velsci Fit - Customer Photo Upload Section -->
-              <div class="mt-4 p-4 rounded-xl border border-amber-500/30 bg-slate-900/50 text-center">
-                <div class="inline-block px-2 py-1 mb-2 text-xs font-bold uppercase rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                  📸 Garment Fitting Analysis
-                </div>
-                <p class="text-xs text-slate-300 mb-3">
-                  Upload your garment photo to submit for fitting evaluation.
-                </p>
-              
-                <form id="aiFitForm" class="flex flex-col gap-2 max-w-xs mx-auto">
-                  <label for="aiPhotoInput" class="cursor-pointer border border-dashed border-amber-500/40 p-2 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition">
-                    <span class="text-xs text-slate-300 block">📁 Choose Photo</span>
-                    <input type="file" id="aiPhotoInput" accept="image/*" required class="hidden" onchange="document.getElementById('fileName').innerText = this.files[0].name">
-                  </label>
-                  <div id="fileName" class="text-xs text-amber-400 font-mono truncate"></div>
-              
-                  <button type="submit" id="aiUploadBtn" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 px-3 rounded-lg text-xs transition duration-200">
-                    Submit Photo
-                  </button>
-                </form>
-              
-                <div id="aiStatus" class="mt-2 text-xs font-semibold"></div>
-              </div>
-              
-              <!-- Direct Supabase Upload Integration -->
+              <!-- Single Supabase Script at bottom -->
               <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
               <script>
               const SUPABASE_URL = "https://opmxgfeprpmrfkjlnqjs.supabase.co";
               const SUPABASE_KEY = "sb_publishable_0cOFGdJAa8FQRxuv5Ka_HQ_FCmuZUhO";
               const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
               
-              document.getElementById('aiFitForm').addEventListener('submit', async function(e) {
+              document.getElementById('aiFitForm')?.addEventListener('submit', async function(e) {
                 e.preventDefault();
                 
                 const fileInput = document.getElementById('aiPhotoInput');
