@@ -563,48 +563,68 @@
     </div>
   </div>
 
-  <!-- SUPABASE UPLOAD INTEGRATION -->
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-  <script>
-    const SUPABASE_URL = "https://opmxgfeprpmrfkjlnqjs.supabase.co";
-    const SUPABASE_KEY = "sb_publishable_0cOFGdJAa8FQRxuv5Ka_HQ_FCmuZUhO";
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+<!-- SUPABASE UPLOAD INTEGRATION -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  const SUPABASE_URL = "https://opmxgfeprpmrfkjlnqjs.supabase.co";
+  const SUPABASE_KEY = "sb_publishable_0cOFGdJAa8FQRxuv5Ka_HQ_FCmuZUhO";
+  const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-    document.getElementById('aiFitForm')?.addEventListener('submit', async function(e) {
-      e.preventDefault();
+  document.getElementById('aiFitForm')?.addEventListener('submit', async function(e) {
+    e.preventDefault();
+    
+    const fileInput = document.getElementById('aiPhotoInput');
+    const status = document.getElementById('aiStatus');
+    const btn = document.getElementById('aiUploadBtn');
+
+    if (!fileInput || !fileInput.files.length) return;
+
+    const file = fileInput.files[0];
+    // Sanitize filename and create unique path
+    const cleanFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
+    const filePath = `uploads/${Date.now()}_${cleanFileName}`;
+
+    status.className = "mt-2 text-xs font-semibold text-amber-400";
+    status.innerText = "⏳ Uploading photo...";
+    btn.disabled = true;
+
+    try {
+      // 1. Upload to garments bucket
+      const { data, error } = await supabaseClient.storage
+        .from('garments')
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
+
+      if (error) throw error;
+
+      // 2. Get public URL of the uploaded image
+      const { data: publicUrlData } = supabaseClient.storage
+        .from('garments')
+        .getPublicUrl(filePath);
+
+      const publicUrl = publicUrlData.publicUrl;
+      console.log("File uploaded successfully. URL:", publicUrl);
+
+      // 3. UI Updates
+      status.className = "mt-2 text-xs font-semibold text-emerald-400";
+      status.innerText = "✓ Photo submitted successfully!";
       
-      const fileInput = document.getElementById('aiPhotoInput');
-      const status = document.getElementById('aiStatus');
-      const btn = document.getElementById('aiUploadBtn');
+      document.getElementById('aiFitForm').reset();
+      
+      const fileNameEl = document.getElementById('fileName');
+      if (fileNameEl) fileNameEl.innerText = "";
 
-      if (!fileInput.files.length) return;
-
-      const file = fileInput.files[0];
-      const filePath = `uploads/${Date.now()}_${file.name}`;
-
-      status.className = "mt-2 text-xs font-semibold text-amber-400";
-      status.innerText = "⏳ Uploading photo...";
-      btn.disabled = true;
-
-      try {
-        const { data, error } = await supabaseClient.storage
-          .from('garments')
-          .upload(filePath, file);
-
-        if (error) throw error;
-
-        status.className = "mt-2 text-xs font-semibold text-emerald-400";
-        status.innerText = "✓ Photo submitted successfully!";
-        document.getElementById('aiFitForm').reset();
-        document.getElementById('fileName').innerText = "";
-      } catch (err) {
-        status.className = "mt-2 text-xs font-semibold text-rose-400";
-        status.innerText = "Upload failed. Please try again.";
-      } finally {
-        btn.disabled = false;
-      }
-    });
-  </script>
+    } catch (err) {
+      console.error('Storage Upload Error:', err);
+      status.className = "mt-2 text-xs font-semibold text-rose-400";
+      status.innerText = `Upload failed: ${err.message || 'Please try again.'}`;
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
 
   <!-- SCRIPT LOGIC -->
   <script>
