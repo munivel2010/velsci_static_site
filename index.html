@@ -580,7 +580,15 @@
     if (!fileInput || !fileInput.files.length) return;
 
     const file = fileInput.files[0];
-    // Sanitize filename and create unique path
+
+    // Client-side MIME type check
+    const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
+    if (!allowedTypes.includes(file.type)) {
+      status.className = "mt-2 text-xs font-semibold text-rose-400";
+      status.innerText = "Please select a valid image file (JPEG, PNG, or WEBP).";
+      return;
+    }
+
     const cleanFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
     const filePath = `uploads/${Date.now()}_${cleanFileName}`;
 
@@ -589,25 +597,20 @@
     btn.disabled = true;
 
     try {
-      // 1. Upload to garments bucket
       const { data, error } = await supabaseClient.storage
         .from('garments')
         .upload(filePath, file, {
+          contentType: file.type, // Explicitly send the exact MIME type
           cacheControl: '3600',
           upsert: false
         });
 
       if (error) throw error;
 
-      // 2. Get public URL of the uploaded image
       const { data: publicUrlData } = supabaseClient.storage
         .from('garments')
         .getPublicUrl(filePath);
 
-      const publicUrl = publicUrlData.publicUrl;
-      console.log("File uploaded successfully. URL:", publicUrl);
-
-      // 3. UI Updates
       status.className = "mt-2 text-xs font-semibold text-emerald-400";
       status.innerText = "✓ Photo submitted successfully!";
       
@@ -625,7 +628,7 @@
     }
   });
 </script>
-
+  
   <!-- SCRIPT LOGIC -->
   <script>
     const translations = {
