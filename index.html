@@ -267,93 +267,45 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-              <!-- Pillar 1: Fit -->
-              <div class="glass-card rounded-2xl p-8 flex flex-col justify-between">
-                <div>
-                  <div class="w-12 h-12 rounded-xl bg-brand-800/80 flex items-center justify-center mb-4">
-                    <i class="fa-solid fa-scissors text-amber-400 text-xl"></i>
-                  </div>
-                  <h3 class="font-display text-2xl font-bold text-white mb-2">Velsci Fit</h3>
-                  <p class="text-xs font-semibold text-brand-400 uppercase tracking-wider mb-2">AI Pattern Generator</p>
-                  <p class="text-slate-300 text-sm leading-relaxed mb-6">
-                    Enables precise digital sizing using non-intrusive measurements directly for custom-fit garments.
-                  </p>
-              
-                  <!-- New Silent Supabase Upload Card Only -->
-                  <div class="mt-4 p-4 rounded-xl border border-amber-500/30 bg-slate-900/50 text-center">
-                    <div class="inline-block px-2 py-1 mb-2 text-xs font-bold uppercase rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
-                      📸 Garment Fitting Analysis
-                    </div>
-                    <p class="text-xs text-slate-300 mb-3">
-                      Upload your garment photo to submit for fitting evaluation.
-                    </p>
-              
-                    <form id="aiFitForm" class="flex flex-col gap-2 max-w-xs mx-auto">
-                      <label for="aiPhotoInput" class="cursor-pointer border border-dashed border-amber-500/40 p-2 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition">
-                        <span class="text-xs text-slate-300 block">📁 Choose Photo</span>
-                        <input type="file" id="aiPhotoInput" accept="image/*" required class="hidden" onchange="document.getElementById('fileName').innerText = this.files[0].name">
-                      </label>
-                      <div id="fileName" class="text-xs text-amber-400 font-mono truncate"></div>
-              
-                      <button type="submit" id="aiUploadBtn" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 px-3 rounded-lg text-xs transition duration-200">
-                        Submit Photo
-                      </button>
-                    </form>
-              
-                    <div id="aiStatus" class="mt-2 text-xs font-semibold"></div>
-                  </div>
-                </div>
-              
-                <a href="fit.html" class="flex items-center gap-2 text-amber-400 hover:text-amber-300 text-sm font-semibold mt-6 transition">
-                  <span data-i18n="link-fit">Explore Fit</span>
-                  <i class="fa-solid fa-arrow-right"></i>
-                </a>
+          
+          <!-- Pillar 1: Velsci Fit -->
+          <div class="glass-card rounded-2xl p-8 flex flex-col justify-between group shadow-xl">
+            <div>
+              <div class="w-12 h-12 rounded-xl bg-brand-800/80 border border-brand-700 flex items-center justify-center text-brand-gold text-xl mb-4 group-hover:scale-105 transition-transform">
+                <i class="fa-solid fa-scissors"></i>
               </div>
-              
-              <!-- Single Supabase Script at bottom -->
-              <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-              <script>
-              const SUPABASE_URL = "https://opmxgfeprpmrfkjlnqjs.supabase.co";
-              const SUPABASE_KEY = "sb_publishable_0cOFGdJAa8FQRxuv5Ka_HQ_FCmuZUhO";
-              const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
-              
-              document.getElementById('aiFitForm')?.addEventListener('submit', async function(e) {
-                e.preventDefault();
-                
-                const fileInput = document.getElementById('aiPhotoInput');
-                const status = document.getElementById('aiStatus');
-                const btn = document.getElementById('aiUploadBtn');
-              
-                if (!fileInput.files.length) return;
-              
-                const file = fileInput.files[0];
-                const filePath = `uploads/${Date.now()}_${file.name}`;
-              
-                status.className = "mt-2 text-xs font-semibold text-amber-400";
-                status.innerText = "⏳ Uploading photo...";
-                btn.disabled = true;
-              
-                try {
-                  const { data, error } = await supabaseClient.storage
-                    .from('garments')
-                    .upload(filePath, file);
-              
-                  if (error) throw error;
-              
-                  status.className = "mt-2 text-xs font-semibold text-emerald-400";
-                  status.innerText = "✓ Photo submitted successfully!";
-                  document.getElementById('aiFitForm').reset();
-                  document.getElementById('fileName').innerText = "";
-                } catch (err) {
-                  status.className = "mt-2 text-xs font-semibold text-rose-400";
-                  status.innerText = "Upload failed. Please try again.";
-                } finally {
-                  btn.disabled = false;
-                }
-              });
-              </script>
+              <h3 class="font-display text-2xl font-bold text-white mb-1">Velsci Fit</h3>
+              <p class="text-xs font-semibold text-brand-400 uppercase tracking-wider mb-2" data-i18n="fit-sub">On-Demand Custom Tailoring</p>
+              <p class="text-slate-300 text-sm leading-relaxed mb-6" data-i18n="fit-desc">
+                Enables precise digital sizing using non-intrusive measurements directly for custom-fit garments.
+              </p>
+
+              <!-- Customer Photo Upload Box -->
+              <div class="mt-4 p-4 rounded-xl border border-amber-500/30 bg-slate-900/50 text-center">
+                <div class="inline-block px-2 py-1 mb-2 text-xs font-bold uppercase rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                  📸 Garment Fitting Analysis
+                </div>
+                <p class="text-xs text-slate-300 mb-3">
+                  Upload your garment photo to submit for fitting evaluation.
+                </p>
+
+                <form id="aiFitForm" class="flex flex-col gap-2 max-w-xs mx-auto">
+                  <label for="aiPhotoInput" class="cursor-pointer border border-dashed border-amber-500/40 p-2 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition">
+                    <span class="text-xs text-slate-300 block">📁 Choose Photo</span>
+                    <input type="file" id="aiPhotoInput" accept="image/*" required class="hidden" onchange="document.getElementById('fileName').innerText = this.files[0].name">
+                  </label>
+                  <div id="fileName" class="text-xs text-amber-400 font-mono truncate"></div>
+
+                  <button type="submit" id="aiUploadBtn" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 px-3 rounded-lg text-xs transition duration-200">
+                    Submit Photo
+                  </button>
+                </form>
+
+                <div id="aiStatus" class="mt-2 text-xs font-semibold"></div>
+              </div>
             </div>
-            <a href="fit.html" class="flex items-center justify-between text-xs font-bold text-brand-gold border-t border-brand-800/60 pt-4 group-hover:underline">
+
+            <a href="fit.html" class="flex items-center justify-between text-xs font-bold text-brand-gold border-t border-brand-800/60 pt-4 mt-6 group-hover:underline">
               <span data-i18n="link-fit">Explore Velsci Fit Module</span>
               <i class="fa-solid fa-arrow-right"></i>
             </a>
@@ -394,6 +346,7 @@
               <i class="fa-solid fa-arrow-right"></i>
             </a>
           </div>
+
         </div>
       </div>
     </section>
@@ -551,6 +504,49 @@
     </div>
   </div>
 
+  <!-- SUPABASE UPLOAD INTEGRATION -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>
+    const SUPABASE_URL = "https://opmxgfeprpmrfkjlnqjs.supabase.co";
+    const SUPABASE_KEY = "sb_publishable_0cOFGdJAa8FQRxuv5Ka_HQ_FCmuZUhO";
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    document.getElementById('aiFitForm')?.addEventListener('submit', async function(e) {
+      e.preventDefault();
+      
+      const fileInput = document.getElementById('aiPhotoInput');
+      const status = document.getElementById('aiStatus');
+      const btn = document.getElementById('aiUploadBtn');
+
+      if (!fileInput.files.length) return;
+
+      const file = fileInput.files[0];
+      const filePath = `uploads/${Date.now()}_${file.name}`;
+
+      status.className = "mt-2 text-xs font-semibold text-amber-400";
+      status.innerText = "⏳ Uploading photo...";
+      btn.disabled = true;
+
+      try {
+        const { data, error } = await supabaseClient.storage
+          .from('garments')
+          .upload(filePath, file);
+
+        if (error) throw error;
+
+        status.className = "mt-2 text-xs font-semibold text-emerald-400";
+        status.innerText = "✓ Photo submitted successfully!";
+        document.getElementById('aiFitForm').reset();
+        document.getElementById('fileName').innerText = "";
+      } catch (err) {
+        status.className = "mt-2 text-xs font-semibold text-rose-400";
+        status.innerText = "Upload failed. Please try again.";
+      } finally {
+        btn.disabled = false;
+      }
+    });
+  </script>
+
   <!-- SCRIPT LOGIC -->
   <script>
     const translations = {
@@ -577,7 +573,7 @@
         "eco-title": "Our Integrated Ecosystem",
         "eco-subtitle": "Three core operations managed under unified European data and quality standards.",
         "fit-sub": "On-Demand Custom Tailoring",
-        "fit-desc": "Enables precise digital sizing using non-intrusive reference photos. We map measurements directly to master tailors in India for custom-fit garments delivered to Europe with zero fabric waste.",
+        "fit-desc": "Enables precise digital sizing using non-intrusive measurements directly for custom-fit garments.",
         "link-fit": "Explore Velsci Fit Module",
         "care-sub": "Circular Garment Preservation",
         "care-desc": "Dedicated eco-preservation methods that triple the lifespan of high-grade textiles. We prevent damage caused by conventional domestic washing and manage circular garment recycling.",
