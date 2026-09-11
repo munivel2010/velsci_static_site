@@ -296,7 +296,7 @@
                 <form id="aiFitForm" style="display: flex; flex-direction: column; gap: 10px; max-width: 320px; margin: 0 auto;">
                   <label for="aiPhotoInput" style="font-size: 0.8rem; color: #aaa; cursor: pointer; border: 1px dashed #d4af37; padding: 10px; border-radius: 6px; background: rgba(0,0,0,0.2);">
                     <span>📁 Click to Select Garment Photo</span>
-                    <input type="file" id="aiPhotoInput" accept="image/*" style="display: none;">
+                    <input type="file" id="aiPhotoInput" accept="image/*" required style="display: none;">
                   </label>
                   <div id="fileName" style="font-size: 0.75rem; color: #d4af37;"></div>
               
@@ -309,111 +309,53 @@
               
               <!-- API Integration Script -->
               <script>
-                const photoInput = document.getElementById('aiPhotoInput');
-                const fileNameDisplay = document.getElementById('fileName');
-                const aiForm = document.getElementById('aiFitForm');
+              document.getElementById('aiPhotoInput').addEventListener('change', function() {
+                if (this.files && this.files[0]) {
+                  document.getElementById('fileName').innerText = 'Selected: ' + this.files[0].name;
+                }
+              });
+              
+              document.getElementById('aiFitForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const fileInput = document.getElementById('aiPhotoInput');
                 const status = document.getElementById('aiStatus');
                 const btn = document.getElementById('aiUploadBtn');
-
-                // 1. பக்கம் லோட் ஆகும்போது ஏற்கனவே சேமிக்கப்பட்ட போட்டோ உள்ளதா எனச் சரிபார்க்கும்
-                window.addEventListener('DOMContentLoaded', () => {
-                  const savedImage = localStorage.getItem('velsci_temp_garment_photo');
-                  const savedFileName = localStorage.getItem('velsci_temp_file_name');
-
-                  if (savedImage && savedFileName && fileNameDisplay) {
-                    fileNameDisplay.innerText = 'Selected (Restored): ' + savedFileName;
-                  }
-                });
-
-                // 2. பயனர் போட்டோவை செலக்ட் செய்யும்போது localStorage-ல் சேமிக்கும்
-                if (photoInput) {
-                  photoInput.addEventListener('change', function() {
-                    if (this.files && this.files[0]) {
-                      const file = this.files[0];
-                      if (fileNameDisplay) {
-                        fileNameDisplay.innerText = 'Selected: ' + file.name;
-                      }
-
-                      const reader = new FileReader();
-                      reader.onload = function(e) {
-                        localStorage.setItem('velsci_temp_garment_photo', e.target.result);
-                        localStorage.setItem('velsci_temp_file_name', file.name);
-                      };
-                      reader.readAsDataURL(file);
-                    }
+              
+                if (!fileInput.files.length) return;
+              
+                const formData = new FormData();
+                formData.append('file', fileInput.files[0]);
+              
+                status.style.color = "#d4af37";
+                status.innerText = "⏳ Processing image & generating pattern...";
+                btn.disabled = true;
+              
+                try {
+                  const response = await fetch('https://velsci-garment-api.onrender.com/process-garment/', {
+                    method: 'POST',
+                    body: formData
                   });
-                }
-
-                // 3. Form Submit செயல்பாடு
-                if (aiForm) {
-                  aiForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-
-                    let fileToUpload = photoInput ? photoInput.files[0] : null;
-
-                    // பக்கம் ரீலோட் ஆகி input-ல் File இல்லையென்றால் localStorage-லிருந்து மீட்டெடுக்கும்
-                    if (!fileToUpload) {
-                      const savedImage = localStorage.getItem('velsci_temp_garment_photo');
-                      const savedFileName = localStorage.getItem('velsci_temp_file_name');
-
-                      if (savedImage && savedFileName) {
-                        fileToUpload = dataURLtoFile(savedImage, savedFileName);
-                      } else {
-                        alert("தயவுசெய்து ஒரு போட்டோவை அப்லோட் செய்யுங்கள்!");
-                        return;
-                      }
-                    }
-
-                    const formData = new FormData();
-                    formData.append('file', fileToUpload);
-
-                    status.style.color = "#d4af37";
-                    status.innerText = "⏳ Processing image & generating pattern...";
-                    btn.disabled = true;
-
-                    try {
-                      const response = await fetch('https://velsci-garment-api.onrender.com/process-garment/', {
-                        method: 'POST',
-                        body: formData
-                      });
-
-                      if (response.ok) {
-                        const blob = await response.blob();
-                        const pdfUrl = URL.createObjectURL(blob);
-                        
-                        window.open(pdfUrl, '_blank');
-                        
-                        status.style.color = "#10b981";
-                        status.innerText = "✓ PDF Pattern generated successfully!";
-
-                        // வெற்றிக்குப் பிறகு தற்காலிகச் சேமிப்பை நீக்குதல்
-                        localStorage.removeItem('velsci_temp_garment_photo');
-                        localStorage.removeItem('velsci_temp_file_name');
-                      } else {
-                        status.style.color = "#ef4444";
-                        status.innerText = "Error processing image. Try again.";
-                      }
-                    } catch (err) {
-                      status.style.color = "#ef4444";
-                      status.innerText = "Connection error to Render backend.";
-                    } fontally {
-                      btn.disabled = false;
-                    }
-                  });
-                }
-
-                // Helper Function: Base64 string-ஐ File Object ஆக மாற்ற
-                function dataURLtoFile(dataurl, filename) {
-                  let arr = dataurl.split(','),
-                      mime = arr[0].match(/:(.*?);/)[1],
-                      bstr = atob(arr[1]), 
-                      n = bstr.length, 
-                      u8arr = new Uint8Array(n);
-                  while(n--){
-                      u8arr[n] = bstr.charCodeAt(n);
+              
+                  if (response.ok) {
+                    const blob = await response.blob();
+                    const pdfUrl = URL.createObjectURL(blob);
+                    
+                    window.open(pdfUrl, '_blank');
+                    
+                    status.style.color = "#10b981";
+                    status.innerText = "✓ PDF Pattern generated successfully!";
+                  } else {
+                    status.style.color = "#ef4444";
+                    status.innerText = "Error processing image. Try again.";
                   }
-                  return new File([u8arr], filename, {type:mime});
+                } catch (err) {
+                  status.style.color = "#ef4444";
+                  status.innerText = "Connection error to Render backend.";
+                } finally {
+                  btn.disabled = false;
                 }
+              });
               </script>
             </div>
             <a href="fit.html" class="flex items-center justify-between text-xs font-bold text-brand-gold border-t border-brand-800/60 pt-4 group-hover:underline">
