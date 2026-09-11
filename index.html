@@ -278,7 +278,6 @@
               <p class="text-slate-300 text-sm leading-relaxed mb-6" data-i18n="fit-desc">
                 Enables precise digital sizing using non-intrusive reference photos. We map measurements directly to master tailors in India for custom-fit garments delivered to Europe with zero fabric waste.
               </p>
-
               <!-- Velsci Fit AI Feature Container -->
               <div style="background: rgba(255, 255, 255, 0.03); border: 1px solid #d4af37; border-radius: 12px; padding: 20px; margin-top: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); text-align: center;">
                 
@@ -307,115 +306,71 @@
                 <div id="aiStatus" style="margin-top: 10px; font-size: 0.8rem; font-weight: bold;"></div>
               </div>
               
-               <!-- API Integration Script -->
+              <!-- Velsci Fit - Customer Photo Upload Section -->
+              <div class="mt-4 p-4 rounded-xl border border-amber-500/30 bg-slate-900/50 text-center">
+                <div class="inline-block px-2 py-1 mb-2 text-xs font-bold uppercase rounded-full bg-amber-500/20 text-amber-400 border border-amber-500/30">
+                  📸 Garment Fitting Analysis
+                </div>
+                <p class="text-xs text-slate-300 mb-3">
+                  Upload your garment photo to submit for fitting evaluation.
+                </p>
+              
+                <form id="aiFitForm" class="flex flex-col gap-2 max-w-xs mx-auto">
+                  <label for="aiPhotoInput" class="cursor-pointer border border-dashed border-amber-500/40 p-2 rounded-lg bg-slate-800/50 hover:bg-slate-800 transition">
+                    <span class="text-xs text-slate-300 block">📁 Choose Photo</span>
+                    <input type="file" id="aiPhotoInput" accept="image/*" required class="hidden" onchange="document.getElementById('fileName').innerText = this.files[0].name">
+                  </label>
+                  <div id="fileName" class="text-xs text-amber-400 font-mono truncate"></div>
+              
+                  <button type="submit" id="aiUploadBtn" class="bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold py-2 px-3 rounded-lg text-xs transition duration-200">
+                    Submit Photo
+                  </button>
+                </form>
+              
+                <div id="aiStatus" class="mt-2 text-xs font-semibold"></div>
+              </div>
+              
+              <!-- Direct Supabase Upload Integration -->
+              <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
               <script>
-                const photoInput = document.getElementById('aiPhotoInput');
-                const fileNameDisplay = document.getElementById('fileName');
-                const aiForm = document.getElementById('aiFitForm');
+              const SUPABASE_URL = "https://opmxgfeprpmrfkjlnqjs.supabase.co";
+              const SUPABASE_KEY = "sb_publishable_0cOFGdJAa8FQRxuv5Ka_HQ_FCmuZUhO";
+              const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+              
+              document.getElementById('aiFitForm').addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const fileInput = document.getElementById('aiPhotoInput');
                 const status = document.getElementById('aiStatus');
                 const btn = document.getElementById('aiUploadBtn');
               
-                // 1. Check for saved image in localStorage on page load
-                window.addEventListener('DOMContentLoaded', () => {
-                  const savedImage = localStorage.getItem('velsci_temp_garment_photo');
-                  const savedFileName = localStorage.getItem('velsci_temp_file_name');
+                if (!fileInput.files.length) return;
               
-                  if (savedImage && savedFileName && fileNameDisplay) {
-                    fileNameDisplay.innerText = 'Selected (Restored): ' + savedFileName;
-                  }
-                });
+                const file = fileInput.files[0];
+                const filePath = `uploads/${Date.now()}_${file.name}`;
               
-                // 2. Save selected image to localStorage
-                if (photoInput) {
-                  photoInput.addEventListener('change', function() {
-                    if (this.files && this.files[0]) {
-                      const file = this.files[0];
-                      if (fileNameDisplay) {
-                        fileNameDisplay.innerText = 'Selected: ' + file.name;
-                      }
+                status.className = "mt-2 text-xs font-semibold text-amber-400";
+                status.innerText = "⏳ Uploading photo...";
+                btn.disabled = true;
               
-                      const reader = new FileReader();
-                      reader.onload = function(e) {
-                        localStorage.setItem('velsci_temp_garment_photo', e.target.result);
-                        localStorage.setItem('velsci_temp_file_name', file.name);
-                      };
-                      reader.readAsDataURL(file);
-                    }
-                  });
+                try {
+                  const { data, error } = await supabaseClient.storage
+                    .from('garments')
+                    .upload(filePath, file);
+              
+                  if (error) throw error;
+              
+                  status.className = "mt-2 text-xs font-semibold text-emerald-400";
+                  status.innerText = "✓ Photo submitted successfully!";
+                  document.getElementById('aiFitForm').reset();
+                  document.getElementById('fileName').innerText = "";
+                } catch (err) {
+                  status.className = "mt-2 text-xs font-semibold text-rose-400";
+                  status.innerText = "Upload failed. Please try again.";
+                } finally {
+                  btn.disabled = false;
                 }
-              
-                // 3. Form Submit Handler
-                if (aiForm) {
-                  aiForm.addEventListener('submit', async function(e) {
-                    e.preventDefault();
-              
-                    let fileToUpload = photoInput ? photoInput.files[0] : null;
-              
-                    // If page reloaded and input is empty, restore file from localStorage
-                    if (!fileToUpload) {
-                      const savedImage = localStorage.getItem('velsci_temp_garment_photo');
-                      const savedFileName = localStorage.getItem('velsci_temp_file_name');
-              
-                      if (savedImage && savedFileName) {
-                        fileToUpload = dataURLtoFile(savedImage, savedFileName);
-                      } else {
-                        alert("Please upload a photo!");
-                        return;
-                      }
-                    }
-              
-                    const formData = new FormData();
-                    formData.append('file', fileToUpload);
-              
-                    status.style.color = "#d4af37";
-                    status.innerText = "⏳ Processing image & generating pattern...";
-                    btn.disabled = true;
-              
-                    try {
-                      const response = await fetch('https://velsci-garment-api.onrender.com/process-and-save/', {
-                        method: 'POST',
-                        body: formData
-                      });
-              
-                      if (response.ok) {
-                        const result = await response.json();
-                        const pdfUrl = result.data ? result.data.pdf_url : null;
-                        
-                        if (pdfUrl) {
-                          window.open(pdfUrl, '_blank');
-                        }
-                        
-                        status.style.color = "#10b981";
-                        status.innerText = "✓ PDF Pattern generated successfully!";
-              
-                        // Clear temporary storage on success
-                        localStorage.removeItem('velsci_temp_garment_photo');
-                        localStorage.removeItem('velsci_temp_file_name');
-                      } else {
-                        status.style.color = "#ef4444";
-                        status.innerText = "Error processing image. Try again.";
-                      }
-                    } catch (err) {
-                      status.style.color = "#ef4444";
-                      status.innerText = "Connection error to Render backend.";
-                    } finally {
-                      btn.disabled = false;
-                    }
-                  });
-                }
-              
-                // Helper Function: Convert Base64 string to File Object
-                function dataURLtoFile(dataurl, filename) {
-                  let arr = dataurl.split(','),
-                      mime = arr[0].match(/:(.*?);/)[1],
-                      bstr = atob(arr[1]), 
-                      n = bstr.length, 
-                      u8arr = new Uint8Array(n);
-                  while(n--){
-                      u8arr[n] = bstr.charCodeAt(n);
-                  }
-                  return new File([u8arr], filename, {type:mime});
-                }
+              });
               </script>
             </div>
             <a href="fit.html" class="flex items-center justify-between text-xs font-bold text-brand-gold border-t border-brand-800/60 pt-4 group-hover:underline">
