@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velsci Fit — AI Pattern & Fabric Estimator Engine</title>
+  <title>Velsci Fit — AI Puzzle Pattern Generator</title>
 
   <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -37,9 +37,9 @@
     <div class="flex justify-between items-center border-b border-emerald-800/60 pb-4">
       <div>
         <h1 class="text-2xl font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-scissors text-amber-400"></i> Velsci Fit Engine (Render Python Connected)
+          <i class="fa-solid fa-scissors text-amber-400"></i> Velsci Fit Puzzle Pattern Generator
         </h1>
-        <p class="text-xs text-slate-400">Computer Vision-based Multi-Reference Scaling & Pattern Extraction</p>
+        <p class="text-xs text-slate-400">Computer Vision Contour Extraction & Numbered Printable Puzzle Grid</p>
       </div>
       <a href="index.html" class="px-3 py-1.5 bg-emerald-900/60 hover:bg-emerald-800 border border-emerald-700/50 rounded-lg text-xs text-slate-200">
         ➔ Back to Main Site
@@ -66,25 +66,29 @@
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">3. Cutting Allowance (%):</label>
-          <input type="number" id="cuttingMargin" value="10" class="w-full px-3 py-2 rounded-lg bg-[#051410] border border-emerald-800 text-xs text-white focus:outline-none">
+          <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">3. Puzzle Grid Layout:</label>
+          <select id="puzzleGridSelect" class="w-full px-3 py-2 rounded-lg bg-[#051410] border border-emerald-800 text-xs text-white focus:outline-none">
+            <option value="3x3">3 x 3 (9 Pieces)</option>
+            <option value="4x4" selected>4 x 4 (16 Pieces - Standard)</option>
+            <option value="5x5">5 x 5 (25 Pieces)</option>
+          </select>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">4. Fabric Roll Width:</label>
-          <select id="fabricRollWidth" class="w-full px-3 py-2 rounded-lg bg-[#051410] border border-emerald-800 text-xs text-white focus:outline-none">
-            <option value="44" selected>44 Inches (India Standard)</option>
-            <option value="36">36 Inches (Small Width)</option>
-            <option value="60">60 Inches (Global Width)</option>
-          </select>
+          <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">4. Cutting Allowance (%):</label>
+          <input type="number" id="cuttingMargin" value="10" class="w-full px-3 py-2 rounded-lg bg-[#051410] border border-emerald-800 text-xs text-white focus:outline-none">
         </div>
 
       </div>
 
       <div class="flex flex-wrap gap-3 pt-2">
         <button id="processBtn" onclick="processWithRenderBackend()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs transition-all flex items-center gap-2">
-          <i class="fa-solid fa-microchip"></i>
-          <span>Process Pattern via Render API</span>
+          <i class="fa-solid fa-puzzle-piece"></i>
+          <span>Generate Numbered Puzzle Pattern</span>
+        </button>
+        <button id="downloadBtn" onclick="downloadPattern()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-xs transition-all hidden flex items-center gap-2">
+          <i class="fa-solid fa-download"></i>
+          <span>Download Printable Pattern</span>
         </button>
       </div>
     </div>
@@ -93,13 +97,13 @@
     <div id="statusBox" class="p-3 bg-amber-500/20 border border-amber-500/40 text-amber-300 rounded-lg text-xs font-mono text-center hidden"></div>
 
     <div id="patternOutput" class="glass-card p-5 rounded-xl border border-emerald-500/40 hidden">
-      <h4 class="text-sm font-bold text-amber-400 mb-2">Automated Analysis Results (Python Render Engine):</h4>
+      <h4 class="text-sm font-bold text-amber-400 mb-2">Automated Pattern & Fabric Analysis:</h4>
       <div id="outputDetails" class="text-xs text-slate-200 leading-relaxed font-mono space-y-1"></div>
     </div>
 
-    <!-- Image Display Canvas -->
-    <div class="glass-card p-4 rounded-2xl flex justify-center items-center overflow-auto">
-      <canvas id="canvasDisplay" class="max-w-full rounded-lg border border-dashed border-emerald-500/50"></canvas>
+    <!-- Processed Image Output -->
+    <div class="glass-card p-4 rounded-2xl flex flex-col justify-center items-center overflow-auto">
+      <img id="processedImgDisplay" class="max-w-full rounded-lg border border-dashed border-emerald-500/50 hidden" alt="Extracted Puzzle Pattern">
     </div>
 
   </div>
@@ -119,6 +123,7 @@
     }
 
     let base64Image = null;
+    let resultBase64 = null;
 
     document.getElementById('imageInput').addEventListener('change', function(e) {
       const file = e.target.files[0];
@@ -126,15 +131,6 @@
         const reader = new FileReader();
         reader.onload = function(event) {
           base64Image = event.target.result;
-          const img = new Image();
-          img.onload = function() {
-            const canvas = document.getElementById('canvasDisplay');
-            canvas.width = img.width;
-            canvas.height = img.height;
-            const ctx = canvas.getContext('2d');
-            ctx.drawImage(img, 0, 0);
-          }
-          img.src = base64Image;
         }
         reader.readAsDataURL(file);
       }
@@ -150,16 +146,22 @@
       const processBtn = document.getElementById('processBtn');
       const refSelect = document.getElementById('refTypeSelect');
       const selectedOption = refSelect.options[refSelect.selectedIndex];
+      
+      const gridVal = document.getElementById('puzzleGridSelect').value.split('x');
+      const rows = parseInt(gridVal[0]);
+      const cols = parseInt(gridVal[1]);
 
       statusBox.classList.remove('hidden');
-      statusBox.innerText = "⏳ Connecting to Render Python API... Processing image contours and reference scaling.";
+      statusBox.innerText = "⏳ Extracting Garment Contour & Generating Numbered Puzzle Pattern Grid...";
       processBtn.disabled = true;
 
       const payload = {
         image: base64Image,
         ref_type: refSelect.value,
         known_width_mm: parseFloat(selectedOption.getAttribute('data-size')),
-        margin: parseFloat(document.getElementById('cuttingMargin').value)
+        margin: parseFloat(document.getElementById('cuttingMargin').value),
+        grid_rows: rows,
+        grid_cols: cols
       };
 
       try {
@@ -173,28 +175,25 @@
 
         if (data.success) {
           statusBox.className = "p-3 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 rounded-lg text-xs font-mono text-center";
-          statusBox.innerText = "✓ Processing Complete! Contour Extracted & Fabric Calculated.";
+          statusBox.innerText = "✓ Contour Extracted & Numbered Puzzle Pattern Generated Successfully!";
 
-          // Draw Bounding Box on Canvas
-          const canvas = document.getElementById('canvasDisplay');
-          const ctx = canvas.getContext('2d');
-          const box = data.bounding_box;
+          resultBase64 = data.processed_image;
+          const imgEl = document.getElementById('processedImgDisplay');
+          imgEl.src = resultBase64;
+          imgEl.classList.remove('hidden');
 
-          ctx.strokeStyle = '#f59e0b';
-          ctx.lineWidth = 6;
-          ctx.strokeRect(box.x, box.y, box.w, box.h);
+          document.getElementById('downloadBtn').classList.remove('hidden');
 
-          // Display Output Data
           document.getElementById('patternOutput').classList.remove('hidden');
           document.getElementById('outputDetails').innerHTML = `
             <div>• Measured Bounding Width: <b class="text-emerald-400">${data.measured_width_cm} cm</b></div>
             <div>• Measured Bounding Height: <b class="text-emerald-400">${data.measured_height_cm} cm</b></div>
             <div>• Reference Object Selected: <b>${selectedOption.text}</b></div>
-            <div>• Seam & Cutting Allowance: <b>+${document.getElementById('cuttingMargin').value}%</b></div>
-            <div class="pt-2 text-sm text-amber-400 font-bold">➔ Estimated Total Fabric Needed: ${data.required_meters} Meters</div>
+            <div>• Generated Puzzle Tiles: <b class="text-amber-400">${data.total_puzzle_pieces} Numbered Pieces (P-1 to P-${data.total_puzzle_pieces})</b></div>
+            <div class="pt-2 text-sm text-amber-400 font-bold">➔ Estimated Fabric Needed: ${data.required_meters} Meters</div>
           `;
         } else {
-          throw new Error(data.error || "Failed to process image.");
+          throw new Error(data.error || "Failed to process pattern.");
         }
       } catch (err) {
         statusBox.className = "p-3 bg-rose-500/20 border border-rose-500/40 text-rose-300 rounded-lg text-xs font-mono text-center";
@@ -202,6 +201,14 @@
       } finally {
         processBtn.disabled = false;
       }
+    }
+
+    function downloadPattern() {
+      if (!resultBase64) return;
+      const a = document.createElement('a');
+      a.href = resultBase64;
+      a.download = 'velsci-fit-puzzle-pattern.jpg';
+      a.click();
     }
   </script>
 </body>
