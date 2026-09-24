@@ -225,9 +225,9 @@
         <!-- Metric Cards -->
         <div class="mt-16 pt-10 border-t border-brand-800/60 grid grid-cols-2 md:grid-cols-4 gap-6 text-slate-300 text-xs font-medium max-w-5xl mx-auto">
           <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center gap-2">
-            <i class="fa-solid fa-graduation-cap text-brand-gold text-xl" aria-hidden="true"></i>
-            <span class="text-white font-bold text-sm">FAU Incubator</span>
-            <span class="text-slate-400" data-i18n="stat-1">German Academic Partner</span>
+            <i class="fa-solid fa-microchip text-brand-gold text-xl" aria-hidden="true"></i>
+            <span class="text-white font-bold text-sm">R&D Standard</span>
+            <span class="text-slate-400" data-i18n="stat-1">Indo-European Tech Integration</span>
           </div>
           <div class="glass-card p-4 rounded-xl text-center flex flex-col items-center gap-2">
             <i class="fa-solid fa-shield-halved text-brand-gold text-xl" aria-hidden="true"></i>
@@ -449,7 +449,7 @@
         <div class="text-center mb-12">
           <span class="text-xs uppercase font-bold text-brand-gold tracking-widest block mb-2" data-i18n="contact-tag">Get In Touch</span>
           <h2 class="font-display text-3xl font-bold text-white" data-i18n="contact-title">Contact Velsci Globals</h2>
-          <p class="text-slate-400 text-sm mt-2" data-i18n="contact-subtitle">Have questions about our platform, services, or incubator partnership?</p>
+          <p class="text-slate-400 text-sm mt-2" data-i18n="contact-subtitle">Have questions about our platform, services, or technology partnership?</p>
         </div>
     
         <div class="glass-card p-8 rounded-2xl shadow-xl">
@@ -542,7 +542,7 @@
           <a href="mailto:info@velsci.com" class="text-brand-gold underline">info@velsci.com</a><br>
           <a href="mailto:contact@velsci.com" class="text-brand-gold underline">contact@velsci.com</a>
         </p>
-        <p><strong class="text-white">Academic Incubator Partner:</strong> Friedrich-Alexander-Universität Erlangen-Nürnberg (FAU), Germany</p>
+        <p><strong class="text-white">Academic & R&D Standards:</strong> European Technology & Data Protection Alignment</p>
       </div>
       <div class="pt-3 border-t border-brand-800 text-right">
         <button onclick="closeModal('modal-impressum')" class="px-4 py-2 bg-brand-800 hover:bg-brand-700 text-white rounded-lg text-xs font-semibold transition-colors">Close Notice</button>
@@ -570,6 +570,25 @@
     </div>
   </div>
 
+  <!-- COOKIE CONSENT BANNER (GDPR COMPLIANCE) -->
+  <div id="cookie-banner" class="fixed bottom-4 left-4 right-4 md:left-8 md:right-auto md:max-w-md bg-[#0a231b] border border-brand-gold/40 p-5 rounded-2xl shadow-2xl z-50 hidden">
+    <div class="flex items-start gap-3">
+      <i class="fa-solid fa-cookie-bite text-brand-gold text-2xl mt-1" aria-hidden="true"></i>
+      <div class="text-xs text-slate-300 space-y-2">
+        <p class="font-bold text-white text-sm">We value your privacy 🍪</p>
+        <p>We use essential cookies to ensure our platform functions securely and efficiently in accordance with EU GDPR guidelines.</p>
+        <div class="flex gap-2 pt-1">
+          <button onclick="acceptCookies()" class="px-4 py-1.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold rounded-lg text-xs transition-all">
+            Accept All
+          </button>
+          <button onclick="openModal('modal-privacy')" class="px-3 py-1.5 border border-brand-800 hover:bg-brand-800 text-slate-300 rounded-lg text-xs transition-all">
+            Preferences
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 <!-- SUPABASE UPLOAD INTEGRATION -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
@@ -588,7 +607,6 @@
 
     const file = fileInput.files[0];
 
-    // Security MIME type check
     const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/webp'];
     if (!allowedTypes.includes(file.type)) {
       status.className = "mt-2 text-xs font-semibold text-rose-400";
@@ -596,7 +614,6 @@
       return;
     }
 
-    // Sanitize filename against Directory Traversal & XSS
     const cleanFileName = file.name.replace(/[^a-zA-Z0-9.-]/g, '_');
     const filePath = `uploads/${Date.now()}_${cleanFileName}`;
 
@@ -649,7 +666,7 @@
         "hero-badge": "Indo-European High-Tech Ecosystem",
         "hero-desc": "Connecting traditional artisan expertise in South Asia with European tech-driven precision. We deliver zero-waste custom tailoring, circular fabric preservation, and compassionate cross-border family support.",
         "hero-btn-primary": "Explore Ecosystem",
-        "stat-1": "German Academic Partner",
+        "stat-1": "Indo-European Tech Integration",
         "stat-2": "EU Data Protection",
         "stat-3": "On-Demand Production",
         "stat-4": "Artisan Empowerment",
@@ -676,7 +693,7 @@
         "stat-impact-3": "Year-Round Artisan Income",
         "contact-tag": "Get In Touch",
         "contact-title": "Contact Velsci Globals",
-        "contact-subtitle": "Have questions about our platform, services, or incubator partnership?",
+        "contact-subtitle": "Have questions about our platform, services, or technology partnership?",
         "form-name": "Your Name",
         "form-email": "Email Address",
         "form-message": "How can we help?",
@@ -695,7 +712,7 @@
         "hero-badge": "Indo-Europäisches High-Tech Ökosystem",
         "hero-desc": "Verbindung traditioneller Handwerkskunst aus Südasiens mit europäischer technischer Präzision. Wir bieten am Bedarf orientierte Maßschneiderei, zirkuläre Textilerhaltung und verlässliche Seniorenbetreuung.",
         "hero-btn-primary": "Ökosystem Entdecken",
-        "stat-1": "Deutscher Akademischer Partner",
+        "stat-1": "Indo-Europäische Tech Integration",
         "stat-2": "EU-Datenschutzkonform",
         "stat-3": "Bedarfsorientierte Produktion",
         "stat-4": "Stärkung des Handwerks",
@@ -722,7 +739,7 @@
         "stat-impact-3": "Faires Ganzjähriges Einkommen",
         "contact-tag": "Kontakt Aufnehmen",
         "contact-title": "Kontakt zu Velsci Globals",
-        "contact-subtitle": "Haben Sie Fragen zu unseren Diensten oder unserer Inkubator-Partnerschaft?",
+        "contact-subtitle": "Haben Sie Fragen zu unseren Diensten oder unserer Technologie-Partnerschaft?",
         "form-name": "Ihr Name",
         "form-email": "E-Mail-Adresse",
         "form-message": "Wie können wir helfen?",
@@ -768,6 +785,18 @@
 
     function closeModal(id) {
       document.getElementById(id).classList.add('hidden');
+    }
+
+    // GDPR Cookie Banner Check
+    window.addEventListener('DOMContentLoaded', () => {
+      if (!localStorage.getItem('velsci_cookie_consent')) {
+        document.getElementById('cookie-banner').classList.remove('hidden');
+      }
+    });
+
+    function acceptCookies() {
+      localStorage.setItem('velsci_cookie_consent', 'accepted');
+      document.getElementById('cookie-banner').classList.add('hidden');
     }
 
     async function handleFormSubmit(event) {
