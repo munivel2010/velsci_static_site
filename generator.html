@@ -3,12 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velsci Fit — Secure Pattern & Fabric Estimator</title>
-
-  <!-- Security Meta Headers -->
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; img-src 'self' data: blob:;">
-  <meta http-equiv="X-Content-Type-Options" content="nosniff">
-  <meta http-equiv="X-Frame-Options" content="DENY">
+  <title>Velsci Fit — AI Pattern & Fabric Estimator Engine</title>
 
   <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -28,9 +23,9 @@
         <i class="fa-solid fa-lock"></i>
       </div>
       <h3 class="text-xl font-bold text-white">Velsci Fit Access Control</h3>
-      <p class="text-xs text-slate-300">Enter Passcode to access the Pattern Tool:</p>
+      <p class="text-xs text-slate-300">Enter Passcode to access the Precision Engine:</p>
       <input type="password" id="passcodeKey" placeholder="Enter Access PIN (e.g. 2026)" class="w-full px-4 py-2.5 rounded-lg bg-[#051410] border border-emerald-800 text-white text-center font-mono text-base focus:outline-none focus:border-amber-400">
-      <button onclick="verifyAccess()" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-sm transition-all">Access Tool</button>
+      <button onclick="verifyAccess()" class="w-full py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-sm transition-all">Access Engine</button>
       <p id="errMsg" class="text-xs text-rose-400 hidden">Invalid Passcode! Please try again.</p>
     </div>
   </div>
@@ -42,70 +37,76 @@
     <div class="flex justify-between items-center border-b border-emerald-800/60 pb-4">
       <div>
         <h1 class="text-2xl font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-scissors text-amber-400"></i> Velsci Fit Pattern & Fabric Estimator
+          <i class="fa-solid fa-scissors text-amber-400"></i> Velsci Fit Engine (Render Python Connected)
         </h1>
-        <p class="text-xs text-slate-400">On-Demand Zero-Waste Precision Pattern Tool</p>
+        <p class="text-xs text-slate-400">Computer Vision-based Multi-Reference Scaling & Pattern Extraction</p>
       </div>
       <a href="index.html" class="px-3 py-1.5 bg-emerald-900/60 hover:bg-emerald-800 border border-emerald-700/50 rounded-lg text-xs text-slate-200">
         ➔ Back to Main Site
       </a>
     </div>
 
-    <!-- Tool Control Panel -->
+    <!-- Controls Panel -->
     <div class="glass-card p-6 rounded-2xl space-y-4">
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         
         <div>
           <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">1. Garment Image:</label>
-          <input type="file" id="imageInput" accept="image/*" class="w-full text-xs text-slate-300 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-emerald-800 file:text-white hover:file:bg-emerald-700 cursor-pointer">
+          <input type="file" id="imageInput" accept="image/*" class="w-full text-xs text-slate-300 file:mr-2 file:py-1.5 file:px-3 file:rounded-lg file:border-0 file:bg-emerald-800 file:text-white cursor-pointer">
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">2. Fabric Roll Width:</label>
-          <select id="fabricWidthSelect" class="w-full px-3 py-2 rounded-lg bg-[#051410] border border-emerald-800 text-xs text-white focus:outline-none">
-            <option value="44" selected>44 Inches / 112 cm (India Standard)</option>
-            <option value="36">36 Inches / 90 cm (Small Width)</option>
-            <option value="60">60 Inches / 152 cm (Global Width)</option>
+          <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">2. Reference Object:</label>
+          <select id="refTypeSelect" class="w-full px-3 py-2 rounded-lg bg-[#051410] border border-emerald-800 text-xs text-white focus:outline-none">
+            <option value="coin" data-size="23">₹5 / 1€ Coin (23 mm)</option>
+            <option value="card" data-size="85.6">Credit / ID Card (85.6 mm)</option>
+            <option value="note" data-size="123">Currency Note (123 mm)</option>
+            <option value="ruler" data-size="150">Ruler / Scale (150 mm)</option>
           </select>
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">3. Target Height (cm):</label>
-          <input type="number" id="targetHeightCm" value="100" class="w-full px-3 py-2 rounded-lg bg-[#051410] border border-emerald-800 text-xs text-white focus:outline-none">
+          <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">3. Cutting Allowance (%):</label>
+          <input type="number" id="cuttingMargin" value="10" class="w-full px-3 py-2 rounded-lg bg-[#051410] border border-emerald-800 text-xs text-white focus:outline-none">
         </div>
 
         <div>
-          <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">4. Target Width (cm):</label>
-          <input type="number" id="targetWidthCm" value="80" class="w-full px-3 py-2 rounded-lg bg-[#051410] border border-emerald-800 text-xs text-white focus:outline-none">
+          <label class="block text-xs font-semibold text-amber-400 uppercase mb-1">4. Fabric Roll Width:</label>
+          <select id="fabricRollWidth" class="w-full px-3 py-2 rounded-lg bg-[#051410] border border-emerald-800 text-xs text-white focus:outline-none">
+            <option value="44" selected>44 Inches (India Standard)</option>
+            <option value="36">36 Inches (Small Width)</option>
+            <option value="60">60 Inches (Global Width)</option>
+          </select>
         </div>
 
       </div>
 
       <div class="flex flex-wrap gap-3 pt-2">
-        <button onclick="generatePatternAndEstimate()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs transition-all">
-          Generate Pattern & Estimate Fabric
-        </button>
-        <button onclick="downloadCanvas()" class="px-5 py-2.5 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-lg text-xs transition-all">
-          Download Pattern PDF / Image
+        <button id="processBtn" onclick="processWithRenderBackend()" class="px-5 py-2.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold rounded-lg text-xs transition-all flex items-center gap-2">
+          <i class="fa-solid fa-microchip"></i>
+          <span>Process Pattern via Render API</span>
         </button>
       </div>
     </div>
 
-    <!-- Output Calculation Card -->
-    <div id="estimationResult" class="glass-card p-5 rounded-xl border border-emerald-500/40 hidden">
-      <h4 class="text-sm font-bold text-amber-400 mb-2">Fabric Requirement Estimation:</h4>
-      <p id="fabricEstimateText" class="text-xs text-slate-200 leading-relaxed"></p>
+    <!-- Status & Output Box -->
+    <div id="statusBox" class="p-3 bg-amber-500/20 border border-amber-500/40 text-amber-300 rounded-lg text-xs font-mono text-center hidden"></div>
+
+    <div id="patternOutput" class="glass-card p-5 rounded-xl border border-emerald-500/40 hidden">
+      <h4 class="text-sm font-bold text-amber-400 mb-2">Automated Analysis Results (Python Render Engine):</h4>
+      <div id="outputDetails" class="text-xs text-slate-200 leading-relaxed font-mono space-y-1"></div>
     </div>
 
-    <!-- Canvas Workspace -->
+    <!-- Image Display Canvas -->
     <div class="glass-card p-4 rounded-2xl flex justify-center items-center overflow-auto">
-      <canvas id="patternCanvas" class="max-w-full rounded-lg border border-dashed border-emerald-500/50"></canvas>
+      <canvas id="canvasDisplay" class="max-w-full rounded-lg border border-dashed border-emerald-500/50"></canvas>
     </div>
 
   </div>
 
   <script>
     const ACCESS_PIN = "2026";
+    const RENDER_BACKEND_URL = "https://velsci-fit-backend.onrender.com/process-pattern";
 
     function verifyAccess() {
       const inputKey = document.getElementById("passcodeKey").value;
@@ -117,86 +118,90 @@
       }
     }
 
-    let uploadedImage = null;
+    let base64Image = null;
 
     document.getElementById('imageInput').addEventListener('change', function(e) {
       const file = e.target.files[0];
-      if (file && file.type.startsWith('image/')) {
+      if (file) {
         const reader = new FileReader();
         reader.onload = function(event) {
-          uploadedImage = new Image();
-          uploadedImage.onload = function() {
-            const canvas = document.getElementById('patternCanvas');
+          base64Image = event.target.result;
+          const img = new Image();
+          img.onload = function() {
+            const canvas = document.getElementById('canvasDisplay');
+            canvas.width = img.width;
+            canvas.height = img.height;
             const ctx = canvas.getContext('2d');
-            canvas.width = uploadedImage.width;
-            canvas.height = uploadedImage.height;
-            ctx.drawImage(uploadedImage, 0, 0);
+            ctx.drawImage(img, 0, 0);
           }
-          uploadedImage.src = event.target.result;
+          img.src = base64Image;
         }
         reader.readAsDataURL(file);
       }
     });
 
-    function generatePatternAndEstimate() {
-      if (!uploadedImage) {
-        alert("Please upload an image first!");
+    async function processWithRenderBackend() {
+      if (!base64Image) {
+        alert("Please upload a garment image first!");
         return;
       }
 
-      const canvas = document.getElementById('patternCanvas');
-      const ctx = canvas.getContext('2d');
-      const width = canvas.width;
-      const height = canvas.height;
+      const statusBox = document.getElementById('statusBox');
+      const processBtn = document.getElementById('processBtn');
+      const refSelect = document.getElementById('refTypeSelect');
+      const selectedOption = refSelect.options[refSelect.selectedIndex];
 
-      ctx.drawImage(uploadedImage, 0, 0);
+      statusBox.classList.remove('hidden');
+      statusBox.innerText = "⏳ Connecting to Render Python API... Processing image contours and reference scaling.";
+      processBtn.disabled = true;
 
-      // Grid Lines
-      const gridSize = 100;
-      ctx.strokeStyle = '#38bdf8';
-      ctx.lineWidth = 2;
-      ctx.font = 'bold 20px Arial';
-      ctx.fillStyle = '#f59e0b';
+      const payload = {
+        image: base64Image,
+        ref_type: refSelect.value,
+        known_width_mm: parseFloat(selectedOption.getAttribute('data-size')),
+        margin: parseFloat(document.getElementById('cuttingMargin').value)
+      };
 
-      let count = 1;
-      for (let x = 0; x < width; x += gridSize) {
-        for (let y = 0; y < height; y += gridSize) {
-          ctx.strokeRect(x, y, gridSize, gridSize);
-          ctx.fillText(count.toString(), x + 10, y + 30);
-          count++;
+      try {
+        const response = await fetch(RENDER_BACKEND_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        const data = await response.json();
+
+        if (data.success) {
+          statusBox.className = "p-3 bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 rounded-lg text-xs font-mono text-center";
+          statusBox.innerText = "✓ Processing Complete! Contour Extracted & Fabric Calculated.";
+
+          // Draw Bounding Box on Canvas
+          const canvas = document.getElementById('canvasDisplay');
+          const ctx = canvas.getContext('2d');
+          const box = data.bounding_box;
+
+          ctx.strokeStyle = '#f59e0b';
+          ctx.lineWidth = 6;
+          ctx.strokeRect(box.x, box.y, box.w, box.h);
+
+          // Display Output Data
+          document.getElementById('patternOutput').classList.remove('hidden');
+          document.getElementById('outputDetails').innerHTML = `
+            <div>• Measured Bounding Width: <b class="text-emerald-400">${data.measured_width_cm} cm</b></div>
+            <div>• Measured Bounding Height: <b class="text-emerald-400">${data.measured_height_cm} cm</b></div>
+            <div>• Reference Object Selected: <b>${selectedOption.text}</b></div>
+            <div>• Seam & Cutting Allowance: <b>+${document.getElementById('cuttingMargin').value}%</b></div>
+            <div class="pt-2 text-sm text-amber-400 font-bold">➔ Estimated Total Fabric Needed: ${data.required_meters} Meters</div>
+          `;
+        } else {
+          throw new Error(data.error || "Failed to process image.");
         }
+      } catch (err) {
+        statusBox.className = "p-3 bg-rose-500/20 border border-rose-500/40 text-rose-300 rounded-lg text-xs font-mono text-center";
+        statusBox.innerText = `❌ Error: ${err.message}. If Render server was sleeping, please wait 30 seconds and try again.`;
+      } finally {
+        processBtn.disabled = false;
       }
-
-      // Calculations
-      const rollWidthInches = parseFloat(document.getElementById('fabricWidthSelect').value);
-      const rollWidthCm = rollWidthInches * 2.54;
-      const targetWidthCm = parseFloat(document.getElementById('targetWidthCm').value) || 80;
-      const targetHeightCm = parseFloat(document.getElementById('targetHeightCm').value) || 100;
-
-      const marginFactor = 1.10; // 10% Cutting margin
-      const panelsAcrossWidth = Math.floor(rollWidthCm / targetWidthCm);
-      
-      let requiredLengthCm = (panelsAcrossWidth >= 1) ? targetHeightCm * marginFactor : targetHeightCm * Math.ceil(targetWidthCm / rollWidthCm) * marginFactor;
-      
-      const requiredMeters = (requiredLengthCm / 100).toFixed(2);
-      const requiredYards = (requiredMeters * 1.09361).toFixed(2);
-
-      const resultDiv = document.getElementById('estimationResult');
-      document.getElementById('fabricEstimateText').innerHTML = `
-        <b>Selected Fabric Roll Width:</b> ${rollWidthInches} Inches (${rollWidthCm.toFixed(1)} cm)<br>
-        <b>Target Garment Size (W x H):</b> ${targetWidthCm} cm x ${targetHeightCm} cm<br>
-        <b>Estimated Total Fabric Needed:</b> <span class="text-amber-400 font-bold text-sm">${requiredMeters} Meters (${requiredYards} Yards)</span> 
-        <small class="text-slate-400">(Includes 10% cutting & seam margin)</small>
-      `;
-      resultDiv.classList.remove('hidden');
-    }
-
-    function downloadCanvas() {
-      const canvas = document.getElementById('patternCanvas');
-      const link = document.createElement('a');
-      link.download = 'velsci-fit-pattern-estimate.png';
-      link.href = canvas.toDataURL();
-      link.click();
     }
   </script>
 </body>
