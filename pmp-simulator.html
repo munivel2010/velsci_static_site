@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Velsci Globals — PMP Training Simulator</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://api.velsci.com https:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://generativelanguage.googleapis.com https://api-inference.huggingface.co https:;">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -147,15 +147,27 @@
         </div>
       </div>
 
-      <div class="p-4 rounded-xl bg-brand-950/80 border border-brand-800 space-y-3">
-        <div id="status" class="text-xs text-brand-400 font-medium">System ready. Connects securely via Velsci backend API.</div>
-        <div class="flex flex-wrap gap-2 justify-end">
-          <button class="px-4 py-2.5 bg-brand-950 border border-brand-800 hover:border-brand-gold text-white text-xs font-bold rounded-lg transition-all" id="testConnection">Test Connection</button>
-          <button class="px-4 py-2.5 bg-brand-950 border border-brand-800 hover:border-brand-gold text-white text-xs font-bold rounded-lg transition-all" id="generate" disabled>Generate Questions</button>
-          <button class="px-4 py-2.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 text-xs font-bold rounded-lg shadow-md transition-all" id="startPractice" disabled>Start Simulator</button>
+      <div class="providerBox border border-brand-800 p-4 rounded-xl bg-brand-950/80 space-y-3">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          <label class="text-xs text-brand-400 font-semibold uppercase">AI Engine<select id="model" class="w-full mt-1 px-3 py-2 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs"><option value="gemini-1.5-flash">Gemini Flash</option></select></label>
+          <div class="flex flex-col justify-end">
+            <button class="px-3 py-2 bg-brand-950 border border-brand-800 hover:border-brand-gold text-brand-gold text-xs font-bold rounded-lg" id="getApiKey" type="button">Get Free Gemini API Key</button>
+          </div>
         </div>
+        <div>
+          <label class="text-xs text-brand-400 font-semibold uppercase block mb-1">Gemini API Key</label>
+          <input id="apiKey" type="password" placeholder="Paste your Gemini API key here" autocomplete="off" spellcheck="false" class="w-full px-3.5 py-2.5 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs focus:outline-none focus:border-brand-gold">
+        </div>
+        <div id="status" class="text-xs text-brand-400 font-medium">Enter your Gemini API key and test connection.</div>
       </div>
-      <div class="text-[11px] text-slate-500 leading-relaxed"><b>Disclaimer:</b> PMP is a registered mark of the Project Management Institute, Inc. Developed independently by Velsci Globals.</div>
+
+      <div class="flex flex-wrap gap-2 justify-end pt-2">
+        <button class="px-4 py-2.5 bg-brand-950 border border-brand-800 hover:border-brand-gold text-white text-xs font-bold rounded-lg transition-all" id="testConnection">Test Connection</button>
+        <button class="px-4 py-2.5 bg-brand-950 border border-brand-800 hover:border-brand-gold text-white text-xs font-bold rounded-lg transition-all" id="generate" disabled>Generate Questions</button>
+        <button class="px-4 py-2.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 text-xs font-bold rounded-lg shadow-md transition-all" id="startPractice" disabled>Start Simulator</button>
+      </div>
+
+      <div class="text-[11px] text-slate-500 leading-relaxed pt-2 border-t border-brand-800"><b>Disclaimer:</b> PMP is a registered mark of the Project Management Institute, Inc. Developed independently by Velsci Globals.</div>
     </div>
   </div>
 
@@ -211,11 +223,14 @@
       if(connected) setStatus('Generate questions for selected mode.');
     }
 
-    async function callLLM(prompt){
-      const r=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt})});
+    async function callGemini(prompt){
+      const key=$('apiKey').value.trim();
+      if(!key)throw new Error('Gemini API key is required');
+      const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(key)}`;
+      const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:.6}})});
       const data=await r.json().catch(()=>({}));
-      if(!r.ok)throw new Error(data?.error||`HTTP ${r.status}`);
-      return data.text||JSON.stringify(data);
+      if(!r.ok)throw new Error(data?.error?.message||`HTTP ${r.status}`);
+      return data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'';
     }
 
     function extractJSON(text){
@@ -271,7 +286,7 @@
     async function generateBatch(n,exclude){
       let last;
       for(let attempt=1;attempt<=3;attempt++){
-        try{return pullQuestions(extractJSON(await callLLM(promptFor(n,exclude))))}catch(e){last=e}
+        try{return pullQuestions(extractJSON(await callGemini(promptFor(n,exclude))))}catch(e){last=e}
       }
       throw last||new Error('Generation failed');
     }
@@ -279,12 +294,12 @@
     async function testConnection(){
       const b=$('testConnection');
       b.disabled=true;b.innerHTML='<span class="spinner"></span>Connecting';
-      setStatus('Testing backend connection...');
+      setStatus('Testing connection...');
       try{
-        await callLLM('Return only {"connected":true}');
+        await callGemini('Return only {"connected":true}');
         connected=true;
         $('generate').disabled=false;
-        setStatus('Connected to Velsci backend LLM service.','ok');
+        setStatus('Connected to Gemini API.','ok');
         toast('Connection successful');
       }catch(e){
         connected=false;
@@ -405,6 +420,8 @@
 
     // Event bindings
     $('practiceMode').onchange=updateMode;
+    $('getApiKey').onclick=()=>window.open('https://aistudio.google.com/apikey','_blank','noopener,noreferrer');
+    $('apiKey').oninput=()=>{sessionStorage.setItem('velsciApiKey',$('apiKey').value);connected=false;bank=[];$('generate').disabled=true;$('startPractice').disabled=true;setStatus('API key changed. Test connection again.')};
     $('testConnection').onclick=testConnection;
     $('generate').onclick=generate;
     $('startPractice').onclick=start;
@@ -412,8 +429,13 @@
     $('flagBtn').onclick=()=>{flags[idx]=!flags[idx];render()};$('endBtn').onclick=finish;
     $('restart').onclick=()=>location.reload();
 
-    // Initialize counts on page load
+    // Initialize counts and check stored API key
     updateMode();
+    const savedKey=sessionStorage.getItem('velsciApiKey');
+    if(savedKey){
+      $('apiKey').value=savedKey;
+      setStatus('API key restored. Test connection.');
+    }
 
     let confidenceAnswers=[];
     const baseStart=start;start=function(){confidenceAnswers=Array(bank.length).fill('');baseStart();$('confidenceBox').classList.remove('hidden')};
