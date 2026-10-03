@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Velsci Globals — PMP Training Simulator</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://generativelanguage.googleapis.com https://api-inference.huggingface.co https://openrouter.ai https:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://generativelanguage.googleapis.com https:;">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -53,25 +53,31 @@
   <!-- HEADER -->
   <header class="sticky top-0 z-40 bg-[#0a231b]/95 backdrop-blur-md border-b border-brand-800">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3.5 group">
-        <svg width="40" height="40" viewBox="0 0 200 200" fill="none" class="drop-shadow-lg">
-          <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-header)" stroke-width="6" fill="#0a231b" />
-          <circle cx="100" cy="100" r="62" stroke="#52c4a2" stroke-width="4" stroke-dasharray="8 4" />
-          <path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-header)" />
-          <circle cx="100" cy="100" r="5" fill="#38bdf8" />
-          <defs>
-             <linearGradient id="gold-grad-header" x1="0%" y1="0%" x2="100%" y2="100%">
-               <stop offset="0%" stop-color="#fef08a" />
-               <stop offset="50%" stop-color="#e2b857" />
-               <stop offset="100%" stop-color="#b45309" />
-             </linearGradient>
-           </defs>
-        </svg>
-        <div class="flex flex-col">
-          <span class="font-display font-extrabold text-lg tracking-wider text-white">VELSCI GLOBALS</span>
-          <span class="text-[9px] tracking-widest text-brand-400 font-semibold uppercase -mt-0.5">PMP Training Simulator</span>
-        </div>
-      </a>
+      <div class="flex items-center gap-4">
+        <a href="index.html" class="px-3 py-1.5 bg-brand-950 border border-brand-800 hover:border-brand-gold text-white font-bold text-xs rounded-lg transition-all flex items-center gap-1.5">
+          <i class="fa-solid fa-arrow-left"></i>
+          <span>Main Page</span>
+        </a>
+        <a href="index.html" class="flex items-center gap-3.5 group">
+          <svg width="40" height="40" viewBox="0 0 200 200" fill="none" class="drop-shadow-lg">
+            <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-header)" stroke-width="6" fill="#0a231b" />
+            <circle cx="100" cy="100" r="62" stroke="#52c4a2" stroke-width="4" stroke-dasharray="8 4" />
+            <path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-header)" />
+            <circle cx="100" cy="100" r="5" fill="#38bdf8" />
+            <defs>
+               <linearGradient id="gold-grad-header" x1="0%" y1="0%" x2="100%" y2="100%">
+                 <stop offset="0%" stop-color="#fef08a" />
+                 <stop offset="50%" stop-color="#e2b857" />
+                 <stop offset="100%" stop-color="#b45309" />
+               </linearGradient>
+             </defs>
+          </svg>
+          <div class="hidden sm:flex flex-col">
+            <span class="font-display font-extrabold text-lg tracking-wider text-white">VELSCI GLOBALS</span>
+            <span class="text-[9px] tracking-widest text-brand-400 font-semibold uppercase -mt-0.5">PMP Training Simulator</span>
+          </div>
+        </a>
+      </div>
       <div class="font-mono text-brand-gold text-lg font-bold border border-brand-800 bg-[#051410] px-4 py-2 rounded-xl shadow-inner" id="timer">00:00:00</div>
     </div>
   </header>
@@ -123,10 +129,13 @@
   <!-- START MODAL -->
   <div class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4" id="home">
     <div class="glass-card max-w-xl w-full p-8 rounded-2xl shadow-2xl space-y-6 border border-brand-700/50 max-h-[90vh] overflow-y-auto">
-      <h1 class="font-display text-xl sm:text-2xl font-bold text-white flex items-center gap-3">
-        <svg width="32" height="32" viewBox="0 0 200 200" fill="none"><polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-modal)" stroke-width="6" fill="#0a231b" /><circle cx="100" cy="100" r="62" stroke="#52c4a2" stroke-width="4" stroke-dasharray="8 4" /><path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-modal)" /><circle cx="100" cy="100" r="5" fill="#38bdf8" /><defs><linearGradient id="gold-grad-modal" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fef08a"/><stop offset="50%" stop-color="#e2b857"/><stop offset="100%" stop-color="#b45309"/></linearGradient></defs></svg>
-        PMP Training Simulator
-      </h1>
+      <div class="flex justify-between items-center">
+        <h1 class="font-display text-xl sm:text-2xl font-bold text-white flex items-center gap-3">
+          <svg width="32" height="32" viewBox="0 0 200 200" fill="none"><polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-modal)" stroke-width="6" fill="#0a231b" /><circle cx="100" cy="100" r="62" stroke="#52c4a2" stroke-width="4" stroke-dasharray="8 4" /><path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-modal)" /><circle cx="100" cy="100" r="5" fill="#38bdf8" /><defs><linearGradient id="gold-grad-modal" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fef08a"/><stop offset="50%" stop-color="#e2b857"/><stop offset="100%" stop-color="#b45309"/></linearGradient></defs></svg>
+          PMP Training Simulator
+        </h1>
+        <a href="index.html" class="px-3 py-1.5 bg-brand-950 border border-brand-800 hover:border-brand-gold text-white text-xs font-bold rounded-lg transition-all">Return to Main Page</a>
+      </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-semibold text-slate-300">
         <div>
@@ -166,25 +175,23 @@
         </div>
       </div>
 
-      <!-- LLM & API KEY CONFIGURATION BOX -->
+      <!-- GEMINI API KEY CONFIGURATION BOX -->
       <div class="providerBox border border-brand-800 p-4 rounded-xl bg-brand-950/90 space-y-3">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
           <label class="text-xs text-brand-400 font-semibold uppercase">AI Provider
-            <select id="llmProvider" class="w-full mt-1 px-3 py-2 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs focus:outline-none focus:border-brand-gold">
-              <option value="gemini">Google Gemini (Recommended)</option>
-              <option value="openrouter">OpenRouter (Free/Open Models)</option>
-              <option value="huggingface">Hugging Face Inference</option>
+            <select disabled class="w-full mt-1 px-3 py-2 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs">
+              <option>Google Gemini</option>
             </select>
           </label>
           <div class="flex flex-col justify-end">
-            <button class="px-3 py-2 bg-brand-950 border border-brand-800 hover:border-brand-gold text-brand-gold text-xs font-bold rounded-lg transition-all" id="getKeyBtn" type="button">Get API Key</button>
+            <button class="px-3 py-2 bg-brand-950 border border-brand-800 hover:border-brand-gold text-brand-gold text-xs font-bold rounded-lg transition-all" id="getKeyBtn" type="button">Get Gemini API Key</button>
           </div>
         </div>
         <div>
-          <label id="apiKeyLabel" class="text-xs text-brand-400 font-semibold uppercase block mb-1">Gemini API Key</label>
-          <input id="apiKey" type="password" placeholder="Paste your API key here" autocomplete="off" spellcheck="false" class="w-full px-3.5 py-2.5 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs focus:outline-none focus:border-brand-gold">
+          <label class="text-xs text-brand-400 font-semibold uppercase block mb-1">Gemini API Key</label>
+          <input id="apiKey" type="password" placeholder="Paste your Google AI Studio API key here" autocomplete="off" spellcheck="false" class="w-full px-3.5 py-2.5 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs focus:outline-none focus:border-brand-gold">
         </div>
-        <div id="status" class="text-xs text-brand-400 font-medium">Select provider, enter API key, and test connection.</div>
+        <div id="status" class="text-xs text-brand-400 font-medium">Enter your Gemini API key and test connection.</div>
       </div>
 
       <div class="flex flex-wrap gap-2 justify-end pt-2">
@@ -200,7 +207,10 @@
   <!-- RESULTS MODAL -->
   <div class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4 hidden" id="results">
     <div class="glass-card max-w-3xl w-full max-h-[85vh] overflow-auto p-8 rounded-2xl shadow-2xl space-y-6">
-      <h2 class="font-display text-2xl font-bold text-white">Final Results</h2>
+      <div class="flex justify-between items-center">
+        <h2 class="font-display text-2xl font-bold text-white">Final Results</h2>
+        <a href="index.html" class="px-3.5 py-2 bg-brand-950 border border-brand-800 hover:border-brand-gold text-white text-xs font-bold rounded-lg transition-all">Return to Main Page</a>
+      </div>
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
         <div class="p-4 bg-brand-950 border border-brand-800 rounded-xl"><b id="pct" class="text-2xl text-brand-gold">0%</b>Score</div>
         <div class="p-4 bg-brand-950 border border-brand-800 rounded-xl"><b id="correct" class="text-2xl text-white">0/0</b>Correct</div>
@@ -247,48 +257,14 @@
       if(connected) setStatus('Generate questions for selected mode.');
     }
 
-    function updateProviderUI(){
-      const provider=$('llmProvider').value;
-      const label=$('apiKeyLabel');
-      const keyInput=$('apiKey');
-      if(provider==='gemini'){
-        label.textContent='Gemini API Key';
-        keyInput.placeholder='Paste your Google AI Studio API key';
-      }else if(provider==='openrouter'){
-        label.textContent='OpenRouter API Key';
-        keyInput.placeholder='Paste your OpenRouter API key (e.g. sk-or-v1-...)';
-      }else{
-        label.textContent='Hugging Face Token';
-        keyInput.placeholder='Paste your Hugging Face Access Token';
-      }
-      connected=false;
-      $('generate').disabled=true;
-      $('startPractice').disabled=true;
-      setStatus('API provider changed. Enter key and test connection.');
-    }
-
-    async function callLLM(prompt){
+    async function callGemini(prompt){
       const key=$('apiKey').value.trim();
-      const provider=$('llmProvider').value;
-      if(!key)throw new Error('API key is required');
-
-      if(provider==='gemini'){
-        const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(key)}`;
-        const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:.5}})});
-        const data=await r.json().catch(()=>({}));
-        if(!r.ok)throw new Error(data?.error?.message||`HTTP ${r.status}`);
-        return data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'';
-      }else if(provider==='openrouter'){
-        const r=await fetch('https://openrouter.ai/api/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},body:JSON.stringify({model:'meta-llama/llama-3-8b-instruct:free',messages:[{role:'user',content:prompt+' Return valid JSON only.'}],temperature:0.5})});
-        const data=await r.json().catch(()=>({}));
-        if(!r.ok)throw new Error(data?.error?.message||`HTTP ${r.status}`);
-        return data?.choices?.[0]?.message?.content||'';
-      }else{
-        const r=await fetch('https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},body:JSON.stringify({inputs:`[INST] ${prompt} Return valid JSON only. [/INST]`,parameters:{temperature:0.5,max_new_tokens:1500}})});
-        const data=await r.json().catch(()=>({}));
-        if(!r.ok)throw new Error(data?.error||`HTTP ${r.status}`);
-        return Array.isArray(data)?data[0]?.generated_text:data?.generated_text||'';
-      }
+      if(!key)throw new Error('Gemini API key is required');
+      const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(key)}`;
+      const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:.5}})});
+      const data=await r.json().catch(()=>({}));
+      if(!r.ok)throw new Error(data?.error?.message||`HTTP ${r.status}`);
+      return data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'';
     }
 
     function extractJSON(text){
@@ -345,7 +321,7 @@
     async function generateBatch(n,exclude){
       let last;
       for(let attempt=1;attempt<=3;attempt++){
-        try{return pullQuestions(extractJSON(await callLLM(promptFor(n,exclude))))}catch(e){last=e}
+        try{return pullQuestions(extractJSON(await callGemini(promptFor(n,exclude))))}catch(e){last=e}
       }
       throw last||new Error('Generation failed');
     }
@@ -355,7 +331,7 @@
       b.disabled=true;b.innerHTML='<span class="spinner"></span>Connecting';
       setStatus('Testing connection...');
       try{
-        await callLLM('Return only {"connected":true}');
+        await callGemini('Return only {"connected":true}');
         connected=true;
         $('generate').disabled=false;
         setStatus('Connected successfully.','ok');
@@ -480,14 +456,7 @@
 
     // Event bindings
     $('practiceMode').onchange=updateMode;
-    $('llmProvider').onchange=updateProviderUI;
-    $('getKeyBtn').onclick=()=>{
-      const p=$('llmProvider').value;
-      let url='https://aistudio.google.com/apikey';
-      if(p==='openrouter') url='https://openrouter.ai/keys';
-      else if(p==='huggingface') url='https://huggingface.co/settings/tokens';
-      window.open(url,'_blank','noopener,noreferrer');
-    };
+    $('getKeyBtn').onclick=()=>window.open('https://aistudio.google.com/apikey','_blank','noopener,noreferrer');
     $('apiKey').oninput=()=>{sessionStorage.setItem('velsciApiKey',$('apiKey').value);connected=false;bank=[];$('generate').disabled=true;$('startPractice').disabled=true;setStatus('API key changed. Test connection again.')};
     $('testConnection').onclick=testConnection;
     $('generate').onclick=generate;
@@ -498,7 +467,6 @@
 
     // Initialize counts and check stored API key immediately on load
     updateMode();
-    updateProviderUI();
     const savedKey=sessionStorage.getItem('velsciApiKey');
     if(savedKey){
       $('apiKey').value=savedKey;
