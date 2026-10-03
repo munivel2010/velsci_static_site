@@ -1,638 +1,330 @@
-<!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velsci Fit — Hybrid Multi-Image Pattern Engine & 3D Studio</title>
-  
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            brand: {
-              950: '#051410',
-              900: '#0a231b',
-              800: '#133a2d',
-              700: '#1f5342',
-              600: '#2d735d',
-              500: '#3e997d',
-              400: '#52c4a2',
-              gold: '#e2b857',
-              goldHover: '#c89d3c',
-            }
-          },
-          fontFamily: {
-            sans: ['Inter', 'sans-serif'],
-            display: ['Space Grotesk', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
+<script>
+  let scene, camera, renderer, garmentMesh;
+  let isWireframe = false;
+  let currentGarmentType = 'top';
+  let uploadedImages = [];
 
-  <style>
-    body { font-family: 'Inter', sans-serif; background-color: #051410; color: #f8fafc; }
-    .font-display { font-family: 'Space Grotesk', sans-serif; }
-    .glass-card { background: rgba(10, 35, 27, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(31, 83, 66, 0.5); }
-  </style>
-</head>
-<body class="min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-brand-950">
+  const STANDARD_PRESETS = {
+    'S':   { chest: 92,  waist: 76,  hips: 94,  shoulder: 42, sleeve: 61, length: 70, collar: 37, armhole: 23, height: 168 },
+    'M':   { chest: 98,  waist: 82,  hips: 98,  shoulder: 44, sleeve: 62.5, length: 72, collar: 39, armhole: 24.5, height: 172 },
+    'L':   { chest: 104, waist: 88,  hips: 102, shoulder: 46, sleeve: 64, length: 74, collar: 41, armhole: 26, height: 176 },
+    'XL':  { chest: 112, waist: 96,  hips: 110, shoulder: 48, sleeve: 65.5, length: 78, collar: 43, armhole: 28, height: 180 },
+    'XXL': { chest: 120, waist: 104, hips: 118, shoulder: 50, sleeve: 67, length: 80, collar: 45, armhole: 30, height: 184 }
+  };
 
-  <!-- HEADER -->
-  <header class="sticky top-0 z-50 bg-[#0a231b]/90 backdrop-blur-md border-b border-brand-800/80">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-      
-      <a href="index.html" class="flex items-center gap-3.5 group">
-        <svg width="42" height="42" viewBox="0 0 200 200" fill="none" class="drop-shadow-lg">
-          <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-header)" stroke-width="6" fill="#0a231b" />
-          <circle cx="100" cy="100" r="62" stroke="#52c4a2" stroke-width="4" stroke-dasharray="8 4" />
-          <path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-header)" />
-          <circle cx="100" cy="100" r="5" fill="#38bdf8" />
-          <defs>
-             <linearGradient id="gold-grad-header" x1="0%" y1="0%" x2="100%" y2="100%">
-               <stop offset="0%" stop-color="#fef08a" />
-               <stop offset="50%" stop-color="#e2b857" />
-               <stop offset="100%" stop-color="#b45309" />
-             </linearGradient>
-           </defs>
-        </svg>
-        <div class="flex flex-col">
-          <span class="font-display font-extrabold text-xl tracking-wider text-white">VELSCI FIT</span>
-          <span class="text-[9px] tracking-widest text-brand-400 font-semibold uppercase -mt-0.5">Multi-Image Parametric 3D Studio</span>
-        </div>
-      </a>
+  function handleMultipleImages(files) {
+    if (!files || files.length === 0) return;
 
-      <div class="flex items-center gap-3">
-        <button onclick="toggleModal('tapeModal')" class="px-3.5 py-2 text-xs font-semibold bg-brand-800/80 hover:bg-brand-700 text-brand-gold border border-brand-gold/30 rounded-lg transition-all flex items-center gap-2">
-          <i class="fa-solid fa-ruler-horizontal"></i>
-          <span class="hidden sm:inline">Size Chart Specs</span>
-        </button>
-        <a href="index.html" class="px-4 py-2 text-xs font-bold bg-brand-gold hover:bg-brand-goldHover text-brand-950 rounded-lg transition-all">
-          ← Main Site
-        </a>
-      </div>
-    </div>
-  </header>
+    Array.from(files).forEach((file) => {
+      if (!file.type.startsWith('image/')) return;
 
-  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8">
-
-    <!-- LEFT COLUMN: MULTI-IMAGE UPLOAD & MEASUREMENT CONTROLS -->
-    <section class="lg:col-span-5 space-y-6">
-      <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
-        <div class="flex justify-between items-center border-b border-brand-800 pb-3">
-          <h2 class="font-display text-base font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-sliders text-brand-gold"></i> Pattern Sizing Control Panel
-          </h2>
-          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">Multi-View Active</span>
-        </div>
-
-        <!-- SELF MEASUREMENT GUIDANCE GRAPHIC -->
-        <div class="bg-brand-950/80 rounded-xl p-4 border border-brand-800 flex flex-col items-center relative">
-          <span class="text-[10px] font-bold text-brand-gold uppercase tracking-wider mb-2">Self Measurement Reference Points</span>
-          <svg viewBox="0 0 300 380" class="w-full max-w-[210px] h-auto drop-shadow-md">
-            <ellipse cx="150" cy="40" rx="20" ry="25" class="fill-brand-900 stroke-brand-700" stroke-width="2"/>
-            <path d="M120,70 C120,60 180,60 180,70 L200,130 L180,135 L170,180 L180,350 L155,350 L150,210 L145,350 L120,350 L130,180 L120,135 L100,130 Z" class="fill-brand-900 stroke-brand-700" stroke-width="2"/>
-
-            <!-- A. Chest -->
-            <line x1="105" y1="110" x2="195" y2="110" class="stroke-emerald-400" stroke-width="2.5" stroke-dasharray="3"/>
-            <circle cx="150" cy="110" r="8" class="fill-emerald-400"/>
-            <text x="150" y="113" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">A</text>
-
-            <!-- B. Waist -->
-            <line x1="112" y1="150" x2="188" y2="150" class="stroke-emerald-400" stroke-width="2.5" stroke-dasharray="3"/>
-            <circle cx="150" cy="150" r="8" class="fill-emerald-400"/>
-            <text x="150" y="153" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">B</text>
-
-            <!-- C. Hips -->
-            <line x1="108" y1="185" x2="192" y2="185" class="stroke-emerald-400" stroke-width="2.5" stroke-dasharray="3"/>
-            <circle cx="150" cy="185" r="8" class="fill-emerald-400"/>
-            <text x="150" y="188" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">C</text>
-
-            <!-- D. Shoulder -->
-            <line x1="100" y1="72" x2="200" y2="72" class="stroke-amber-400" stroke-width="2.5"/>
-            <circle cx="200" cy="72" r="8" class="fill-amber-400"/>
-            <text x="200" y="75" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">D</text>
-
-            <!-- E. Sleeve / Leg Width -->
-            <path d="M200,72 L212,160" class="stroke-sky-400" stroke-width="2.5"/>
-            <circle cx="212" cy="160" r="8" class="fill-sky-400"/>
-            <text x="212" y="163" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">E</text>
-
-            <!-- F. Length -->
-            <line x1="88" y1="70" x2="88" y2="240" class="stroke-purple-400" stroke-width="2.5"/>
-            <circle cx="88" cy="240" r="8" class="fill-purple-400"/>
-            <text x="88" y="243" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">F</text>
-          </svg>
-        </div>
-
-        <!-- GARMENT TYPE SELECTION -->
-        <div class="grid grid-cols-2 gap-2 bg-brand-950 p-1.5 rounded-xl border border-brand-800 text-xs font-bold">
-          <button type="button" id="btnTypeTop" onclick="setGarmentType('top')" class="py-2 rounded-lg bg-brand-gold text-brand-950 transition-all">
-            Shirt / Jacket Top
-          </button>
-          <button type="button" id="btnTypePants" onclick="setGarmentType('pants')" class="py-2 rounded-lg text-slate-300 hover:text-white transition-all">
-            Pants / Trousers
-          </button>
-        </div>
-
-        <!-- MULTIPLE IMAGE UPLOAD ZONE -->
-        <div class="p-3 bg-brand-950/80 rounded-xl border border-brand-800 space-y-3">
-          <label class="block text-xs font-bold text-brand-gold flex items-center justify-between">
-            <span><i class="fa-solid fa-images"></i> Upload Reference Photos (Multiple)</span>
-            <span class="text-[10px] text-slate-400 font-normal">Front, Back, Side</span>
-          </label>
-
-          <div id="dropZone" onclick="document.getElementById('multiGarmentPhotos').click()" class="border-2 border-dashed border-brand-700 hover:border-brand-gold rounded-xl p-4 text-center cursor-pointer bg-brand-900/50 transition-all">
-            <i class="fa-solid fa-cloud-arrow-up text-2xl text-brand-gold mb-1"></i>
-            <p class="text-xs text-slate-300 font-semibold">Click or drag & drop multiple images here</p>
-            <p class="text-[10px] text-slate-400">Supports JPG, PNG, WEBP</p>
-            <input type="file" id="multiGarmentPhotos" accept="image/jpeg,image/png,image/webp" multiple onchange="handleMultipleImages(this.files)" class="hidden">
-          </div>
-
-          <!-- GALLERY THUMBNAIL PREVIEWS -->
-          <div id="imageGallery" class="flex flex-wrap gap-2 empty:hidden pt-2 border-t border-brand-800/60"></div>
-        </div>
-
-        <!-- STANDARD SIZE CHART PRESETS -->
-        <div class="p-3 bg-brand-900/60 border border-brand-800 rounded-xl space-y-2">
-          <label class="block text-xs font-bold text-brand-gold">
-            <i class="fa-solid fa-table-list"></i> Auto-Fill Standard Size Presets
-          </label>
-          <div class="grid grid-cols-5 gap-1.5 text-xs font-semibold">
-            <button type="button" onclick="applyStandardPreset('S')" class="py-1.5 bg-brand-950 hover:bg-brand-800 border border-brand-700 rounded text-slate-200">S</button>
-            <button type="button" onclick="applyStandardPreset('M')" class="py-1.5 bg-brand-950 hover:bg-brand-800 border border-brand-700 rounded text-slate-200">M</button>
-            <button type="button" onclick="applyStandardPreset('L')" class="py-1.5 bg-brand-gold text-brand-950 font-bold rounded">L</button>
-            <button type="button" onclick="applyStandardPreset('XL')" class="py-1.5 bg-brand-950 hover:bg-brand-800 border border-brand-700 rounded text-slate-200">XL</button>
-            <button type="button" onclick="applyStandardPreset('XXL')" class="py-1.5 bg-brand-950 hover:bg-brand-800 border border-brand-700 rounded text-slate-200">2XL</button>
-          </div>
-        </div>
-
-        <!-- PARAMETRIC INPUT FORM -->
-        <form id="parametricForm" onsubmit="event.preventDefault(); updatePatternAnd3D();" class="space-y-4">
-          <div class="p-3 bg-emerald-950/30 border border-emerald-800/60 rounded-xl space-y-2">
-            <div class="flex justify-between items-center">
-              <label class="text-xs font-bold text-emerald-400 flex items-center gap-1">
-                <i class="fa-solid fa-child"></i> Total Height (cm)
-              </label>
-              <span id="estimatedOutseamBadge" class="text-[10px] font-mono bg-brand-900 text-brand-gold px-2 py-0.5 rounded border border-brand-800">
-                Waist-to-Foot: 108.5 cm
-              </span>
-            </div>
-            <input type="number" id="totalHeight" value="175" oninput="calculateInseamEstimation()" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block text-[11px] font-bold text-emerald-400 mb-1">Chest / Bust (cm)</label>
-              <input type="number" id="chest" value="104" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-emerald-400 mb-1">Natural Waist (cm)</label>
-              <input type="number" id="waist" value="88" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-emerald-400 mb-1">Hips (cm)</label>
-              <input type="number" id="hips" value="102" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-amber-400 mb-1">Shoulder Width (cm)</label>
-              <input type="number" id="shoulder" value="46" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-sky-400 mb-1">Sleeve / Outseam Length (cm)</label>
-              <input type="number" id="sleeve" value="64" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-purple-400 mb-1">Total Length (cm)</label>
-              <input type="number" id="length" value="74" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-amber-300 mb-1">Collar / Neck (cm)</label>
-              <input type="number" id="collar" value="41" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-amber-300 mb-1">Armhole / Scye Depth (cm)</label>
-              <input type="number" id="armhole" value="26" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3 pt-2 border-t border-brand-800">
-            <div>
-              <label class="block text-[11px] font-bold text-slate-300 mb-1">Fabric Stretch %</label>
-              <select id="stretch" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white">
-                <option value="0.00">0% (Woven Cotton / Denim)</option>
-                <option value="0.05">5% (Slight Stretch)</option>
-                <option value="0.10" selected>10% (Medium Stretch Jersey)</option>
-                <option value="0.18">18% (Activewear Lycra)</option>
-              </select>
-            </div>
-            <div>
-              <label class="block text-[11px] font-bold text-slate-300 mb-1">Seam Allowance (cm)</label>
-              <input type="number" id="seam" value="1.5" step="0.1" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white">
-            </div>
-          </div>
-
-          <button type="submit" class="w-full py-3 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-xs rounded-xl shadow-lg transition-all uppercase tracking-wider flex items-center justify-center gap-2">
-            <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <span>Calculate Vector Pattern & 3D Render</span>
-          </button>
-        </form>
-      </div>
-    </section>
-
-    <!-- RIGHT COLUMN: 3D WEBGL STUDIO & VECTOR CANVAS -->
-    <section class="lg:col-span-7 space-y-6">
-      <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
-        <div class="flex justify-between items-center border-b border-brand-800 pb-3">
-          <h2 class="font-display text-base font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-cube text-brand-gold"></i> Interactive 3D Render Canvas
-          </h2>
-          <button onclick="toggleWireframe()" class="px-2.5 py-1 text-[10px] font-bold bg-brand-900 border border-brand-800 hover:border-brand-gold rounded text-slate-300">
-            Wireframe Toggle
-          </button>
-        </div>
-
-        <div class="relative bg-brand-950 rounded-xl overflow-hidden border border-brand-800 flex justify-center items-center h-80">
-          <div id="threeCanvasContainer" class="w-full h-full cursor-grab active:cursor-grabbing"></div>
-        </div>
-      </div>
-
-      <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
-        <div class="flex justify-between items-center border-b border-brand-800 pb-3">
-          <h2 class="font-display text-base font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-bezier-curve text-brand-gold"></i> Production Vector Sewing Blueprint
-          </h2>
-          <button onclick="downloadPattern()" class="px-3 py-1.5 text-xs font-bold bg-brand-800 hover:bg-brand-700 text-brand-gold border border-brand-gold/30 rounded-lg transition-all flex items-center gap-1.5">
-            <i class="fa-solid fa-download"></i>
-            <span>Download PNG Pattern</span>
-          </button>
-        </div>
-
-        <div class="bg-white p-4 rounded-xl flex justify-center overflow-x-auto border border-brand-800">
-          <canvas id="patternCanvas" class="max-w-full h-auto"></canvas>
-        </div>
-      </div>
-    </section>
-
-  </main>
-
-  <!-- SIZE CHART MODAL -->
-  <div id="tapeModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
-    <div class="bg-[#0a231b] border border-brand-800 rounded-2xl max-w-lg w-full p-6 text-slate-200 space-y-4 shadow-2xl relative">
-      <div class="flex justify-between items-center border-b border-brand-800 pb-3">
-        <h3 class="font-display text-base font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-table text-brand-gold"></i> Standard Sizing Matrix Specs
-        </h3>
-        <button onclick="toggleModal('tapeModal')" class="text-slate-400 hover:text-white text-lg font-bold" aria-label="Close Modal">&times;</button>
-      </div>
-      <div class="text-xs space-y-2 text-slate-300">
-        <p><strong>Size S:</strong> Chest 92cm | Waist 76cm | Neck 37cm | Shoulder 42cm</p>
-        <p><strong>Size M:</strong> Chest 98cm | Waist 82cm | Neck 39cm | Shoulder 44cm</p>
-        <p><strong>Size L:</strong> Chest 104cm | Waist 88cm | Neck 41cm | Shoulder 46cm</p>
-        <p><strong>Size XL:</strong> Chest 112cm | Waist 96cm | Neck 43cm | Shoulder 48cm</p>
-        <p><strong>Size 2XL:</strong> Chest 120cm | Waist 104cm | Neck 45cm | Shoulder 50cm</p>
-      </div>
-    </div>
-  </div>
-
-  <script>
-    let scene, camera, renderer, garmentMesh;
-    let isWireframe = false;
-    let currentGarmentType = 'top';
-    let uploadedImages = []; // Stores Array of loaded Image objects
-
-    const STANDARD_PRESETS = {
-      'S':   { chest: 92,  waist: 76,  hips: 94,  shoulder: 42, sleeve: 61, length: 70, collar: 37, armhole: 23, height: 168 },
-      'M':   { chest: 98,  waist: 82,  hips: 98,  shoulder: 44, sleeve: 62.5, length: 72, collar: 39, armhole: 24.5, height: 172 },
-      'L':   { chest: 104, waist: 88,  hips: 102, shoulder: 46, sleeve: 64, length: 74, collar: 41, armhole: 26, height: 176 },
-      'XL':  { chest: 112, waist: 96,  hips: 110, shoulder: 48, sleeve: 65.5, length: 78, collar: 43, armhole: 28, height: 180 },
-      'XXL': { chest: 120, waist: 104, hips: 118, shoulder: 50, sleeve: 67, length: 80, collar: 45, armhole: 30, height: 184 }
-    };
-
-    // MULTI-IMAGE DRAG & DROP AND SELECTION HANDLER
-    function handleMultipleImages(files) {
-      if (!files || files.length === 0) return;
-
-      Array.from(files).forEach((file) => {
-        if (!file.type.startsWith('image/')) return;
-
-        const reader = new FileReader();
-        reader.onload = (e) => {
-          const img = new Image();
-          img.src = e.target.result;
-          img.onload = () => {
-            uploadedImages.push({ id: Date.now() + Math.random(), img: img, src: e.target.result });
-            renderImageGallery();
-            updatePatternAnd3D();
-          };
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const img = new Image();
+        img.onload = () => {
+          uploadedImages.push({ id: Date.now() + Math.random(), img: img, src: e.target.result });
+          renderImageGallery();
+          updatePatternAnd3D();
         };
-        reader.readAsDataURL(file);
-      });
-    }
-
-    function removeImage(id) {
-      uploadedImages = uploadedImages.filter(item => item.id !== id);
-      renderImageGallery();
-      updatePatternAnd3D();
-    }
-
-    function renderImageGallery() {
-      const gallery = document.getElementById('imageGallery');
-      gallery.innerHTML = '';
-
-      uploadedImages.forEach((item, index) => {
-        const wrap = document.createElement('div');
-        wrap.className = 'relative group w-16 h-16 rounded-lg overflow-hidden border border-brand-700 bg-brand-900';
-
-        const img = document.createElement('img');
-        img.src = item.src;
-        img.className = 'w-full h-full object-cover';
-
-        const removeBtn = document.createElement('button');
-        removeBtn.innerHTML = '&times;';
-        removeBtn.className = 'absolute top-0 shadow-md right-0 bg-red-600/90 hover:bg-red-700 text-white w-5 h-5 flex items-center justify-center text-xs font-bold rounded-bl';
-        removeBtn.onclick = (e) => { e.stopPropagation(); removeImage(item.id); };
-
-        wrap.appendChild(img);
-        wrap.appendChild(removeBtn);
-        gallery.appendChild(wrap);
-      });
-    }
-
-    // SETUP DRAG AND DROP
-    const dropZone = document.getElementById('dropZone');
-    ['dragenter', 'dragover'].forEach(eventName => {
-      dropZone.addEventListener(eventName, (e) => { e.preventDefault(); dropZone.classList.add('border-brand-gold'); }, false);
+        img.src = e.target.result;
+      };
+      reader.readAsDataURL(file);
     });
-    ['dragleave', 'drop'].forEach(eventName => {
-      dropZone.addEventListener(eventName, (e) => { e.preventDefault(); dropZone.classList.remove('border-brand-gold'); }, false);
+  }
+
+  function removeImage(id) {
+    uploadedImages = uploadedImages.filter(item => item.id !== id);
+    renderImageGallery();
+    updatePatternAnd3D();
+  }
+
+  function renderImageGallery() {
+    const gallery = document.getElementById('imageGallery');
+    gallery.innerHTML = '';
+
+    uploadedImages.forEach((item) => {
+      const wrap = document.createElement('div');
+      wrap.className = 'relative group w-16 h-16 rounded-lg overflow-hidden border border-brand-700 bg-brand-900';
+
+      const img = document.createElement('img');
+      img.src = item.src;
+      img.className = 'w-full h-full object-cover';
+
+      const removeBtn = document.createElement('button');
+      removeBtn.innerHTML = '&times;';
+      removeBtn.className = 'absolute top-0 right-0 bg-red-600/90 hover:bg-red-700 text-white w-5 h-5 flex items-center justify-center text-xs font-bold rounded-bl';
+      removeBtn.onclick = (e) => { e.stopPropagation(); removeImage(item.id); };
+
+      wrap.appendChild(img);
+      wrap.appendChild(removeBtn);
+      gallery.appendChild(wrap);
     });
-    dropZone.addEventListener('drop', (e) => {
-      const dt = e.dataTransfer;
-      if (dt && dt.files) handleMultipleImages(dt.files);
-    }, false);
+  }
 
-    function applyStandardPreset(sizeKey) {
-      const preset = STANDARD_PRESETS[sizeKey];
-      if (!preset) return;
+  const dropZone = document.getElementById('dropZone');
+  ['dragenter', 'dragover'].forEach(eventName => {
+    dropZone.addEventListener(eventName, (e) => { e.preventDefault(); dropZone.classList.add('border-brand-gold'); }, false);
+  });
+  ['dragleave', 'drop'].forEach(eventName => {
+    dropZone.addEventListener(eventName, (e) => { e.preventDefault(); dropZone.classList.remove('border-brand-gold'); }, false);
+  });
+  dropZone.addEventListener('drop', (e) => {
+    const dt = e.dataTransfer;
+    if (dt && dt.files) handleMultipleImages(dt.files);
+  }, false);
 
-      document.getElementById('totalHeight').value = preset.height;
-      document.getElementById('chest').value = preset.chest;
-      document.getElementById('waist').value = preset.waist;
-      document.getElementById('hips').value = preset.hips;
-      document.getElementById('shoulder').value = preset.shoulder;
-      document.getElementById('sleeve').value = preset.sleeve;
-      document.getElementById('length').value = preset.length;
-      document.getElementById('collar').value = preset.collar;
-      document.getElementById('armhole').value = preset.armhole;
+  function applyStandardPreset(sizeKey) {
+    const preset = STANDARD_PRESETS[sizeKey];
+    if (!preset) return;
 
-      calculateInseamEstimation();
-      updatePatternAnd3D();
+    document.getElementById('totalHeight').value = preset.height;
+    document.getElementById('chest').value = preset.chest;
+    document.getElementById('waist').value = preset.waist;
+    document.getElementById('hips').value = preset.hips;
+    document.getElementById('shoulder').value = preset.shoulder;
+    document.getElementById('sleeve').value = preset.sleeve;
+    document.getElementById('length').value = preset.length;
+    document.getElementById('collar').value = preset.collar;
+    document.getElementById('armhole').value = preset.armhole;
+
+    calculateInseamEstimation();
+    updatePatternAnd3D();
+  }
+
+  function calculateInseamEstimation() {
+    const height = parseFloat(document.getElementById('totalHeight').value) || 175;
+    const outseam = (height * 0.62).toFixed(1);
+    document.getElementById('estimatedOutseamBadge').textContent = `Waist-to-Foot: ${outseam} cm`;
+    if (currentGarmentType === 'pants') {
+      document.getElementById('length').value = parseFloat(outseam);
     }
+  }
 
-    function calculateInseamEstimation() {
-      const height = parseFloat(document.getElementById('totalHeight').value) || 175;
-      const outseam = (height * 0.62).toFixed(1);
-      document.getElementById('estimatedOutseamBadge').textContent = `Waist-to-Foot: ${outseam} cm`;
-      if (currentGarmentType === 'pants') {
-        document.getElementById('length').value = outseam;
+  function setGarmentType(type) {
+    currentGarmentType = type;
+    document.getElementById('btnTypePants').className = type === 'pants' ? "py-2 rounded-lg bg-brand-gold text-brand-950 transition-all" : "py-2 rounded-lg text-slate-300 hover:text-white transition-all";
+    document.getElementById('btnTypeTop').className = type === 'top' ? "py-2 rounded-lg bg-brand-gold text-brand-950 transition-all" : "py-2 rounded-lg text-slate-300 hover:text-white transition-all";
+    calculateInseamEstimation();
+    updatePatternAnd3D();
+  }
+
+  function init3D() {
+    const container = document.getElementById('threeCanvasContainer');
+    scene = new THREE.Scene();
+    scene.background = new THREE.Color(0x051410);
+
+    camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+    camera.position.set(0, 0, 160);
+
+    renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    container.innerHTML = ''; 
+    container.appendChild(renderer.domElement);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+    const dirLight = new THREE.DirectionalLight(0xe2b857, 1.0);
+    dirLight.position.set(50, 100, 50);
+    scene.add(dirLight);
+
+    create3DGarmentMesh();
+
+    let isDragging = false;
+    let previousMouseX = 0;
+
+    container.addEventListener('mousedown', (e) => { isDragging = true; previousMouseX = e.clientX; });
+    window.addEventListener('mouseup', () => { isDragging = false; });
+    container.addEventListener('mousemove', (e) => {
+      if (isDragging && garmentMesh) {
+        garmentMesh.rotation.y += (e.clientX - previousMouseX) * 0.01;
+        previousMouseX = e.clientX;
       }
-    }
+    });
 
-    function setGarmentType(type) {
-      currentGarmentType = type;
-      document.getElementById('btnTypePants').className = type === 'pants' ? "py-2 rounded-lg bg-brand-gold text-brand-950 transition-all" : "py-2 rounded-lg text-slate-300 hover:text-white transition-all";
-      document.getElementById('btnTypeTop').className = type === 'top' ? "py-2 rounded-lg bg-brand-gold text-brand-950 transition-all" : "py-2 rounded-lg text-slate-300 hover:text-white transition-all";
-      calculateInseamEstimation();
-      updatePatternAnd3D();
-    }
-
-    function init3D() {
-      const container = document.getElementById('threeCanvasContainer');
-      scene = new THREE.Scene();
-      scene.background = new THREE.Color(0x051410);
-
-      camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-      camera.position.set(0, 0, 160);
-
-      renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: "high-performance" });
-      renderer.setSize(container.clientWidth, container.clientHeight);
-      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      container.appendChild(renderer.domElement);
-
-      scene.add(new THREE.AmbientLight(0xffffff, 0.7));
-      const dirLight = new THREE.DirectionalLight(0xe2b857, 0.8);
-      dirLight.position.set(50, 100, 50);
-      scene.add(dirLight);
-
-      create3DGarmentMesh();
-
-      let isDragging = false;
-      let previousMouseX = 0;
-
-      container.addEventListener('mousedown', (e) => { isDragging = true; previousMouseX = e.clientX; });
-      window.addEventListener('mouseup', () => { isDragging = false; });
-      container.addEventListener('mousemove', (e) => {
-        if (isDragging && garmentMesh) {
-          garmentMesh.rotation.y += (e.clientX - previousMouseX) * 0.01;
-          previousMouseX = e.clientX;
-        }
-      });
-
-      function animate() {
-        requestAnimationFrame(animate);
-        if (!isDragging && garmentMesh) {
-          garmentMesh.rotation.y += 0.003;
-        }
-        renderer.render(scene, camera);
+    function animate() {
+      requestAnimationFrame(animate);
+      if (!isDragging && garmentMesh) {
+        garmentMesh.rotation.y += 0.003;
       }
-      animate();
+      renderer.render(scene, camera);
     }
+    animate();
+  }
 
-    function cleanupGarmentMesh() {
-      if (garmentMesh) {
-        garmentMesh.traverse((child) => {
-          if (child.isMesh) {
-            if (child.geometry) child.geometry.dispose();
-            if (child.material) {
-              if (Array.isArray(child.material)) child.material.forEach(m => m.dispose());
-              else child.material.dispose();
-            }
+  function cleanupGarmentMesh() {
+    if (garmentMesh) {
+      garmentMesh.traverse((child) => {
+        if (child.isMesh) {
+          if (child.geometry) child.geometry.dispose();
+          if (child.material) {
+            if (Array.isArray(child.material)) child.material.forEach(m => m.dispose());
+            else child.material.dispose();
           }
-        });
-        scene.remove(garmentMesh);
-      }
-    }
-
-    function create3DGarmentMesh() {
-      cleanupGarmentMesh();
-
-      const waistVal = parseFloat(document.getElementById('waist').value) || 88;
-      const hipsVal = parseFloat(document.getElementById('hips').value) || 102;
-      const lengthVal = parseFloat(document.getElementById('length').value) || 74;
-
-      garmentMesh = new THREE.Group();
-      const mat = new THREE.MeshStandardMaterial({
-        color: 0x2d735d,
-        roughness: 0.4,
-        metalness: 0.1,
-        wireframe: isWireframe,
-        side: THREE.DoubleSide
+        }
       });
+      scene.remove(garmentMesh);
+    }
+  }
 
-      if (currentGarmentType === 'pants') {
-        const legRadiusTop = hipsVal * 0.07;
-        const legRadiusBottom = legRadiusTop * 0.75;
-        const legHeight = lengthVal * 0.8;
+  function create3DGarmentMesh() {
+    if (!scene) return;
+    cleanupGarmentMesh();
 
-        const leftLeg = new THREE.Mesh(new THREE.CylinderGeometry(legRadiusTop, legRadiusBottom, legHeight, 24), mat);
-        leftLeg.position.x = -legRadiusTop * 1.1;
-        
-        const rightLeg = new THREE.Mesh(new THREE.CylinderGeometry(legRadiusTop, legRadiusBottom, legHeight, 24), mat);
-        rightLeg.position.x = legRadiusTop * 1.1;
+    const waistVal = parseFloat(document.getElementById('waist').value) || 88;
+    const hipsVal = parseFloat(document.getElementById('hips').value) || 102;
+    const lengthVal = parseFloat(document.getElementById('length').value) || 74;
 
-        const waistBand = new THREE.Mesh(new THREE.CylinderGeometry(hipsVal * 0.14, waistVal * 0.13, 12, 24), mat);
-        waistBand.position.y = legHeight / 2 + 6;
+    garmentMesh = new THREE.Group();
+    const mat = new THREE.MeshStandardMaterial({
+      color: 0x2d735d,
+      roughness: 0.4,
+      metalness: 0.1,
+      wireframe: isWireframe,
+      side: THREE.DoubleSide
+    });
 
-        garmentMesh.add(leftLeg, rightLeg, waistBand);
-      } else {
-        const topRadius = (parseFloat(document.getElementById('chest').value) || 104) * 0.15;
-        const bottomRadius = waistVal * 0.14;
-        const height = lengthVal * 0.8;
+    if (currentGarmentType === 'pants') {
+      const legRadiusTop = Math.max(hipsVal * 0.07, 1);
+      const legRadiusBottom = Math.max(legRadiusTop * 0.75, 1);
+      const legHeight = Math.max(lengthVal * 0.8, 10);
 
-        garmentMesh.add(new THREE.Mesh(new THREE.CylinderGeometry(topRadius, bottomRadius, height, 32, 16, true), mat));
-      }
+      const leftLeg = new THREE.Mesh(new THREE.CylinderGeometry(legRadiusTop, legRadiusBottom, legHeight, 24), mat);
+      leftLeg.position.x = -legRadiusTop * 1.1;
+      
+      const rightLeg = new THREE.Mesh(new THREE.CylinderGeometry(legRadiusTop, legRadiusBottom, legHeight, 24), mat);
+      rightLeg.position.x = legRadiusTop * 1.1;
 
-      scene.add(garmentMesh);
+      const waistBand = new THREE.Mesh(new THREE.CylinderGeometry(hipsVal * 0.14, waistVal * 0.13, 12, 24), mat);
+      waistBand.position.y = legHeight / 2 + 6;
+
+      garmentMesh.add(leftLeg, rightLeg, waistBand);
+    } else {
+      const topRadius = Math.max((parseFloat(document.getElementById('chest').value) || 104) * 0.15, 1);
+      const bottomRadius = Math.max(waistVal * 0.14, 1);
+      const height = Math.max(lengthVal * 0.8, 10);
+
+      garmentMesh.add(new THREE.Mesh(new THREE.CylinderGeometry(topRadius, bottomRadius, height, 32, 16, true), mat));
     }
 
-    function toggleWireframe() {
-      isWireframe = !isWireframe;
-      create3DGarmentMesh();
-    }
+    scene.add(garmentMesh);
+  }
 
-    function toggleModal(id) {
-      document.getElementById(id).classList.toggle('hidden');
-    }
+  function toggleWireframe() {
+    isWireframe = !isWireframe;
+    create3DGarmentMesh();
+  }
 
-    function updatePatternAnd3D() {
-      const height = parseFloat(document.getElementById('totalHeight').value) || 176;
-      const chest = parseFloat(document.getElementById('chest').value) || 104;
-      const waist = parseFloat(document.getElementById('waist').value) || 88;
-      const hips = parseFloat(document.getElementById('hips').value) || 102;
-      const shoulder = parseFloat(document.getElementById('shoulder').value) || 46;
-      const length = parseFloat(document.getElementById('length').value) || 74;
-      const collar = parseFloat(document.getElementById('collar').value) || 41;
-      const armhole = parseFloat(document.getElementById('armhole').value) || 26;
-      const stretch = parseFloat(document.getElementById('stretch').value) || 0.10;
-      const seam = parseFloat(document.getElementById('seam').value) || 1.5;
+  function toggleModal(id) {
+    document.getElementById(id).classList.toggle('hidden');
+  }
 
-      create3DGarmentMesh();
+  function updatePatternAnd3D() {
+    const height = parseFloat(document.getElementById('totalHeight').value) || 176;
+    const chest = parseFloat(document.getElementById('chest').value) || 104;
+    const waist = parseFloat(document.getElementById('waist').value) || 88;
+    const hips = parseFloat(document.getElementById('hips').value) || 102;
+    const shoulder = parseFloat(document.getElementById('shoulder').value) || 46;
+    const length = parseFloat(document.getElementById('length').value) || 74;
+    const collar = parseFloat(document.getElementById('collar').value) || 41;
+    const armhole = parseFloat(document.getElementById('armhole').value) || 26;
+    const stretch = parseFloat(document.getElementById('stretch').value) || 0.10;
+    const seam = parseFloat(document.getElementById('seam').value) || 1.5;
 
-      const canvas = document.getElementById('patternCanvas');
-      const ctx = canvas.getContext('2d');
-      const scale = 3.8;
-      const adjWaist = waist * (1.0 - stretch);
-      const adjHips = hips * (1.0 - stretch);
+    create3DGarmentMesh();
 
-      canvas.width = (hips + 20) * scale;
-      canvas.height = (length + 20) * scale;
+    const canvas = document.getElementById('patternCanvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    const scale = 3.8;
+    const adjWaist = waist * (1.0 - stretch);
+    const adjHips = hips * (1.0 - stretch);
 
-      ctx.fillStyle = "#ffffff";
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+    canvas.width = Math.max((hips + 20) * scale, 300);
+    canvas.height = Math.max((length + 20) * scale, 300);
 
-      // OVERLAY PRIMARY UPLOADED IMAGE (IF PRESENT)
-      if (uploadedImages.length > 0 && uploadedImages[0].img) {
-        const primImg = uploadedImages[0].img;
-        const thumbW = canvas.width * 0.22;
-        const thumbH = (primImg.height / primImg.width) * thumbW;
+    ctx.fillStyle = "#ffffff";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    if (uploadedImages.length > 0 && uploadedImages[0].img && uploadedImages[0].img.width > 0) {
+      const primImg = uploadedImages[0].img;
+      const thumbW = canvas.width * 0.22;
+      const thumbH = (primImg.height / primImg.width) * thumbW;
+      if (!isNaN(thumbH) && thumbH > 0) {
         ctx.globalAlpha = 0.22;
         ctx.drawImage(primImg, 15, 15, thumbW, thumbH);
         ctx.globalAlpha = 1.0;
       }
-
-      ctx.strokeStyle = "#94a3b8";
-      ctx.lineWidth = 1.5;
-      ctx.setLineDash([4, 4]);
-      ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
-
-      ctx.setLineDash([]);
-      ctx.strokeStyle = "#051410";
-      ctx.lineWidth = 3;
-      ctx.beginPath();
-
-      const startX = canvas.width / 2;
-
-      if (currentGarmentType === 'pants') {
-        const halfWaist = (adjWaist * scale) / 4;
-        const halfHips = (adjHips * scale) / 4;
-        const legBottom = halfHips * 0.7;
-
-        ctx.moveTo(startX - halfWaist, 30);
-        ctx.lineTo(startX + halfWaist, 30);
-        ctx.lineTo(startX + halfHips, 90);
-        ctx.lineTo(startX + halfHips + 20, 160);
-        ctx.lineTo(startX + legBottom, canvas.height - 30);
-        ctx.lineTo(startX - legBottom, canvas.height - 30);
-        ctx.lineTo(startX - halfHips, 160);
-        ctx.lineTo(startX - halfWaist, 30);
-        ctx.stroke();
-
-        ctx.fillStyle = "#64748b";
-        ctx.font = "10px sans-serif";
-        ctx.fillText(`Velsci Pants Pattern | Height: ${height}cm | Outseam: ${length}cm | Seam: ${seam}cm`, 15, canvas.height - 10);
-      } else {
-        const adjChest = chest * (1.0 - stretch);
-        const halfShoulder = (shoulder * scale) / 2;
-        const halfChest = (adjChest * scale) / 4;
-        const halfWaist = (adjWaist * scale) / 4;
-        const neckRadius = (collar / (2 * Math.PI)) * scale;
-        const armholeDrop = armhole * scale * 0.85;
-
-        ctx.arc(startX, 25, neckRadius, 0, Math.PI, false);
-        ctx.moveTo(startX - neckRadius, 25);
-        ctx.lineTo(startX - halfShoulder, 42);
-        ctx.moveTo(startX + neckRadius, 25);
-        ctx.lineTo(startX + halfShoulder, 42);
-        ctx.lineTo(startX + halfChest, 42 + armholeDrop);
-        ctx.lineTo(startX + halfWaist, 210);
-        ctx.lineTo(startX + halfWaist, canvas.height - 25);
-        ctx.lineTo(startX - halfWaist, canvas.height - 25);
-        ctx.lineTo(startX - halfWaist, 210);
-        ctx.lineTo(startX - halfChest, 42 + armholeDrop);
-        ctx.lineTo(startX - halfShoulder, 42);
-        ctx.stroke();
-
-        ctx.fillStyle = "#64748b";
-        ctx.font = "10px sans-serif";
-        ctx.fillText(`Velsci Top Pattern | Height: ${height}cm | Chest: ${chest}cm | Collar: ${collar}cm | Seam: ${seam}cm`, 15, canvas.height - 10);
-      }
     }
 
-    function downloadPattern() {
-      const canvas = document.getElementById('patternCanvas');
-      const link = document.createElement('a');
-      link.download = `Velsci_${currentGarmentType}_Pattern.png`;
-      link.href = canvas.toDataURL();
-      link.click();
-    }
+    ctx.strokeStyle = "#94a3b8";
+    ctx.lineWidth = 1.5;
+    ctx.setLineDash([4, 4]);
+    ctx.strokeRect(10, 10, canvas.width - 20, canvas.height - 20);
 
-    window.addEventListener('DOMContentLoaded', () => {
-      init3D();
-      calculateInseamEstimation();
-      updatePatternAnd3D();
-    });
-  </script>
-</body>
-</html>
+    ctx.setLineDash([]);
+    ctx.strokeStyle = "#051410";
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+
+    const startX = canvas.width / 2;
+
+    if (currentGarmentType === 'pants') {
+      const halfWaist = (adjWaist * scale) / 4;
+      const halfHips = (adjHips * scale) / 4;
+      const legBottom = halfHips * 0.7;
+
+      ctx.moveTo(startX - halfWaist, 30);
+      ctx.lineTo(startX + halfWaist, 30);
+      ctx.lineTo(startX + halfHips, 90);
+      ctx.lineTo(startX + halfHips + 20, 160);
+      ctx.lineTo(startX + legBottom, canvas.height - 30);
+      ctx.lineTo(startX - legBottom, canvas.height - 30);
+      ctx.lineTo(startX - halfHips, 160);
+      ctx.lineTo(startX - halfWaist, 30);
+      ctx.stroke();
+
+      ctx.fillStyle = "#64748b";
+      ctx.font = "10px sans-serif";
+      ctx.fillText(`Velsci Pants Pattern | Height: ${height}cm | Outseam: ${length}cm | Seam: ${seam}cm`, 15, canvas.height - 10);
+    } else {
+      const adjChest = chest * (1.0 - stretch);
+      const halfShoulder = (shoulder * scale) / 2;
+      const halfChest = (adjChest * scale) / 4;
+      const halfWaist = (adjWaist * scale) / 4;
+      const neckRadius = (collar / (2 * Math.PI)) * scale;
+      const armholeDrop = armhole * scale * 0.85;
+
+      ctx.arc(startX, 25, neckRadius, 0, Math.PI, false);
+      ctx.moveTo(startX - neckRadius, 25);
+      ctx.lineTo(startX - halfShoulder, 42);
+      ctx.moveTo(startX + neckRadius, 25);
+      ctx.lineTo(startX + halfShoulder, 42);
+      ctx.lineTo(startX + halfChest, 42 + armholeDrop);
+      ctx.lineTo(startX + halfWaist, 210);
+      ctx.lineTo(startX + halfWaist, canvas.height - 25);
+      ctx.lineTo(startX - halfWaist, canvas.height - 25);
+      ctx.lineTo(startX - halfWaist, 210);
+      ctx.lineTo(startX - halfChest, 42 + armholeDrop);
+      ctx.lineTo(startX - halfShoulder, 42);
+      ctx.stroke();
+
+      ctx.fillStyle = "#64748b";
+      ctx.font = "10px sans-serif";
+      ctx.fillText(`Velsci Top Pattern | Height: ${height}cm | Chest: ${chest}cm | Collar: ${collar}cm | Seam: ${seam}cm`, 15, canvas.height - 10);
+    }
+  }
+
+  function downloadPattern() {
+    const canvas = document.getElementById('patternCanvas');
+    const link = document.createElement('a');
+    link.download = `Velsci_${currentGarmentType}_Pattern.png`;
+    link.href = canvas.toDataURL();
+    link.click();
+  }
+
+  window.addEventListener('DOMContentLoaded', () => {
+    init3D();
+    calculateInseamEstimation();
+    updatePatternAnd3D();
+  });
+</script>
