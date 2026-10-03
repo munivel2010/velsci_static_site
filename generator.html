@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velsci Fit — Hybrid Pattern Engine & 3D Studio</title>
+  <title>Velsci Fit — Standard & Custom Parametric Pattern Studio</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   
@@ -69,14 +69,14 @@
         </svg>
         <div class="flex flex-col">
           <span class="font-display font-extrabold text-xl tracking-wider text-white">VELSCI FIT</span>
-          <span class="text-[9px] tracking-widest text-brand-400 font-semibold uppercase -mt-0.5">Full-Body Parametric 3D Studio</span>
+          <span class="text-[9px] tracking-widest text-brand-400 font-semibold uppercase -mt-0.5">Standard & Custom Pattern Engine</span>
         </div>
       </a>
 
       <div class="flex items-center gap-3">
         <button onclick="toggleModal('tapeModal')" class="px-3.5 py-2 text-xs font-semibold bg-brand-800/80 hover:bg-brand-700 text-brand-gold border border-brand-gold/30 rounded-lg transition-all flex items-center gap-2">
           <i class="fa-solid fa-ruler-horizontal"></i>
-          <span class="hidden sm:inline">No Measuring Tape?</span>
+          <span class="hidden sm:inline">Size Chart Specs</span>
         </button>
         <a href="index.html" class="px-4 py-2 text-xs font-bold bg-brand-gold hover:bg-brand-goldHover text-brand-950 rounded-lg transition-all">
           ← Main Site
@@ -87,78 +87,49 @@
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8">
 
+    <!-- LEFT COLUMN: SIZING & PARAMETRIC CONTROLS -->
     <section class="lg:col-span-5 space-y-6">
       <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
         <div class="flex justify-between items-center border-b border-brand-800 pb-3">
           <h2 class="font-display text-base font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-sliders text-brand-gold"></i> Sizing & Measurement Guide
+            <i class="fa-solid fa-sliders text-brand-gold"></i> Pattern Sizing Control Panel
           </h2>
-          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">6σ + Height Active</span>
+          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">Standard & Tailored</span>
         </div>
 
-        <!-- RE-ADDED SELF MEASUREMENT GUIDANCE GRAPHIC -->
-        <div class="bg-brand-950/80 rounded-xl p-4 border border-brand-800 flex flex-col items-center relative">
-          <span class="text-[10px] font-bold text-brand-gold uppercase tracking-wider mb-2">Self Measurement Reference Points</span>
-          <svg viewBox="0 0 300 380" class="w-full max-w-[210px] h-auto drop-shadow-md">
-            <ellipse cx="150" cy="40" rx="20" ry="25" class="fill-brand-900 stroke-brand-700" stroke-width="2"/>
-            <path d="M120,70 C120,60 180,60 180,70 L200,130 L180,135 L170,180 L180,350 L155,350 L150,210 L145,350 L120,350 L130,180 L120,135 L100,130 Z" class="fill-brand-900 stroke-brand-700" stroke-width="2"/>
-
-            <!-- A. Chest -->
-            <line x1="105" y1="110" x2="195" y2="110" class="stroke-emerald-400" stroke-width="2.5" stroke-dasharray="3"/>
-            <circle cx="150" cy="110" r="8" class="fill-emerald-400"/>
-            <text x="150" y="113" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">A</text>
-
-            <!-- B. Waist -->
-            <line x1="112" y1="150" x2="188" y2="150" class="stroke-emerald-400" stroke-width="2.5" stroke-dasharray="3"/>
-            <circle cx="150" cy="150" r="8" class="fill-emerald-400"/>
-            <text x="150" y="153" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">B</text>
-
-            <!-- C. Hips -->
-            <line x1="108" y1="185" x2="192" y2="185" class="stroke-emerald-400" stroke-width="2.5" stroke-dasharray="3"/>
-            <circle cx="150" cy="185" r="8" class="fill-emerald-400"/>
-            <text x="150" y="188" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">C</text>
-
-            <!-- D. Shoulder -->
-            <line x1="100" y1="72" x2="200" y2="72" class="stroke-amber-400" stroke-width="2.5"/>
-            <circle cx="200" cy="72" r="8" class="fill-amber-400"/>
-            <text x="200" y="75" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">D</text>
-
-            <!-- E. Sleeve / Leg Width -->
-            <path d="M200,72 L212,160" class="stroke-sky-400" stroke-width="2.5"/>
-            <circle cx="212" cy="160" r="8" class="fill-sky-400"/>
-            <text x="212" y="163" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">E</text>
-
-            <!-- F. Length -->
-            <line x1="88" y1="70" x2="88" y2="240" class="stroke-purple-400" stroke-width="2.5"/>
-            <circle cx="88" cy="240" r="8" class="fill-purple-400"/>
-            <text x="88" y="243" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">F</text>
-          </svg>
-        </div>
-
+        <!-- GARMENT TYPE SELECTION -->
         <div class="grid grid-cols-2 gap-2 bg-brand-950 p-1.5 rounded-xl border border-brand-800 text-xs font-bold">
           <button type="button" id="btnTypeTop" onclick="setGarmentType('top')" class="py-2 rounded-lg bg-brand-gold text-brand-950 transition-all">
-            🧥 Upper Garment
+            🧥 Shirt / Jacket Top
           </button>
           <button type="button" id="btnTypePants" onclick="setGarmentType('pants')" class="py-2 rounded-lg text-slate-300 hover:text-white transition-all">
             👖 Pants / Trousers
           </button>
         </div>
 
-        <div class="p-3 bg-brand-950/80 rounded-xl border border-brand-800 space-y-2">
-          <label class="block text-xs font-semibold text-brand-gold flex items-center gap-1.5">
-            <i class="fa-solid fa-camera"></i> Reference Photo (Optional Style Overlay)
+        <!-- STANDARD SIZE CHART AUTO-FILL PRESET -->
+        <div class="p-3 bg-brand-900/60 border border-brand-800 rounded-xl space-y-2">
+          <label class="block text-xs font-bold text-brand-gold flex items-center justify-between">
+            <span><i class="fa-solid fa-table-list"></i> Auto-Fill Standard Size Chart</span>
+            <span class="text-[10px] text-slate-400 font-normal">Industry Preset</span>
           </label>
-          <input type="file" id="garmentPhoto" accept="image/jpeg,image/png,image/webp" onchange="previewUploadedImage(this)" class="w-full text-xs text-slate-400 bg-brand-900 border border-brand-800 rounded-lg p-2 cursor-pointer file:mr-3 file:py-1 file:px-2.5 file:rounded-md file:border-0 file:text-xs file:font-bold file:bg-brand-gold file:text-brand-950">
-          <div id="imagePreviewContainer" class="hidden mt-2 text-center">
-            <img id="imagePreview" class="max-h-28 mx-auto rounded border border-brand-700 object-contain" alt="Garment Preview">
+          <div class="grid grid-cols-5 gap-1.5 text-xs font-semibold">
+            <button type="button" onclick="applyStandardPreset('S')" class="py-1.5 bg-brand-950 hover:bg-brand-800 border border-brand-700 rounded text-slate-200">S</button>
+            <button type="button" onclick="applyStandardPreset('M')" class="py-1.5 bg-brand-950 hover:bg-brand-800 border border-brand-700 rounded text-slate-200">M</button>
+            <button type="button" onclick="applyStandardPreset('L')" class="py-1.5 bg-brand-gold text-brand-950 font-bold rounded">L</button>
+            <button type="button" onclick="applyStandardPreset('XL')" class="py-1.5 bg-brand-950 hover:bg-brand-800 border border-brand-700 rounded text-slate-200">XL</button>
+            <button type="button" onclick="applyStandardPreset('XXL')" class="py-1.5 bg-brand-950 hover:bg-brand-800 border border-brand-700 rounded text-slate-200">2XL</button>
           </div>
         </div>
 
+        <!-- MEASUREMENT INPUT FORM -->
         <form id="parametricForm" onsubmit="event.preventDefault(); updatePatternAnd3D();" class="space-y-4">
+          
+          <!-- TOTAL HEIGHT & ESTIMATED OUTSEAM -->
           <div class="p-3 bg-emerald-950/30 border border-emerald-800/60 rounded-xl space-y-2">
             <div class="flex justify-between items-center">
               <label class="text-xs font-bold text-emerald-400 flex items-center gap-1">
-                <i class="fa-solid fa-child"></i> Total Height (cm)
+                <i class="fa-solid fa-child"></i> Total Height (cm / in)
               </label>
               <span id="estimatedOutseamBadge" class="text-[10px] font-mono bg-brand-900 text-brand-gold px-2 py-0.5 rounded border border-brand-800">
                 Waist-to-Foot: 108.5 cm
@@ -167,41 +138,52 @@
             <input type="number" id="totalHeight" value="175" oninput="calculateInseamEstimation()" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
           </div>
 
+          <!-- EXTENDED PARAMETERS GRID -->
           <div class="grid grid-cols-2 gap-3">
             <div>
-              <label class="block text-[11px] font-bold text-emerald-400 mb-1">A. Chest / Bust (cm)</label>
-              <input type="number" id="chest" value="92" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
+              <label class="block text-[11px] font-bold text-emerald-400 mb-1">Chest / Bust (cm)</label>
+              <input type="number" id="chest" value="104" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
             </div>
             <div>
-              <label class="block text-[11px] font-bold text-emerald-400 mb-1">B. Natural Waist (cm)</label>
-              <input type="number" id="waist" value="76" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
+              <label class="block text-[11px] font-bold text-emerald-400 mb-1">Natural Waist (cm)</label>
+              <input type="number" id="waist" value="88" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
             </div>
             <div>
-              <label class="block text-[11px] font-bold text-emerald-400 mb-1">C. Hips (cm)</label>
-              <input type="number" id="hips" value="98" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
+              <label class="block text-[11px] font-bold text-emerald-400 mb-1">Hips (cm)</label>
+              <input type="number" id="hips" value="102" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
             </div>
             <div>
-              <label class="block text-[11px] font-bold text-amber-400 mb-1">D. Shoulder Width (cm)</label>
-              <input type="number" id="shoulder" value="40" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
+              <label class="block text-[11px] font-bold text-amber-400 mb-1">Shoulder Width (cm)</label>
+              <input type="number" id="shoulder" value="46" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
             </div>
             <div>
-              <label class="block text-[11px] font-bold text-sky-400 mb-1">E. Sleeve / Leg Width (cm)</label>
-              <input type="number" id="sleeve" value="22" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
+              <label class="block text-[11px] font-bold text-sky-400 mb-1">Sleeve / Outseam Length (cm)</label>
+              <input type="number" id="sleeve" value="64" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
             </div>
             <div>
-              <label class="block text-[11px] font-bold text-purple-400 mb-1">F. Target Length (cm)</label>
-              <input type="number" id="length" value="68" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
+              <label class="block text-[11px] font-bold text-purple-400 mb-1">Total Garment Length (cm)</label>
+              <input type="number" id="length" value="74" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
+            </div>
+            
+            <!-- TAILORING SPECIFIC INPUTS -->
+            <div>
+              <label class="block text-[11px] font-bold text-amber-300 mb-1">Collar / Neck (cm)</label>
+              <input type="number" id="collar" value="40" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
+            </div>
+            <div>
+              <label class="block text-[11px] font-bold text-amber-300 mb-1">Armhole / Scye Depth (cm)</label>
+              <input type="number" id="armhole" value="26" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
             </div>
           </div>
 
           <div class="grid grid-cols-2 gap-3 pt-2 border-t border-brand-800">
             <div>
-              <label class="block text-[11px] font-bold text-slate-300 mb-1">Fabric Stretch %</label>
+              <label class="block text-[11px] font-bold text-slate-300 mb-1">Fabric Ease & Stretch</label>
               <select id="stretch" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white">
-                <option value="0.00">0% (Rigid / Woven)</option>
-                <option value="0.05">5% (Slight Stretch)</option>
-                <option value="0.10" selected>10% (Medium Stretch)</option>
-                <option value="0.18">18% (High Stretch Lycra)</option>
+                <option value="0.00">0% (Woven Cotton / Linen)</option>
+                <option value="0.05">5% (Slight Stretch Wool)</option>
+                <option value="0.10" selected>10% (Jersey Blend)</option>
+                <option value="0.18">18% (Activewear Lycra)</option>
               </select>
             </div>
             <div>
@@ -212,23 +194,22 @@
 
           <button type="submit" class="w-full py-3 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-xs rounded-xl shadow-lg transition-all uppercase tracking-wider flex items-center justify-center gap-2">
             <i class="fa-solid fa-wand-magic-sparkles"></i>
-            <span>Calculate Pattern & Render 3D</span>
+            <span>Calculate Vector Pattern & 3D Render</span>
           </button>
         </form>
       </div>
     </section>
 
+    <!-- RIGHT COLUMN: 3D WEBGL STUDIO & VECTOR CANVAS -->
     <section class="lg:col-span-7 space-y-6">
       <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
         <div class="flex justify-between items-center border-b border-brand-800 pb-3">
           <h2 class="font-display text-base font-bold text-white flex items-center gap-2">
             <i class="fa-solid fa-cube text-brand-gold"></i> Interactive 3D Render Canvas
           </h2>
-          <div class="flex items-center gap-2">
-            <button onclick="toggleWireframe()" class="px-2.5 py-1 text-[10px] font-bold bg-brand-900 border border-brand-800 hover:border-brand-gold rounded text-slate-300">
-              Wireframe Toggle
-            </button>
-          </div>
+          <button onclick="toggleWireframe()" class="px-2.5 py-1 text-[10px] font-bold bg-brand-900 border border-brand-800 hover:border-brand-gold rounded text-slate-300">
+            Wireframe Toggle
+          </button>
         </div>
 
         <div class="relative bg-brand-950 rounded-xl overflow-hidden border border-brand-800 flex justify-center items-center h-80">
@@ -239,11 +220,11 @@
       <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
         <div class="flex justify-between items-center border-b border-brand-800 pb-3">
           <h2 class="font-display text-base font-bold text-white flex items-center gap-2">
-            <i class="fa-solid fa-bezier-curve text-brand-gold"></i> Master Vector Line-Art Pattern
+            <i class="fa-solid fa-bezier-curve text-brand-gold"></i> Production Vector Sewing Blueprint
           </h2>
           <button onclick="downloadPattern()" class="px-3 py-1.5 text-xs font-bold bg-brand-800 hover:bg-brand-700 text-brand-gold border border-brand-gold/30 rounded-lg transition-all flex items-center gap-1.5">
             <i class="fa-solid fa-download"></i>
-            <span>Download PNG</span>
+            <span>Download PNG Pattern</span>
           </button>
         </div>
 
@@ -255,24 +236,55 @@
 
   </main>
 
-  <!-- MODAL -->
+  <!-- SIZE CHART MODAL -->
   <div id="tapeModal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
     <div class="bg-[#0a231b] border border-brand-800 rounded-2xl max-w-lg w-full p-6 text-slate-200 space-y-4 shadow-2xl relative">
       <div class="flex justify-between items-center border-b border-brand-800 pb-3">
         <h3 class="font-display text-base font-bold text-white flex items-center gap-2">
-          <i class="fa-solid fa-ruler text-brand-gold"></i> Sizing Guides
+          <i class="fa-solid fa-table text-brand-gold"></i> Standard Sizing Matrix Specs
         </h3>
         <button onclick="toggleModal('tapeModal')" class="text-slate-400 hover:text-white text-lg font-bold" aria-label="Close Modal">&times;</button>
       </div>
-      <p class="text-xs text-slate-300">Measure natural waist at narrowest point and outseam from waist to ankle floor length.</p>
+      <div class="text-xs space-y-2 text-slate-300">
+        <p><strong>Size S:</strong> Chest 92cm | Waist 76cm | Neck 37cm | Shoulder 42cm</p>
+        <p><strong>Size M:</strong> Chest 98cm | Waist 82cm | Neck 39cm | Shoulder 44cm</p>
+        <p><strong>Size L:</strong> Chest 104cm | Waist 88cm | Neck 41cm | Shoulder 46cm</p>
+        <p><strong>Size XL:</strong> Chest 112cm | Waist 96cm | Neck 43cm | Shoulder 48cm</p>
+        <p><strong>Size 2XL:</strong> Chest 120cm | Waist 104cm | Neck 45cm | Shoulder 50cm</p>
+      </div>
     </div>
   </div>
 
   <script>
     let scene, camera, renderer, garmentMesh;
     let isWireframe = false;
-    let uploadedImgElement = null;
     let currentGarmentType = 'top';
+
+    const STANDARD_PRESETS = {
+      'S':   { chest: 92,  waist: 76,  hips: 94,  shoulder: 42, sleeve: 61, length: 70, collar: 37, armhole: 23, height: 168 },
+      'M':   { chest: 98,  waist: 82,  hips: 98,  shoulder: 44, sleeve: 62.5, length: 72, collar: 39, armhole: 24.5, height: 172 },
+      'L':   { chest: 104, waist: 88,  hips: 102, shoulder: 46, sleeve: 64, length: 74, collar: 41, armhole: 26, height: 176 },
+      'XL':  { chest: 112, waist: 96,  hips: 110, shoulder: 48, sleeve: 65.5, length: 76, collar: 43, armhole: 28, height: 180 },
+      'XXL': { chest: 120, waist: 104, hips: 118, shoulder: 50, sleeve: 67, length: 78, collar: 45, armhole: 30, height: 184 }
+    };
+
+    function applyStandardPreset(sizeKey) {
+      const preset = STANDARD_PRESETS[sizeKey];
+      if (!preset) return;
+
+      document.getElementById('totalHeight').value = preset.height;
+      document.getElementById('chest').value = preset.chest;
+      document.getElementById('waist').value = preset.waist;
+      document.getElementById('hips').value = preset.hips;
+      document.getElementById('shoulder').value = preset.shoulder;
+      document.getElementById('sleeve').value = preset.sleeve;
+      document.getElementById('length').value = preset.length;
+      document.getElementById('collar').value = preset.collar;
+      document.getElementById('armhole').value = preset.armhole;
+
+      calculateInseamEstimation();
+      updatePatternAnd3D();
+    }
 
     function calculateInseamEstimation() {
       const height = parseFloat(document.getElementById('totalHeight').value) || 175;
@@ -351,9 +363,9 @@
     function create3DGarmentMesh() {
       cleanupGarmentMesh();
 
-      const waistVal = parseFloat(document.getElementById('waist').value) || 76;
-      const hipsVal = parseFloat(document.getElementById('hips').value) || 98;
-      const lengthVal = parseFloat(document.getElementById('length').value) || 68;
+      const waistVal = parseFloat(document.getElementById('waist').value) || 88;
+      const hipsVal = parseFloat(document.getElementById('hips').value) || 102;
+      const lengthVal = parseFloat(document.getElementById('length').value) || 74;
 
       garmentMesh = new THREE.Group();
       const mat = new THREE.MeshStandardMaterial({
@@ -380,7 +392,7 @@
 
         garmentMesh.add(leftLeg, rightLeg, waistBand);
       } else {
-        const topRadius = (parseFloat(document.getElementById('chest').value) || 92) * 0.15;
+        const topRadius = (parseFloat(document.getElementById('chest').value) || 104) * 0.15;
         const bottomRadius = waistVal * 0.14;
         const height = lengthVal * 0.8;
 
@@ -388,22 +400,6 @@
       }
 
       scene.add(garmentMesh);
-    }
-
-    function previewUploadedImage(input) {
-      if (input.files && input.files[0]) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-          const preview = document.getElementById('imagePreview');
-          preview.src = e.target.result;
-          document.getElementById('imagePreviewContainer').classList.remove('hidden');
-
-          uploadedImgElement = new Image();
-          uploadedImgElement.src = e.target.result;
-          uploadedImgElement.onload = () => updatePatternAnd3D();
-        };
-        reader.readAsDataURL(input.files[0]);
-      }
     }
 
     function toggleWireframe() {
@@ -416,12 +412,14 @@
     }
 
     function updatePatternAnd3D() {
-      const height = parseFloat(document.getElementById('totalHeight').value) || 175;
-      const chest = parseFloat(document.getElementById('chest').value) || 92;
-      const waist = parseFloat(document.getElementById('waist').value) || 76;
-      const hips = parseFloat(document.getElementById('hips').value) || 98;
-      const shoulder = parseFloat(document.getElementById('shoulder').value) || 40;
-      const length = parseFloat(document.getElementById('length').value) || 68;
+      const height = parseFloat(document.getElementById('totalHeight').value) || 176;
+      const chest = parseFloat(document.getElementById('chest').value) || 104;
+      const waist = parseFloat(document.getElementById('waist').value) || 88;
+      const hips = parseFloat(document.getElementById('hips').value) || 102;
+      const shoulder = parseFloat(document.getElementById('shoulder').value) || 46;
+      const length = parseFloat(document.getElementById('length').value) || 74;
+      const collar = parseFloat(document.getElementById('collar').value) || 41;
+      const armhole = parseFloat(document.getElementById('armhole').value) || 26;
       const stretch = parseFloat(document.getElementById('stretch').value) || 0.10;
       const seam = parseFloat(document.getElementById('seam').value) || 1.5;
 
@@ -429,12 +427,12 @@
 
       const canvas = document.getElementById('patternCanvas');
       const ctx = canvas.getContext('2d');
-      const scale = 4.0;
+      const scale = 3.8;
       const adjWaist = waist * (1.0 - stretch);
       const adjHips = hips * (1.0 - stretch);
 
-      canvas.width = (hips + 16) * scale;
-      canvas.height = (length + 16) * scale;
+      canvas.width = (hips + 20) * scale;
+      canvas.height = (length + 20) * scale;
 
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -474,24 +472,26 @@
         const halfShoulder = (shoulder * scale) / 2;
         const halfChest = (adjChest * scale) / 4;
         const halfWaist = (adjWaist * scale) / 4;
+        const neckRadius = (collar / (2 * Math.PI)) * scale;
+        const armholeDrop = armhole * scale * 0.85;
 
-        ctx.arc(startX, 25, 20, 0, Math.PI, false);
-        ctx.moveTo(startX - 20, 25);
-        ctx.lineTo(startX - halfShoulder, 40);
-        ctx.moveTo(startX + 20, 25);
-        ctx.lineTo(startX + halfShoulder, 40);
-        ctx.lineTo(startX + halfChest, 110);
-        ctx.lineTo(startX + halfWaist, 200);
+        ctx.arc(startX, 25, neckRadius, 0, Math.PI, false);
+        ctx.moveTo(startX - neckRadius, 25);
+        ctx.lineTo(startX - halfShoulder, 42);
+        ctx.moveTo(startX + neckRadius, 25);
+        ctx.lineTo(startX + halfShoulder, 42);
+        ctx.lineTo(startX + halfChest, 42 + armholeDrop);
+        ctx.lineTo(startX + halfWaist, 210);
         ctx.lineTo(startX + halfWaist, canvas.height - 25);
         ctx.lineTo(startX - halfWaist, canvas.height - 25);
-        ctx.lineTo(startX - halfWaist, 200);
-        ctx.lineTo(startX - halfChest, 110);
-        ctx.lineTo(startX - halfShoulder, 40);
+        ctx.lineTo(startX - halfWaist, 210);
+        ctx.lineTo(startX - halfChest, 42 + armholeDrop);
+        ctx.lineTo(startX - halfShoulder, 42);
         ctx.stroke();
 
         ctx.fillStyle = "#64748b";
         ctx.font = "10px sans-serif";
-        ctx.fillText(`Velsci Fit Top Pattern | Height: ${height}cm | Chest: ${chest}cm | Seam: ${seam}cm`, 15, canvas.height - 10);
+        ctx.fillText(`Velsci Top Pattern | Height: ${height}cm | Chest: ${chest}cm | Collar: ${collar}cm | Seam: ${seam}cm`, 15, canvas.height - 10);
       }
     }
 
