@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Velsci Globals — PMP Training Simulator</title>
-  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://generativelanguage.googleapis.com https://api-inference.huggingface.co https:;">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: 'unsafe-inline'; script-src 'self' 'unsafe-inline' https:; style-src 'self' 'unsafe-inline' https:; connect-src 'self' https://generativelanguage.googleapis.com https://api-inference.huggingface.co https://openrouter.ai https:;">
   
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -42,7 +42,7 @@
   <style>
     body { font-family: 'Inter', sans-serif; background-color: #051410; color: #f8fafc; }
     .font-display { font-family: 'Space Grotesk', sans-serif; }
-    .glass-card { background: rgba(10, 35, 27, 0.75); backdrop-filter: blur(12px); border: 1px solid rgba(31, 83, 66, 0.6); }
+    .glass-card { background: rgba(10, 35, 27, 0.85); backdrop-filter: blur(12px); border: 1px solid rgba(31, 83, 66, 0.6); }
     .option.selected { border: 2px solid #e2b857 !important; background: rgba(226, 184, 87, 0.12) !important; }
     .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(5, 20, 16, 0.3); border-top-color: #051410; border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -2px; margin-right: 8px; }
     @keyframes spin { to { transform: rotate(360deg); } }
@@ -122,7 +122,7 @@
 
   <!-- START MODAL -->
   <div class="fixed inset-0 bg-slate-950/90 backdrop-blur-md z-50 flex items-center justify-center p-4" id="home">
-    <div class="glass-card max-w-xl w-full p-8 rounded-2xl shadow-2xl space-y-6 border border-brand-700/50">
+    <div class="glass-card max-w-xl w-full p-8 rounded-2xl shadow-2xl space-y-6 border border-brand-700/50 max-h-[90vh] overflow-y-auto">
       <h1 class="font-display text-xl sm:text-2xl font-bold text-white flex items-center gap-3">
         <svg width="32" height="32" viewBox="0 0 200 200" fill="none"><polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-modal)" stroke-width="6" fill="#0a231b" /><circle cx="100" cy="100" r="62" stroke="#52c4a2" stroke-width="4" stroke-dasharray="8 4" /><path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-modal)" /><circle cx="100" cy="100" r="5" fill="#38bdf8" /><defs><linearGradient id="gold-grad-modal" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fef08a"/><stop offset="50%" stop-color="#e2b857"/><stop offset="100%" stop-color="#b45309"/></linearGradient></defs></svg>
         PMP Training Simulator
@@ -131,7 +131,10 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-semibold text-slate-300">
         <div>
           <label class="block mb-1 uppercase tracking-wide text-brand-400">Practice Mode</label>
-          <select id="practiceMode" class="w-full px-3.5 py-2.5 rounded-lg bg-brand-950 border border-brand-800 text-white focus:outline-none focus:border-brand-gold"><option value="sprint" selected>Sprint Drill (30s / Q)</option><option value="full">Full Practice (60s / Q)</option></select>
+          <select id="practiceMode" class="w-full px-3.5 py-2.5 rounded-lg bg-brand-950 border border-brand-800 text-white focus:outline-none focus:border-brand-gold">
+            <option value="sprint" selected>Sprint Drill (30s / Q)</option>
+            <option value="full">Full Practice (60s / Q)</option>
+          </select>
         </div>
         <div>
           <label class="block mb-1 uppercase tracking-wide text-brand-400">Question Count</label>
@@ -139,26 +142,49 @@
         </div>
         <div>
           <label class="block mb-1 uppercase tracking-wide text-brand-400">Domain</label>
-          <select id="domain" class="w-full px-3.5 py-2.5 rounded-lg bg-brand-950 border border-brand-800 text-white focus:outline-none focus:border-brand-gold"><option>Mixed PMBOK 8</option><option>Governance</option><option>Scope</option><option selected>Schedule</option><option>Finance</option><option>Stakeholders</option><option>Resources</option><option>Risk</option><option>Procurement</option><option>AI and PMO</option><option>Adaptive and Hybrid</option></select>
+          <select id="domain" class="w-full px-3.5 py-2.5 rounded-lg bg-brand-950 border border-brand-800 text-white focus:outline-none focus:border-brand-gold">
+            <option>Mixed PMBOK 8 (ECO Balanced)</option>
+            <option>Governance</option>
+            <option>Scope</option>
+            <option selected>Schedule</option>
+            <option>Finance</option>
+            <option>Stakeholders</option>
+            <option>Resources</option>
+            <option>Risk</option>
+            <option>Procurement</option>
+            <option>AI and PMO</option>
+            <option>Adaptive and Hybrid</option>
+          </select>
         </div>
         <div>
           <label class="block mb-1 uppercase tracking-wide text-brand-400">Difficulty</label>
-          <select id="difficulty" class="w-full px-3.5 py-2.5 rounded-lg bg-brand-950 border border-brand-800 text-white focus:outline-none focus:border-brand-gold"><option>Hard</option><option selected>Ultra-hard</option><option>Expert</option></select>
+          <select id="difficulty" class="w-full px-3.5 py-2.5 rounded-lg bg-brand-950 border border-brand-800 text-white focus:outline-none focus:border-brand-gold">
+            <option>Hard</option>
+            <option selected>Ultra-hard (PMI Situational)</option>
+            <option>Expert</option>
+          </select>
         </div>
       </div>
 
-      <div class="providerBox border border-brand-800 p-4 rounded-xl bg-brand-950/80 space-y-3">
+      <!-- LLM & API KEY CONFIGURATION BOX -->
+      <div class="providerBox border border-brand-800 p-4 rounded-xl bg-brand-950/90 space-y-3">
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          <label class="text-xs text-brand-400 font-semibold uppercase">AI Engine<select id="model" class="w-full mt-1 px-3 py-2 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs"><option value="gemini-1.5-flash">Gemini Flash</option></select></label>
+          <label class="text-xs text-brand-400 font-semibold uppercase">AI Provider
+            <select id="llmProvider" class="w-full mt-1 px-3 py-2 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs focus:outline-none focus:border-brand-gold">
+              <option value="gemini">Google Gemini (Recommended)</option>
+              <option value="openrouter">OpenRouter (Free/Open Models)</option>
+              <option value="huggingface">Hugging Face Inference</option>
+            </select>
+          </label>
           <div class="flex flex-col justify-end">
-            <button class="px-3 py-2 bg-brand-950 border border-brand-800 hover:border-brand-gold text-brand-gold text-xs font-bold rounded-lg" id="getApiKey" type="button">Get Free Gemini API Key</button>
+            <button class="px-3 py-2 bg-brand-950 border border-brand-800 hover:border-brand-gold text-brand-gold text-xs font-bold rounded-lg transition-all" id="getKeyBtn" type="button">Get API Key</button>
           </div>
         </div>
         <div>
-          <label class="text-xs text-brand-400 font-semibold uppercase block mb-1">Gemini API Key</label>
-          <input id="apiKey" type="password" placeholder="Paste your Gemini API key here" autocomplete="off" spellcheck="false" class="w-full px-3.5 py-2.5 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs focus:outline-none focus:border-brand-gold">
+          <label id="apiKeyLabel" class="text-xs text-brand-400 font-semibold uppercase block mb-1">Gemini API Key</label>
+          <input id="apiKey" type="password" placeholder="Paste your API key here" autocomplete="off" spellcheck="false" class="w-full px-3.5 py-2.5 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs focus:outline-none focus:border-brand-gold">
         </div>
-        <div id="status" class="text-xs text-brand-400 font-medium">Enter your Gemini API key and test connection.</div>
+        <div id="status" class="text-xs text-brand-400 font-medium">Select provider, enter API key, and test connection.</div>
       </div>
 
       <div class="flex flex-wrap gap-2 justify-end pt-2">
@@ -223,14 +249,48 @@
       if(connected) setStatus('Generate questions for selected mode.');
     }
 
-    async function callGemini(prompt){
+    function updateProviderUI(){
+      const provider=$('llmProvider').value;
+      const label=$('apiKeyLabel');
+      const keyInput=$('apiKey');
+      if(provider==='gemini'){
+        label.textContent='Gemini API Key';
+        keyInput.placeholder='Paste your Google AI Studio API key';
+      }else if(provider==='openrouter'){
+        label.textContent='OpenRouter API Key';
+        keyInput.placeholder='Paste your OpenRouter API key (e.g. sk-or-v1-...)';
+      }else{
+        label.textContent='Hugging Face Token';
+        keyInput.placeholder='Paste your Hugging Face Access Token';
+      }
+      connected=false;
+      $('generate').disabled=true;
+      $('startPractice').disabled=true;
+      setStatus('API provider changed. Enter key and test connection.');
+    }
+
+    async function callLLM(prompt){
       const key=$('apiKey').value.trim();
-      if(!key)throw new Error('Gemini API key is required');
-      const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(key)}`;
-      const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:.6}})});
-      const data=await r.json().catch(()=>({}));
-      if(!r.ok)throw new Error(data?.error?.message||`HTTP ${r.status}`);
-      return data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'';
+      const provider=$('llmProvider').value;
+      if(!key)throw new Error('API key is required');
+
+      if(provider==='gemini'){
+        const url=`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${encodeURIComponent(key)}`;
+        const r=await fetch(url,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{parts:[{text:prompt}]}],generationConfig:{responseMimeType:'application/json',temperature:.5}})});
+        const data=await r.json().catch(()=>({}));
+        if(!r.ok)throw new Error(data?.error?.message||`HTTP ${r.status}`);
+        return data?.candidates?.[0]?.content?.parts?.map(p=>p.text||'').join('')||'';
+      }else if(provider==='openrouter'){
+        const r=await fetch('https://openrouter.ai/api/v1/chat/completions',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},body:JSON.stringify({model:'meta-llama/llama-3-8b-instruct:free',messages:[{role:'user',content:prompt+' Return valid JSON only.'}],temperature:0.5})});
+        const data=await r.json().catch(()=>({}));
+        if(!r.ok)throw new Error(data?.error?.message||`HTTP ${r.status}`);
+        return data?.choices?.[0]?.message?.content||'';
+      }else{
+        const r=await fetch('https://api-inference.huggingface.co/models/mistralai/Mistral-7B-Instruct-v0.2',{method:'POST',headers:{'Content-Type':'application/json','Authorization':`Bearer ${key}`},body:JSON.stringify({inputs:`[INST] ${prompt} Return valid JSON only. [/INST]`,parameters:{temperature:0.5,max_new_tokens:1500}})});
+        const data=await r.json().catch(()=>({}));
+        if(!r.ok)throw new Error(data?.error||`HTTP ${r.status}`);
+        return Array.isArray(data)?data[0]?.generated_text:data?.generated_text||'';
+      }
     }
 
     function extractJSON(text){
@@ -279,14 +339,15 @@
     function dedupe(items){const seen=new Set;return items.filter(q=>{const k=q.q.toLowerCase();if(seen.has(k))return false;seen.add(k);return true})}
 
     function promptFor(n,exclude=[]){
-      const style=mode==='sprint'?'Each question must be one sentence on one line and no more than 25 words.':'Use concise realistic scenario-based questions.';
-      return `Create exactly ${n} ${$('difficulty').value} PMBOK 8 multiple-choice questions for ${$('domain').value}. ${style} Return only JSON: {"questions":[{"q":"question","o":["option 1","option 2","option 3","option 4"],"a":0,"e":"explanation","topic":"topic"}]}. Use exactly four options and a zero-based answer index.${exclude.length?' Do not repeat these questions: '+exclude.join(' | '):''}`;
+      const style=mode==='sprint'?'Each question must be concise situational judgement.':'Use realistic PMI-style scenario-based questions with predictive, agile, and hybrid contexts.';
+      const exclusionNote=exclude.length?' Ensure these exact questions or identical scenarios are NOT repeated: '+exclude.join(' | '):'';
+      return `Create exactly ${n} distinct professional PMI-certified PMP situational examination questions focusing on ${$('domain').value}. ${style} ${exclusionNote} Return ONLY valid JSON: {"questions":[{"q":"question stem","o":["option A","option B","option C","option D"],"a":0,"e":"detailed PMBOK rationale explaining correct and incorrect choices","topic":"topic"}]}. Ensure exactly four unique options and a zero-based correct answer index 'a'.`;
     }
 
     async function generateBatch(n,exclude){
       let last;
       for(let attempt=1;attempt<=3;attempt++){
-        try{return pullQuestions(extractJSON(await callGemini(promptFor(n,exclude))))}catch(e){last=e}
+        try{return pullQuestions(extractJSON(await callLLM(promptFor(n,exclude))))}catch(e){last=e}
       }
       throw last||new Error('Generation failed');
     }
@@ -296,10 +357,10 @@
       b.disabled=true;b.innerHTML='<span class="spinner"></span>Connecting';
       setStatus('Testing connection...');
       try{
-        await callGemini('Return only {"connected":true}');
+        await callLLM('Return only {"connected":true}');
         connected=true;
         $('generate').disabled=false;
-        setStatus('Connected to Gemini API.','ok');
+        setStatus('Connected successfully.','ok');
         toast('Connection successful');
       }catch(e){
         connected=false;
@@ -318,9 +379,10 @@
       b.disabled=true;b.innerHTML='<span class="spinner"></span>Generating';
       bank=[];
       try{
-        for(let round=0;round<4&&bank.length<count;round++){
-          setStatus(`Generating: ${bank.length}/${count}...`);
-          const need=count-bank.length,got=await generateBatch(need,bank.map(x=>x.q).slice(-10));
+        for(let round=0;round<5&&bank.length<count;round++){
+          setStatus(`Generating questions: ${bank.length}/${count}...`);
+          const need=count-bank.length;
+          const got=await generateBatch(need,bank.map(x=>x.q));
           bank=dedupe(bank.concat(got)).slice(0,count);
         }
         if(!bank.length)throw new Error('No usable questions returned');
@@ -420,7 +482,12 @@
 
     // Event bindings
     $('practiceMode').onchange=updateMode;
-    $('getApiKey').onclick=()=>window.open('https://aistudio.google.com/apikey','_blank','noopener,noreferrer');
+    $('llmProvider').onchange=updateProviderUI;
+    $('getKeyBtn').onclick=()=>{
+      const p=$('llmProvider').value;
+      const url=p==='gemini'?'https://aistudio.google.com/apikey':p==='openrouter'?'https://openrouter.ai/keys':'https://huggingface.co/settings/tokens';
+      window.open(url,'_blank','noopener,noreferrer');
+    };
     $('apiKey').oninput=()=>{sessionStorage.setItem('velsciApiKey',$('apiKey').value);connected=false;bank=[];$('generate').disabled=true;$('startPractice').disabled=true;setStatus('API key changed. Test connection again.')};
     $('testConnection').onclick=testConnection;
     $('generate').onclick=generate;
@@ -429,8 +496,9 @@
     $('flagBtn').onclick=()=>{flags[idx]=!flags[idx];render()};$('endBtn').onclick=finish;
     $('restart').onclick=()=>location.reload();
 
-    // Initialize counts and check stored API key
+    // Initialize counts and check stored API key immediately on load
     updateMode();
+    updateProviderUI();
     const savedKey=sessionStorage.getItem('velsciApiKey');
     if(savedKey){
       $('apiKey').value=savedKey;
