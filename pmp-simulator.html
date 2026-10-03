@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Velsci Globals — PMP Training Simulator</title>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; connect-src 'self' https://api.velsci.com; img-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self'">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              950: '#051410',
+              900: '#0a231b',
+              800: '#133a2d',
+              700: '#1f5342',
+              600: '#2d735d',
+              500: '#3e997d',
+              400: '#52c4a2',
+              gold: '#e2b857',
+              goldHover: '#c89d3c',
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Space Grotesk', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #051410; color: #f8fafc; }
+    .font-display { font-family: 'Space Grotesk', sans-serif; }
+    .glass-card { background: rgba(10, 35, 27, 0.65); backdrop-filter: blur(12px); border: 1px solid rgba(31, 83, 66, 0.5); }
+    .option.selected { border: 2px solid #e2b857; background: rgba(226, 184, 87, 0.08); }
+    .spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(5, 20, 16, 0.3); border-top-color: #051410; border-radius: 50%; animation: spin .8s linear infinite; vertical-align: -2px; margin-right: 8px; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-brand-500 selection:text-brand-950">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-[#0a231b]/90 backdrop-blur-md border-b border-brand-800/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3.5 group">
+        <svg width="42" height="42" viewBox="0 0 200 200" fill="none" class="drop-shadow-lg">
+          <polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-header)" stroke-width="6" fill="#0a231b" />
+          <circle cx="100" cy="100" r="62" stroke="#52c4a2" stroke-width="4" stroke-dasharray="8 4" />
+          <path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-header)" />
+          <circle cx="100" cy="100" r="5" fill="#38bdf8" />
+          <defs>
+             <linearGradient id="gold-grad-header" x1="0%" y1="0%" x2="100%" y2="100%">
+               <stop offset="0%" stop-color="#fef08a" />
+               <stop offset="50%" stop-color="#e2b857" />
+               <stop offset="100%" stop-color="#b45309" />
+             </linearGradient>
+           </defs>
+        </svg>
+        <div class="flex flex-col">
+          <span class="font-display font-extrabold text-xl tracking-wider text-white">VELSCI GLOBALS</span>
+          <span class="text-[9px] tracking-widest text-brand-400 font-semibold uppercase -mt-0.5">PMP Training Simulator</span>
+        </div>
+      </a>
+      <div class="font-mono text-brand-gold text-lg font-bold border border-brand-800 bg-[#051410] px-4 py-2 rounded-xl" id="timer">00:00:00</div>
+    </div>
+  </header>
+
+  <!-- MAIN SIMULATOR LAYOUT -->
+  <div class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 grid grid-cols-1 lg:grid-cols-[1fr_280px] gap-8">
+    <main class="glass-card rounded-2xl p-6 sm:p-8 shadow-xl">
+      <div class="flex justify-between items-center border-b border-brand-800 pb-4 mb-6">
+        <button class="px-3 py-1.5 bg-brand-950 border border-brand-800 hover:border-brand-gold rounded-lg text-xs font-bold text-slate-300" id="flagBtn">⚑ Flag for Review</button>
+        <span class="text-xs font-bold text-brand-400" id="flagText"></span>
+      </div>
+      <div class="flex justify-between font-bold text-slate-400 text-sm mb-4">
+        <span id="num"></span>
+      </div>
+      <div class="text-lg sm:text-xl font-medium text-white mb-6 leading-relaxed" id="stem"></div>
+      <div id="answers" class="space-y-3"></div>
+      
+      <div id="confidenceBox" class="hidden mt-6 p-4 rounded-xl bg-brand-950/60 border border-brand-800 text-sm">
+        <label class="font-semibold text-slate-300">Confidence Level:
+          <select id="confidence" class="ml-2 px-3 py-1.5 rounded-lg bg-[#051410] border border-brand-800 text-white text-xs">
+            <option value="">Select</option>
+            <option>Very confident</option>
+            <option>Confident</option>
+            <option>Unsure</option>
+            <option>Guess</option>
+          </select>
+        </label>
+      </div>
+    </main>
+
+    <aside class="glass-card rounded-2xl p-6 shadow-xl h-fit">
+      <h3 class="font-display font-bold text-white text-sm uppercase tracking-wider mb-4">Question Navigator</h3>
+      <div id="nav" class="grid grid-cols-5 gap-2"></div>
+    </aside>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-[#030d0a] text-slate-400 py-6 border-t border-brand-800/80 px-4 sm:px-6 lg:px-8">
+    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row justify-between items-center gap-4 text-xs">
+      <span>Velsci Globals Subpage | <a href="index.html" class="text-brand-gold underline">Return to Main Platform</a></span>
+      <div class="flex gap-3">
+        <button class="px-4 py-2 bg-brand-950 border border-brand-800 hover:border-brand-gold rounded-lg font-bold text-slate-300" id="endBtn">End Practice</button>
+        <button class="px-4 py-2 bg-brand-950 border border-brand-800 hover:border-brand-gold rounded-lg font-bold text-slate-300" id="prev">Previous</button>
+        <button class="px-4 py-2 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold rounded-lg" id="next">Next</button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- START MODAL -->
+  <div class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 flex items-center justify-center p-4" id="home">
+    <div class="glass-card max-w-2xl w-full p-8 rounded-2xl shadow-2xl space-y-6">
+      <h1 class="font-display text-2xl font-bold text-white flex items-center gap-3">
+        <svg width="32" height="32" viewBox="0 0 200 200" fill="none"><polygon points="100,10 178,55 178,145 100,190 22,145 22,55" stroke="url(#gold-grad-modal)" stroke-width="6" fill="#0a231b" /><circle cx="100" cy="100" r="62" stroke="#52c4a2" stroke-width="4" stroke-dasharray="8 4" /><path d="M55,60 L100,150 L145,60 L125,60 L100,115 L75,60 Z" fill="url(#gold-grad-modal)" /><circle cx="100" cy="100" r="5" fill="#38bdf8" /><defs><linearGradient id="gold-grad-modal" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#fef08a"/><stop offset="50%" stop-color="#e2b857"/><stop offset="100%" stop-color="#b45309"/></linearGradient></defs></svg>
+        Velsci Globals — PMP Training Simulator
+      </h1>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs font-semibold text-slate-300">
+        <div>
+          <label class="block mb-1 uppercase">Practice Mode</label>
+          <select id="practiceMode" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-white"><option value="sprint" selected>Sprint Drill (30s / Q)</option><option value="full">Full Practice (60s / Q)</option></select>
+        </div>
+        <div>
+          <label class="block mb-1 uppercase">Question Count</label>
+          <select id="count" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-white"></select>
+        </div>
+        <div>
+          <label class="block mb-1 uppercase">Domain</label>
+          <select id="domain" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-white"><option>Mixed PMBOK 8</option><option>Governance</option><option>Scope</option><option selected>Schedule</option><option>Finance</option><option>Stakeholders</option><option>Resources</option><option>Risk</option><option>Procurement</option><option>AI and PMO</option><option>Adaptive and Hybrid</option></select>
+        </div>
+        <div>
+          <label class="block mb-1 uppercase">Difficulty</label>
+          <select id="difficulty" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-white"><option>Hard</option><option selected>Ultra-hard</option><option>Expert</option></select>
+        </div>
+      </div>
+
+      <div class="p-4 rounded-xl bg-brand-950/60 border border-brand-800 space-y-3">
+        <div id="status" class="text-xs text-brand-400 font-medium">System ready. Connects securely via Velsci backend API.</div>
+        <div class="flex flex-wrap gap-2 justify-end">
+          <button class="px-4 py-2 bg-brand-950 border border-brand-800 hover:border-brand-gold text-white text-xs font-bold rounded-lg" id="testConnection">Test Connection</button>
+          <button class="px-4 py-2 bg-brand-950 border border-brand-800 hover:border-brand-gold text-white text-xs font-bold rounded-lg" id="generate" disabled>Generate Questions</button>
+          <button class="px-4 py-2 bg-brand-gold hover:bg-brand-goldHover text-brand-950 text-xs font-bold rounded-lg shadow-md" id="startPractice" disabled>Start Simulator</button>
+        </div>
+      </div>
+      <div class="text-[11px] text-slate-500 leading-relaxed"><b>Disclaimer:</b> PMP is a registered mark of the Project Management Institute, Inc. Developed independently by Velsci Globals.</div>
+    </div>
+  </div>
+
+  <!-- RESULTS MODAL -->
+  <div class="fixed inset-0 bg-slate-950/85 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden" id="results">
+    <div class="glass-card max-w-3xl w-full max-h-[85vh] overflow-auto p-8 rounded-2xl shadow-2xl space-y-6">
+      <h2 class="font-display text-2xl font-bold text-white">Final Results</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+        <div class="p-4 bg-brand-950 border border-brand-800 rounded-xl"><b id="pct" class="text-2xl text-brand-gold">0%</b>Score</div>
+        <div class="p-4 bg-brand-950 border border-brand-800 rounded-xl"><b id="correct" class="text-2xl text-white">0/0</b>Correct</div>
+        <div class="p-4 bg-brand-950 border border-brand-800 rounded-xl"><b id="answered" class="text-2xl text-white">0/0</b>Answered</div>
+        <div class="p-4 bg-brand-950 border border-brand-800 rounded-xl"><b id="used" class="text-2xl text-white">0m</b>Time Used</div>
+      </div>
+      <div id="pmiDashboard" class="pmiDash"></div>
+      <div id="ecoPanel" class="ecoPanel"></div>
+      <div id="details" class="space-y-3"></div>
+      <div class="flex justify-end"><button class="px-6 py-2.5 bg-brand-gold hover:bg-brand-goldHover text-brand-950 font-bold text-xs rounded-xl" id="restart">Return Home</button></div>
+    </div>
+  </div>
+
+  <div id="toast" class="fixed right-6 top-24 px-4 py-3 bg-emerald-500 text-brand-950 font-bold text-xs rounded-xl shadow-2xl z-50 hidden"></div>
+
+  <script>
+    'use strict';const $=id=>document.getElementById(id);
+    let connected=false,bank=[],Q=[],idx=0,ans=[],flags=[],expired=[],remaining=0,tick=null,startTime=0,mode='sprint';
+    function toast(msg,bad=false){const t=$('toast');t.textContent=msg;t.className=`fixed right-6 top-24 px-4 py-3 text-xs font-bold rounded-xl shadow-2xl z-50 ${bad?'bg-red-500 text-white':'bg-emerald-500 text-brand-950'}`;setTimeout(()=>t.classList.add('hidden'),4200)}
+    function setStatus(msg,state=''){const s=$('status');s.textContent=msg;s.className='text-xs font-medium '+(state==='ok'?'text-emerald-400':state==='bad'?'text-red-400':'text-brand-400')}
+    function updateMode(){mode=$('practiceMode').value;const counts=mode==='sprint'?[5,10]:[10,20,30];$('count').innerHTML=counts.map(n=>`<option ${n===10?'selected':''}>${n}</option>`).join('');$('startPractice').textContent=mode==='sprint'?'Start Sprint Drill':'Start Full Practice';bank=[];$('startPractice').disabled=true;if(connected)setStatus('Generate questions for selected mode.')}
+
+    async function callLLM(prompt){
+      const r=await fetch('/api/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt})});
+      const data=await r.json().catch(()=>({}));
+      if(!r.ok)throw new Error(data?.error||`HTTP ${r.status}`);
+      return data.text||JSON.stringify(data);
+    }
+
+    function extractJSON(text){let s=String(text||'').trim().replace(/^```(?:json)?\s*/i,'').replace(/```\s*$/,'').trim();for(const m of s.matchAll(/[\{\[]/g)){const start=m.index,stack=[];let quote=false,escape=false;for(let i=start;i<s.length;i++){const ch=s[i];if(quote){if(escape)escape=false;else if(ch==='\\')escape=true;else if(ch==='"')quote=false;continue}if(ch==='"'){quote=true;continue}if(ch==='{'||ch==='[')stack.push(ch);else if(ch==='}'||ch===']'){const open=stack.pop();if((open==='{'&&ch!=='}')||(open==='['&&ch!==']'))break;if(!stack.length){try{return JSON.parse(s.slice(start,i+1))}catch{break}}}}}throw new Error('No valid JSON object returned')}
+    function pick(o,names){for(const n of names)if(o?.[n]!==undefined&&o[n]!==null)return o[n]}
+    function normalizeQuestion(raw){if(!raw||typeof raw!=='object')return null;let q=pick(raw,['q','question','stem','text']),o=pick(raw,['o','options','choices','answers']),a=pick(raw,['a','answer','correctAnswer','correct','correctIndex']),e=pick(raw,['e','explanation','rationale'])||'No explanation provided.',topic=pick(raw,['topic','domain','category'])||'PMBOK';if(o&&typeof o==='object'&&!Array.isArray(o))o=Object.values(o);if(!Array.isArray(o)||o.length<4)return null;o=o.slice(0,4).map(String);if(typeof a==='string'){const t=a.trim();if(/^[A-D]$/i.test(t))a=t.toUpperCase().charCodeAt(0)-65;else if(/^\d+$/.test(t))a=Number(t);else a=o.findIndex(x=>x.trim().toLowerCase()===t.toLowerCase())}if(Number.isInteger(a)&&a>=1&&a<=4&&raw.correctIndex===undefined&&raw.a===undefined)a-=1;if(typeof q!=='string'||!q.trim()||!Number.isInteger(a)||a<0||a>3)return null;return{type:'mcq',topic:String(topic),q:q.replace(/\s+/g,' ').trim(),o,a,e:String(e)}}
+    function pullQuestions(data){const arr=Array.isArray(data)?data:pick(data,['questions','items','quiz','data']);return Array.isArray(arr)?arr.map(normalizeQuestion).filter(Boolean):[]}
+    function dedupe(items){const seen=new Set;return items.filter(q=>{const k=q.q.toLowerCase();if(seen.has(k))return false;seen.add(k);return true})}
+    function promptFor(n,exclude=[]){const style=mode==='sprint'?'Each question must be one sentence on one line and no more than 25 words.':'Use concise realistic scenario-based questions.';return `Create exactly ${n} ${$('difficulty').value} PMBOK 8 multiple-choice questions for ${$('domain').value}. ${style} Return only JSON: {"questions":[{"q":"question","o":["option 1","option 2","option 3","option 4"],"a":0,"e":"explanation","topic":"topic"}]}. Use exactly four options and a zero-based answer index.${exclude.length?' Do not repeat these questions: '+exclude.join(' | '):''}`}
+    async function generateBatch(n,exclude){let last;for(let attempt=1;attempt<=3;attempt++){try{return pullQuestions(extractJSON(await callLLM(promptFor(n,exclude))))}catch(e){last=e}}throw last||new Error('Generation failed')}
+
+    async function testConnection(){const b=$('testConnection');b.disabled=true;b.innerHTML='<span class="spinner"></span>Connecting';setStatus('Testing backend connection...');try{await callLLM('Return only {"connected":true}');connected=true;$('generate').disabled=false;setStatus('Connected to Velsci backend LLM service.','ok');toast('Connection successful')}catch(e){connected=false;$('generate').disabled=true;$('startPractice').disabled=true;setStatus(`Connection failed: ${e.message}`,'bad');toast(`Connection failed: ${e.message}`,true)}finally{b.disabled=false;b.textContent='Test Connection'}}
+
+    async function generate(){if(!connected)return toast('Test the connection first.',true);const b=$('generate'),count=Number($('count').value);b.disabled=true;b.innerHTML='<span class="spinner"></span>Generating';bank=[];try{for(let round=0;round<4&&bank.length<count;round++){setStatus(`Generating: ${bank.length}/${count}...`);const need=count-bank.length,got=await generateBatch(need,bank.map(x=>x.q).slice(-10));bank=dedupe(bank.concat(got)).slice(0,count)}if(!bank.length)throw new Error('No usable questions returned');$('startPractice').disabled=false;setStatus(bank.length===count?`Loaded ${count} questions.`:`Loaded ${bank.length} questions.`,'ok');toast(`${bank.length} questions ready`)}catch(e){bank=[];$('startPractice').disabled=true;setStatus(`Generation failed: ${e.message}`,'bad');toast(`Generation failed: ${e.message}`,true)}finally{b.disabled=false;b.textContent='Generate Questions'}}
+
+    const fmt=s=>'00:'+String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');
+    function resetTimer(){remaining=mode==='sprint'?30:60;$('timer').textContent=fmt(remaining);clearInterval(tick);tick=setInterval(()=>{remaining=Math.max(0,remaining-1);$('timer').textContent=fmt(remaining);if(!remaining){clearInterval(tick);if(ans[idx]===null)expired[idx]=true;if(idx<Q.length-1){idx++;resetTimer();render()}else finish()}},1000)}
+    function start(){Q=bank.slice();if(!Q.length)return;idx=0;ans=Array(Q.length).fill(null);flags=Array(Q.length).fill(false);expired=Array(Q.length).fill(false);startTime=Date.now();$('home').classList.add('hidden');resetTimer();render()}
+    function render(){const q=Q[idx];$('num').textContent=`Question ${idx+1} of ${Q.length} · ${q.topic}`;$('flagText').textContent=expired[idx]?'Skipped':flags[idx]?'⚑ Flagged':'';$('flagBtn').textContent=flags[idx]?'⚑ Remove Flag':'⚑ Flag for Review';$('stem').textContent=q.q;$('answers').innerHTML='';q.o.forEach((v,k)=>{const l=document.createElement('label');l.className='option flex gap-3 p-4 border border-brand-800 bg-brand-950/50 cursor-pointer rounded-xl items-center'+(ans[idx]===k?' selected':'');const input=document.createElement('input');input.type='radio';input.name='answer';input.checked=ans[idx]===k;input.disabled=expired[idx];input.onchange=()=>{ans[idx]=k;render()};const b=document.createElement('b');b.textContent=String.fromCharCode(65+k)+'.';const span=document.createElement('span');span.textContent=v;l.append(input,b,span);$('answers').appendChild(l)});$('prev').disabled=idx===0;$('next').textContent=idx===Q.length-1?'Finish':'Next';nav()}
+    function nav(){$('nav').innerHTML='';Q.forEach((_,k)=>{const b=document.createElement('button');b.className='h-9 font-bold text-xs rounded-lg border '+(ans[k]!==null?'bg-brand-500 text-brand-950 border-brand-500':'bg-brand-950 text-white border-brand-800')+(flags[k]?' border-amber-400':'')+(expired[k]?' opacity-50':'')+(k===idx?' ring-2 ring-brand-gold':'');b.textContent=k+1;b.onclick=()=>{idx=k;resetTimer();render()};$('nav').appendChild(b)})}
+    function performanceBand(p){return p>=80?'Above Target':p>=65?'Target':p>=50?'Below Target':'Needs Improvement'}
+    function esc(v){return String(v).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+    function finish(){if(!Q.length)return;clearInterval(tick);const c=Q.filter((q,k)=>ans[k]===q.a).length,n=ans.filter(x=>x!==null).length;$('pct').textContent=Math.round(c/Q.length*100)+'%';$('correct').textContent=c+'/'+Q.length;$('answered').textContent=n+'/'+Q.length;$('used').textContent=Math.max(1,Math.ceil((Date.now()-startTime)/60000))+'m';$('details').innerHTML='';Q.forEach((q,k)=>{const d=document.createElement('div');d.className='p-4 rounded-xl border '+(ans[k]===q.a?'border-emerald-500/50 bg-emerald-500/10':'border-red-500/50 bg-red-500/10');d.innerHTML=`<b>Question ${k+1}: ${ans[k]===q.a?'Correct':expired[k]?'Skipped':'Incorrect'}</b><br>Your answer: ${ans[k]===null?'Not answered':q.o[ans[k]]}<br>Correct answer: ${q.o[q.a]}<br>Explanation: ${q.e}`;$('details').appendChild(d)});$('results').classList.remove('hidden')}
+
+    $('practiceMode').onchange=updateMode;$('testConnection').onclick=testConnection;$('generate').onclick=generate;$('startPractice').onclick=start;$('prev').onclick=()=>{if(idx){idx--;resetTimer();render()}};$('next').onclick=()=>{if(idx<Q.length-1){idx++;resetTimer();render()}else finish()};$('flagBtn').onclick=()=>{flags[idx]=!flags[idx];render()};$('endBtn').onclick=finish;$('restart').onclick=()=>location.reload();
+    updateMode();
+
+    let confidenceAnswers=[];
+    const baseStart=start;start=function(){confidenceAnswers=Array(bank.length).fill('');baseStart();$('confidenceBox').classList.remove('hidden')};
+    const baseRender=render;render=function(){baseRender();if(!$('confidence'))return;$('confidence').value=confidenceAnswers[idx]\vert{}\vert{}'';$('confidence').disabled=expired[idx]};
+    $('confidence').onchange=()=>{if(Q.length)confidenceAnswers[idx]=$('confidence').value};
+  </script>
+</body>
+</html>
