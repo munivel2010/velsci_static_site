@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Velsci Fit — Standard & Custom Parametric Pattern Studio</title>
+  <title>Velsci Fit — Hybrid Multi-Image Pattern Engine & 3D Studio</title>
   
   <script src="https://cdn.tailwindcss.com"></script>
   
@@ -69,7 +69,7 @@
         </svg>
         <div class="flex flex-col">
           <span class="font-display font-extrabold text-xl tracking-wider text-white">VELSCI FIT</span>
-          <span class="text-[9px] tracking-widest text-brand-400 font-semibold uppercase -mt-0.5">Standard & Custom Pattern Engine</span>
+          <span class="text-[9px] tracking-widest text-brand-400 font-semibold uppercase -mt-0.5">Multi-Image Parametric 3D Studio</span>
         </div>
       </a>
 
@@ -87,31 +87,87 @@
 
   <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 flex-grow grid grid-cols-1 lg:grid-cols-12 gap-8">
 
-    <!-- LEFT COLUMN: SIZING & PARAMETRIC CONTROLS -->
+    <!-- LEFT COLUMN: MULTI-IMAGE UPLOAD & MEASUREMENT CONTROLS -->
     <section class="lg:col-span-5 space-y-6">
       <div class="glass-card rounded-2xl p-6 shadow-xl space-y-4">
         <div class="flex justify-between items-center border-b border-brand-800 pb-3">
           <h2 class="font-display text-base font-bold text-white flex items-center gap-2">
             <i class="fa-solid fa-sliders text-brand-gold"></i> Pattern Sizing Control Panel
           </h2>
-          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">Standard & Tailored</span>
+          <span class="text-[10px] font-mono text-emerald-400 bg-emerald-950 border border-emerald-800 px-2 py-0.5 rounded">Multi-View Active</span>
+        </div>
+
+        <!-- SELF MEASUREMENT GUIDANCE GRAPHIC -->
+        <div class="bg-brand-950/80 rounded-xl p-4 border border-brand-800 flex flex-col items-center relative">
+          <span class="text-[10px] font-bold text-brand-gold uppercase tracking-wider mb-2">Self Measurement Reference Points</span>
+          <svg viewBox="0 0 300 380" class="w-full max-w-[210px] h-auto drop-shadow-md">
+            <ellipse cx="150" cy="40" rx="20" ry="25" class="fill-brand-900 stroke-brand-700" stroke-width="2"/>
+            <path d="M120,70 C120,60 180,60 180,70 L200,130 L180,135 L170,180 L180,350 L155,350 L150,210 L145,350 L120,350 L130,180 L120,135 L100,130 Z" class="fill-brand-900 stroke-brand-700" stroke-width="2"/>
+
+            <!-- A. Chest -->
+            <line x1="105" y1="110" x2="195" y2="110" class="stroke-emerald-400" stroke-width="2.5" stroke-dasharray="3"/>
+            <circle cx="150" cy="110" r="8" class="fill-emerald-400"/>
+            <text x="150" y="113" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">A</text>
+
+            <!-- B. Waist -->
+            <line x1="112" y1="150" x2="188" y2="150" class="stroke-emerald-400" stroke-width="2.5" stroke-dasharray="3"/>
+            <circle cx="150" cy="150" r="8" class="fill-emerald-400"/>
+            <text x="150" y="153" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">B</text>
+
+            <!-- C. Hips -->
+            <line x1="108" y1="185" x2="192" y2="185" class="stroke-emerald-400" stroke-width="2.5" stroke-dasharray="3"/>
+            <circle cx="150" cy="185" r="8" class="fill-emerald-400"/>
+            <text x="150" y="188" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">C</text>
+
+            <!-- D. Shoulder -->
+            <line x1="100" y1="72" x2="200" y2="72" class="stroke-amber-400" stroke-width="2.5"/>
+            <circle cx="200" cy="72" r="8" class="fill-amber-400"/>
+            <text x="200" y="75" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">D</text>
+
+            <!-- E. Sleeve / Leg Width -->
+            <path d="M200,72 L212,160" class="stroke-sky-400" stroke-width="2.5"/>
+            <circle cx="212" cy="160" r="8" class="fill-sky-400"/>
+            <text x="212" y="163" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">E</text>
+
+            <!-- F. Length -->
+            <line x1="88" y1="70" x2="88" y2="240" class="stroke-purple-400" stroke-width="2.5"/>
+            <circle cx="88" cy="240" r="8" class="fill-purple-400"/>
+            <text x="88" y="243" text-anchor="middle" class="fill-brand-950 text-[9px] font-bold">F</text>
+          </svg>
         </div>
 
         <!-- GARMENT TYPE SELECTION -->
         <div class="grid grid-cols-2 gap-2 bg-brand-950 p-1.5 rounded-xl border border-brand-800 text-xs font-bold">
           <button type="button" id="btnTypeTop" onclick="setGarmentType('top')" class="py-2 rounded-lg bg-brand-gold text-brand-950 transition-all">
-            🧥 Shirt / Jacket Top
+            Shirt / Jacket Top
           </button>
           <button type="button" id="btnTypePants" onclick="setGarmentType('pants')" class="py-2 rounded-lg text-slate-300 hover:text-white transition-all">
-            👖 Pants / Trousers
+            Pants / Trousers
           </button>
         </div>
 
-        <!-- STANDARD SIZE CHART AUTO-FILL PRESET -->
-        <div class="p-3 bg-brand-900/60 border border-brand-800 rounded-xl space-y-2">
+        <!-- MULTIPLE IMAGE UPLOAD ZONE -->
+        <div class="p-3 bg-brand-950/80 rounded-xl border border-brand-800 space-y-3">
           <label class="block text-xs font-bold text-brand-gold flex items-center justify-between">
-            <span><i class="fa-solid fa-table-list"></i> Auto-Fill Standard Size Chart</span>
-            <span class="text-[10px] text-slate-400 font-normal">Industry Preset</span>
+            <span><i class="fa-solid fa-images"></i> Upload Reference Photos (Multiple)</span>
+            <span class="text-[10px] text-slate-400 font-normal">Front, Back, Side</span>
+          </label>
+
+          <div id="dropZone" onclick="document.getElementById('multiGarmentPhotos').click()" class="border-2 border-dashed border-brand-700 hover:border-brand-gold rounded-xl p-4 text-center cursor-pointer bg-brand-900/50 transition-all">
+            <i class="fa-solid fa-cloud-arrow-up text-2xl text-brand-gold mb-1"></i>
+            <p class="text-xs text-slate-300 font-semibold">Click or drag & drop multiple images here</p>
+            <p class="text-[10px] text-slate-400">Supports JPG, PNG, WEBP</p>
+            <input type="file" id="multiGarmentPhotos" accept="image/jpeg,image/png,image/webp" multiple onchange="handleMultipleImages(this.files)" class="hidden">
+          </div>
+
+          <!-- GALLERY THUMBNAIL PREVIEWS -->
+          <div id="imageGallery" class="flex flex-wrap gap-2 empty:hidden pt-2 border-t border-brand-800/60"></div>
+        </div>
+
+        <!-- STANDARD SIZE CHART PRESETS -->
+        <div class="p-3 bg-brand-900/60 border border-brand-800 rounded-xl space-y-2">
+          <label class="block text-xs font-bold text-brand-gold">
+            <i class="fa-solid fa-table-list"></i> Auto-Fill Standard Size Presets
           </label>
           <div class="grid grid-cols-5 gap-1.5 text-xs font-semibold">
             <button type="button" onclick="applyStandardPreset('S')" class="py-1.5 bg-brand-950 hover:bg-brand-800 border border-brand-700 rounded text-slate-200">S</button>
@@ -122,14 +178,12 @@
           </div>
         </div>
 
-        <!-- MEASUREMENT INPUT FORM -->
+        <!-- PARAMETRIC INPUT FORM -->
         <form id="parametricForm" onsubmit="event.preventDefault(); updatePatternAnd3D();" class="space-y-4">
-          
-          <!-- TOTAL HEIGHT & ESTIMATED OUTSEAM -->
           <div class="p-3 bg-emerald-950/30 border border-emerald-800/60 rounded-xl space-y-2">
             <div class="flex justify-between items-center">
               <label class="text-xs font-bold text-emerald-400 flex items-center gap-1">
-                <i class="fa-solid fa-child"></i> Total Height (cm / in)
+                <i class="fa-solid fa-child"></i> Total Height (cm)
               </label>
               <span id="estimatedOutseamBadge" class="text-[10px] font-mono bg-brand-900 text-brand-gold px-2 py-0.5 rounded border border-brand-800">
                 Waist-to-Foot: 108.5 cm
@@ -138,7 +192,6 @@
             <input type="number" id="totalHeight" value="175" oninput="calculateInseamEstimation()" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
           </div>
 
-          <!-- EXTENDED PARAMETERS GRID -->
           <div class="grid grid-cols-2 gap-3">
             <div>
               <label class="block text-[11px] font-bold text-emerald-400 mb-1">Chest / Bust (cm)</label>
@@ -161,14 +214,12 @@
               <input type="number" id="sleeve" value="64" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
             </div>
             <div>
-              <label class="block text-[11px] font-bold text-purple-400 mb-1">Total Garment Length (cm)</label>
+              <label class="block text-[11px] font-bold text-purple-400 mb-1">Total Length (cm)</label>
               <input type="number" id="length" value="74" required class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
             </div>
-            
-            <!-- TAILORING SPECIFIC INPUTS -->
             <div>
               <label class="block text-[11px] font-bold text-amber-300 mb-1">Collar / Neck (cm)</label>
-              <input type="number" id="collar" value="40" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
+              <input type="number" id="collar" value="41" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white focus:outline-none focus:border-brand-gold">
             </div>
             <div>
               <label class="block text-[11px] font-bold text-amber-300 mb-1">Armhole / Scye Depth (cm)</label>
@@ -178,11 +229,11 @@
 
           <div class="grid grid-cols-2 gap-3 pt-2 border-t border-brand-800">
             <div>
-              <label class="block text-[11px] font-bold text-slate-300 mb-1">Fabric Ease & Stretch</label>
+              <label class="block text-[11px] font-bold text-slate-300 mb-1">Fabric Stretch %</label>
               <select id="stretch" class="w-full px-3 py-2 rounded-lg bg-brand-950 border border-brand-800 text-xs text-white">
-                <option value="0.00">0% (Woven Cotton / Linen)</option>
-                <option value="0.05">5% (Slight Stretch Wool)</option>
-                <option value="0.10" selected>10% (Jersey Blend)</option>
+                <option value="0.00">0% (Woven Cotton / Denim)</option>
+                <option value="0.05">5% (Slight Stretch)</option>
+                <option value="0.10" selected>10% (Medium Stretch Jersey)</option>
                 <option value="0.18">18% (Activewear Lycra)</option>
               </select>
             </div>
@@ -259,14 +310,78 @@
     let scene, camera, renderer, garmentMesh;
     let isWireframe = false;
     let currentGarmentType = 'top';
+    let uploadedImages = []; // Stores Array of loaded Image objects
 
     const STANDARD_PRESETS = {
       'S':   { chest: 92,  waist: 76,  hips: 94,  shoulder: 42, sleeve: 61, length: 70, collar: 37, armhole: 23, height: 168 },
       'M':   { chest: 98,  waist: 82,  hips: 98,  shoulder: 44, sleeve: 62.5, length: 72, collar: 39, armhole: 24.5, height: 172 },
       'L':   { chest: 104, waist: 88,  hips: 102, shoulder: 46, sleeve: 64, length: 74, collar: 41, armhole: 26, height: 176 },
-      'XL':  { chest: 112, waist: 96,  hips: 110, shoulder: 48, sleeve: 65.5, length: 76, collar: 43, armhole: 28, height: 180 },
-      'XXL': { chest: 120, waist: 104, hips: 118, shoulder: 50, sleeve: 67, length: 78, collar: 45, armhole: 30, height: 184 }
+      'XL':  { chest: 112, waist: 96,  hips: 110, shoulder: 48, sleeve: 65.5, length: 78, collar: 43, armhole: 28, height: 180 },
+      'XXL': { chest: 120, waist: 104, hips: 118, shoulder: 50, sleeve: 67, length: 80, collar: 45, armhole: 30, height: 184 }
     };
+
+    // MULTI-IMAGE DRAG & DROP AND SELECTION HANDLER
+    function handleMultipleImages(files) {
+      if (!files || files.length === 0) return;
+
+      Array.from(files).forEach((file) => {
+        if (!file.type.startsWith('image/')) return;
+
+        const reader = new FileReader();
+        reader.onload = (e) => {
+          const img = new Image();
+          img.src = e.target.result;
+          img.onload = () => {
+            uploadedImages.push({ id: Date.now() + Math.random(), img: img, src: e.target.result });
+            renderImageGallery();
+            updatePatternAnd3D();
+          };
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    function removeImage(id) {
+      uploadedImages = uploadedImages.filter(item => item.id !== id);
+      renderImageGallery();
+      updatePatternAnd3D();
+    }
+
+    function renderImageGallery() {
+      const gallery = document.getElementById('imageGallery');
+      gallery.innerHTML = '';
+
+      uploadedImages.forEach((item, index) => {
+        const wrap = document.createElement('div');
+        wrap.className = 'relative group w-16 h-16 rounded-lg overflow-hidden border border-brand-700 bg-brand-900';
+
+        const img = document.createElement('img');
+        img.src = item.src;
+        img.className = 'w-full h-full object-cover';
+
+        const removeBtn = document.createElement('button');
+        removeBtn.innerHTML = '&times;';
+        removeBtn.className = 'absolute top-0 shadow-md right-0 bg-red-600/90 hover:bg-red-700 text-white w-5 h-5 flex items-center justify-center text-xs font-bold rounded-bl';
+        removeBtn.onclick = (e) => { e.stopPropagation(); removeImage(item.id); };
+
+        wrap.appendChild(img);
+        wrap.appendChild(removeBtn);
+        gallery.appendChild(wrap);
+      });
+    }
+
+    // SETUP DRAG AND DROP
+    const dropZone = document.getElementById('dropZone');
+    ['dragenter', 'dragover'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => { e.preventDefault(); dropZone.classList.add('border-brand-gold'); }, false);
+    });
+    ['dragleave', 'drop'].forEach(eventName => {
+      dropZone.addEventListener(eventName, (e) => { e.preventDefault(); dropZone.classList.remove('border-brand-gold'); }, false);
+    });
+    dropZone.addEventListener('drop', (e) => {
+      const dt = e.dataTransfer;
+      if (dt && dt.files) handleMultipleImages(dt.files);
+    }, false);
 
     function applyStandardPreset(sizeKey) {
       const preset = STANDARD_PRESETS[sizeKey];
@@ -436,6 +551,16 @@
 
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+      // OVERLAY PRIMARY UPLOADED IMAGE (IF PRESENT)
+      if (uploadedImages.length > 0 && uploadedImages[0].img) {
+        const primImg = uploadedImages[0].img;
+        const thumbW = canvas.width * 0.22;
+        const thumbH = (primImg.height / primImg.width) * thumbW;
+        ctx.globalAlpha = 0.22;
+        ctx.drawImage(primImg, 15, 15, thumbW, thumbH);
+        ctx.globalAlpha = 1.0;
+      }
 
       ctx.strokeStyle = "#94a3b8";
       ctx.lineWidth = 1.5;
